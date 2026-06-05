@@ -107,8 +107,7 @@ public final class GameLoop extends ScreenAdapter {
    */
   public static final IVoidFunction onLevelLoad =
       () -> {
-        boolean firstLoad = !ECSManagement.levelStorageMap().containsKey(Game.currentLevel().get());
-        if (firstLoad && Game.isCheckPatternEnabled())
+        if (Game.isCheckPatternEnabled())
           Game.currentLevel()
               .ifPresent(level -> CheckPatternPainter.paintCheckerPattern(level.layout()));
 
@@ -122,9 +121,7 @@ public final class GameLoop extends ScreenAdapter {
         // cleanup).
         Map<Class<? extends System>, System> s = ECSManagement.systems();
         ECSManagement.removeAllSystems();
-        ECSManagement.activeEntityStorage(
-            ECSManagement.levelStorageMap()
-                .computeIfAbsent(Game.currentLevel().orElse(null), k -> new HashSet<>()));
+        ECSManagement.activeEntityStorage(new HashSet<>());
         // readd the systems so that each triggerOnAdd(entity) will be called (basically
         // setup). This will also create new EntitySystemMapper if needed.
         s.values().forEach(ECSManagement::add);
@@ -134,7 +131,7 @@ public final class GameLoop extends ScreenAdapter {
         } catch (MissingComponentException e) {
           LOGGER.warn(e.getMessage());
         }
-        ECSManagement.allEntities()
+        ECSManagement.levelEntities()
             .filter(Entity::isPersistent)
             .map(ECSManagement::remove)
             .forEach(ECSManagement::add);
@@ -146,7 +143,7 @@ public final class GameLoop extends ScreenAdapter {
                         .decorations()
                         .forEach(tuple -> Game.add(DecoFactory.createDeco(tuple.b(), tuple.a()))));
 
-        PreRunConfiguration.userOnLevelLoad().accept(firstLoad);
+        PreRunConfiguration.userOnLevelLoad().accept(true);
       };
 
   // for singleton
@@ -393,7 +390,7 @@ public final class GameLoop extends ScreenAdapter {
           LOGGER.info("Received EntitySpawnEvent event: " + event.entityId());
 
           // check if the entity already exists
-          if (Game.allEntities().anyMatch(e -> e.id() == event.entityId())) {
+          if (Game.levelEntities().anyMatch(e -> e.id() == event.entityId())) {
             LOGGER.warn(
                 "Received spawn event for already existing entity with ID: " + event.entityId());
             return;
@@ -448,7 +445,7 @@ public final class GameLoop extends ScreenAdapter {
                   + event.reason());
           untrackNetworkEntity(ctx, event.entityId());
           Entity entity =
-              Game.allEntities().filter(e -> e.id() == event.entityId()).findFirst().orElse(null);
+              Game.levelEntities().filter(e -> e.id() == event.entityId()).findFirst().orElse(null);
           if (entity == null) {
             LOGGER.warn("Received despawn event for unknown entity with ID: " + event.entityId());
             return;
@@ -596,7 +593,7 @@ public final class GameLoop extends ScreenAdapter {
         (ctx, msg) -> {
           LOGGER.debug("Received DialogCloseMessage for dialog: {}", msg.dialogId());
           // Find and remove the UiComponent with the given dialogId
-          Game.allEntities()
+          Game.levelEntities()
               .filter(
                   e ->
                       e.fetch(UIComponent.class)

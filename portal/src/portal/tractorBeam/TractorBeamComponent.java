@@ -42,7 +42,7 @@ public class TractorBeamComponent implements Component {
   public void activate() {
     if (active) return;
     for (Entity e : tractorBeamEntities) {
-      if (Game.allEntities().noneMatch(g -> g.equals(e))) {
+      if (Game.levelEntities().noneMatch(g -> g.equals(e))) {
         Game.add(e);
       }
 
@@ -122,7 +122,7 @@ public class TractorBeamComponent implements Component {
 
     if (active) {
       for (Entity e : tractorBeamEntities) {
-        if (Game.allEntities().noneMatch(g -> g.equals(e))) {
+        if (Game.levelEntities().noneMatch(g -> g.equals(e))) {
           Game.add(e);
         }
       }

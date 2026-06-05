@@ -93,7 +93,7 @@ public final class LastHourClient {
         .registerHandler(
             EntitySpawnEvent.class,
             (ctx, event) -> {
-              if (Game.allEntities().anyMatch(e -> e.id() == event.entityId())) {
+              if (Game.levelEntities().anyMatch(e -> e.id() == event.entityId())) {
                 return;
               }
 
