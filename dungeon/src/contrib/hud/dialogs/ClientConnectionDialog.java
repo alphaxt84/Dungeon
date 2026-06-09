@@ -40,6 +40,7 @@ final class ClientConnectionDialog {
   private static final String REJECTED_USERNAME_MESSAGE =
       "Spielername ungültig oder bereits vergeben.";
   private static final String CONNECTING_MESSAGE = "Verbindung wird aufgebaut...";
+  private static final String SYNCING_WORLD_MESSAGE = "Spielwelt wird synchronisiert...";
   private static final String FALLBACK_USERNAME = "Player";
   private static final String VERSION_COLOR = "#777777";
   private static final float USERNAME_FIELD_WIDTH = 438f;
@@ -167,6 +168,11 @@ final class ClientConnectionDialog {
     return new ConnectionListener() {
       @Override
       public void onConnected() {
+        showStatus(form.errorLabel(), SYNCING_WORLD_MESSAGE);
+      }
+
+      @Override
+      public void onInitialWorldReady() {
         completeConnectAttempt(context, form, true, this);
       }
 
