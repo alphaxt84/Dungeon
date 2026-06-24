@@ -1,0 +1,5 @@
+{
+  "artifactType": "ARTIFACT_TYPE_TASK",
+  "summary": "Task checklist for tracking the unit test implementation progress of the Dungeon-Breaker epics. Currently, AttachmentSystem, AttributeBarSystem, and DoorSystem (tested via DoorTile) are marked as completed. DecoTestSystem, DebugDrawSystem, DynamicLightSystem, and LevelUpSystem are outstanding tasks.",
+  "updatedAt": "2026-06-18T13:23:00.221776900Z"
+}

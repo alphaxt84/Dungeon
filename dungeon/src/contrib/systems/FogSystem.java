@@ -59,11 +59,11 @@ public class FogSystem extends System {
    * @see #revealAll()
    */
   public void reset(boolean revert) {
-    darkenedTiles.clear();
-    hiddenEntities.clear();
     if (revert) {
       revealAll();
     }
+    darkenedTiles.clear();
+    hiddenEntities.clear();
   }
 
   /**

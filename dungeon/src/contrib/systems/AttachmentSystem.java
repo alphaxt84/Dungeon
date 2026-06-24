@@ -99,6 +99,9 @@ public class AttachmentSystem extends System {
    * @param asData The Attachment Data with the attached Components.
    */
   private void applyAttachment(ASData asData) {
+    if (asData.originpc == null) {
+      return;
+    }
     if (asData.ac.isRotatingWithOrigin()) {
       asData.copypc.position(
           asData
