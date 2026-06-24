@@ -1,6 +1,7 @@
 package contrib.components.skillcomponent;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import contrib.components.SkillComponent;
 import org.junit.jupiter.api.Test;
@@ -16,7 +17,7 @@ public class GetSkillTest extends SkillComponentTestBase {
   }
 
   @Test
-  public void testGetSkillFindsMatchingSkill() {
+  void testGetSkillFindsMatchingSkill() {
     HealSkill heal = new HealSkill("Heal");
     sc = new SkillComponent(skillA, heal, skillB);
     var result = sc.getSkill(HealSkill.class);
@@ -25,7 +26,7 @@ public class GetSkillTest extends SkillComponentTestBase {
   }
 
   @Test
-  public void testGetSkillReturnsFirstMatch() {
+  void testGetSkillReturnsFirstMatch() {
     HealSkill heal1 = new HealSkill("Heal1");
     HealSkill heal2 = new HealSkill("Heal2");
     sc = new SkillComponent(heal1, skillA, heal2);
@@ -35,14 +36,14 @@ public class GetSkillTest extends SkillComponentTestBase {
   }
 
   @Test
-  public void testGetSkillReturnsEmptyWhenNoMatch() {
+  void testGetSkillReturnsEmptyWhenNoMatch() {
     sc = new SkillComponent(skillA, skillB);
     var result = sc.getSkill(HealSkill.class);
     assertTrue(result.isEmpty(), "Should return empty when no skill of class exists");
   }
 
   @Test
-  public void testGetSkillReturnsEmptyOnEmptyComponent() {
+  void testGetSkillReturnsEmptyOnEmptyComponent() {
     sc = new SkillComponent();
     var result = sc.getSkill(HealSkill.class);
     assertTrue(result.isEmpty(), "Should return empty on empty SkillComponent");

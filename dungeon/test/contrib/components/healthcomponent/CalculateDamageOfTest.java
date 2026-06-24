@@ -10,13 +10,13 @@ import org.junit.jupiter.api.Test;
 public class CalculateDamageOfTest extends HealthComponentTestBase {
 
   @Test
-  public void testCalculateDamageOfNoHits() {
+  void testCalculateDamageOfNoHits() {
     assertEquals(0, hc.calculateDamageOf(DamageType.FIRE));
     assertEquals(0, hc.calculateDamageOf(DamageType.PHYSICAL));
   }
 
   @Test
-  public void testCalculateDamageOfSingleHit() {
+  void testCalculateDamageOfSingleHit() {
     Damage dmg = new Damage(5, DamageType.FIRE, null);
     hc.receiveHit(dmg);
     assertEquals(5, hc.calculateDamageOf(DamageType.FIRE));
@@ -24,14 +24,14 @@ public class CalculateDamageOfTest extends HealthComponentTestBase {
   }
 
   @Test
-  public void testCalculateDamageOfMultipleHitsSameType() {
+  void testCalculateDamageOfMultipleHitsSameType() {
     hc.receiveHit(new Damage(3, DamageType.FIRE, null));
     hc.receiveHit(new Damage(4, DamageType.FIRE, null));
     assertEquals(7, hc.calculateDamageOf(DamageType.FIRE));
   }
 
   @Test
-  public void testCalculateDamageOfMultipleHitsDifferentTypes() {
+  void testCalculateDamageOfMultipleHitsDifferentTypes() {
     hc.receiveHit(new Damage(3, DamageType.FIRE, null));
     hc.receiveHit(new Damage(5, DamageType.PHYSICAL, null));
     hc.receiveHit(new Damage(2, DamageType.FIRE, null));

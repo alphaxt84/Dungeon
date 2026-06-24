@@ -29,7 +29,7 @@ public class DirectionTest {
 
   /** Tests that each direction has the correct x and y coordinates as documented. */
   @Test
-  public void testDirectionCoordinates() {
+  void testDirectionCoordinates() {
     assertEquals(0.0f, Direction.UP.x(), DELTA);
     assertEquals(1.0f, Direction.UP.y(), DELTA);
 
@@ -48,7 +48,7 @@ public class DirectionTest {
 
   /** Tests the opposite() method for all cardinal directions. */
   @Test
-  public void testOpposite() {
+  void testOpposite() {
     assertEquals(Direction.DOWN, Direction.UP.opposite());
     assertEquals(Direction.UP, Direction.DOWN.opposite());
     assertEquals(Direction.RIGHT, Direction.LEFT.opposite());
@@ -58,7 +58,7 @@ public class DirectionTest {
 
   /** Tests the turnLeft() method for 90-degree counter-clockwise rotations. */
   @Test
-  public void testTurnLeft() {
+  void testTurnLeft() {
     assertEquals(Direction.LEFT, Direction.UP.turnLeft());
     assertEquals(Direction.DOWN, Direction.LEFT.turnLeft());
     assertEquals(Direction.RIGHT, Direction.DOWN.turnLeft());
@@ -68,7 +68,7 @@ public class DirectionTest {
 
   /** Tests the turnRight() method for 90-degree clockwise rotations. */
   @Test
-  public void testTurnRight() {
+  void testTurnRight() {
     assertEquals(Direction.RIGHT, Direction.UP.turnRight());
     assertEquals(Direction.DOWN, Direction.RIGHT.turnRight());
     assertEquals(Direction.LEFT, Direction.DOWN.turnRight());
@@ -78,7 +78,7 @@ public class DirectionTest {
 
   /** Tests that four consecutive left turns return to the original direction. */
   @Test
-  public void testFourLeftTurns() {
+  void testFourLeftTurns() {
     Direction original = Direction.UP;
     Direction result = original.turnLeft().turnLeft().turnLeft().turnLeft();
     assertEquals(original, result);
@@ -86,7 +86,7 @@ public class DirectionTest {
 
   /** Tests that four consecutive right turns return to the original direction. */
   @Test
-  public void testFourRightTurns() {
+  void testFourRightTurns() {
     Direction original = Direction.LEFT;
     Direction result = original.turnRight().turnRight().turnRight().turnRight();
     assertEquals(original, result);
@@ -94,7 +94,7 @@ public class DirectionTest {
 
   /** Tests that left and right turns are inverses of each other. */
   @Test
-  public void testTurnInverses() {
+  void testTurnInverses() {
     for (Direction dir :
         new Direction[] {Direction.UP, Direction.RIGHT, Direction.DOWN, Direction.LEFT}) {
       assertEquals(dir, dir.turnLeft().turnRight());
@@ -104,7 +104,7 @@ public class DirectionTest {
 
   /** Tests the applyRelative() method with DOWN (back) transformation. */
   @Test
-  public void testApplyRelativeBack() {
+  void testApplyRelativeBack() {
     assertEquals(Direction.DOWN, Direction.UP.applyRelative(Direction.DOWN));
     assertEquals(Direction.LEFT, Direction.RIGHT.applyRelative(Direction.DOWN));
     assertEquals(Direction.UP, Direction.DOWN.applyRelative(Direction.DOWN));
@@ -113,7 +113,7 @@ public class DirectionTest {
 
   /** Tests the applyRelative() method with LEFT transformation. */
   @Test
-  public void testApplyRelativeLeft() {
+  void testApplyRelativeLeft() {
     assertEquals(Direction.LEFT, Direction.UP.applyRelative(Direction.LEFT));
     assertEquals(Direction.UP, Direction.RIGHT.applyRelative(Direction.LEFT));
     assertEquals(Direction.RIGHT, Direction.DOWN.applyRelative(Direction.LEFT));
@@ -122,7 +122,7 @@ public class DirectionTest {
 
   /** Tests the applyRelative() method with RIGHT transformation. */
   @Test
-  public void testApplyRelativeRight() {
+  void testApplyRelativeRight() {
     assertEquals(Direction.RIGHT, Direction.UP.applyRelative(Direction.RIGHT));
     assertEquals(Direction.DOWN, Direction.RIGHT.applyRelative(Direction.RIGHT));
     assertEquals(Direction.LEFT, Direction.DOWN.applyRelative(Direction.RIGHT));
@@ -131,7 +131,7 @@ public class DirectionTest {
 
   /** Tests the applyRelative() method with UP and NONE (no change) transformations. */
   @Test
-  public void testApplyRelativeNoChange() {
+  void testApplyRelativeNoChange() {
     Direction[] directions = {
       Direction.UP, Direction.RIGHT, Direction.DOWN, Direction.LEFT, Direction.NONE
     };
@@ -144,7 +144,7 @@ public class DirectionTest {
 
   /** Tests that the random() method returns only cardinal directions. */
   @Test
-  public void testRandomReturnsCardinalDirections() {
+  void testRandomReturnsCardinalDirections() {
     Direction[] cardinals = {Direction.UP, Direction.RIGHT, Direction.DOWN, Direction.LEFT};
 
     // Test multiple times to increase confidence
@@ -163,7 +163,7 @@ public class DirectionTest {
 
   /** Tests that random() never returns NONE. */
   @Test
-  public void testRandomNeverReturnsNone() {
+  void testRandomNeverReturnsNone() {
     // Test multiple times to increase confidence
     for (int i = 0; i < 100; i++) {
       Direction random = Direction.random();
@@ -173,7 +173,7 @@ public class DirectionTest {
 
   /** Tests the fromString() method with valid direction strings. */
   @Test
-  public void testFromStringValid() {
+  void testFromStringValid() {
     assertEquals(Direction.UP, Direction.fromString("up"));
     assertEquals(Direction.UP, Direction.fromString("UP"));
     assertEquals(Direction.UP, Direction.fromString("Up"));
@@ -193,7 +193,7 @@ public class DirectionTest {
 
   /** Tests that fromString() throws IllegalArgumentException for invalid strings. */
   @Test
-  public void testFromStringInvalid() {
+  void testFromStringInvalid() {
     assertThrows(IllegalArgumentException.class, () -> Direction.fromString("invalid"));
     assertThrows(IllegalArgumentException.class, () -> Direction.fromString("north"));
     assertThrows(IllegalArgumentException.class, () -> Direction.fromString(""));
@@ -202,7 +202,7 @@ public class DirectionTest {
 
   /** Tests that fromString() is case-insensitive. */
   @Test
-  public void testFromStringCaseInsensitive() {
+  void testFromStringCaseInsensitive() {
     String[] cases = {"up", "UP", "Up", "uP"};
     for (String testCase : cases) {
       assertEquals(Direction.UP, Direction.fromString(testCase));
@@ -211,7 +211,7 @@ public class DirectionTest {
 
   /** Tests that all directions can be converted to string and back correctly. */
   @Test
-  public void testStringRoundTrip() {
+  void testStringRoundTrip() {
     for (Direction dir : Direction.values()) {
       Direction converted = Direction.fromString(dir.name());
       assertEquals(dir, converted);
@@ -220,7 +220,7 @@ public class DirectionTest {
 
   /** Tests that Direction implements Vector2 interface correctly. */
   @Test
-  public void testVector2Interface() {
+  void testVector2Interface() {
     // Direction should be usable as Vector2
     Vector2 upVector = Direction.UP;
     assertEquals(0.0f, upVector.x(), DELTA);
@@ -234,7 +234,7 @@ public class DirectionTest {
 
   /** Tests that directions are unit vectors (except NONE). */
   @Test
-  public void testUnitVectors() {
+  void testUnitVectors() {
     assertEquals(1.0, Direction.UP.length(), DELTA);
     assertEquals(1.0, Direction.RIGHT.length(), DELTA);
     assertEquals(1.0, Direction.DOWN.length(), DELTA);
@@ -244,7 +244,7 @@ public class DirectionTest {
 
   /** Tests that NONE direction is the zero vector. */
   @Test
-  public void testNoneIsZeroVector() {
+  void testNoneIsZeroVector() {
     assertTrue(Direction.NONE.isZero());
     assertFalse(Direction.UP.isZero());
     assertFalse(Direction.RIGHT.isZero());
@@ -254,7 +254,7 @@ public class DirectionTest {
 
   /** Tests that cardinal directions are orthogonal to their adjacent directions. */
   @Test
-  public void testOrthogonalDirections() {
+  void testOrthogonalDirections() {
     assertEquals(0.0, Direction.UP.dot(Direction.RIGHT), DELTA);
     assertEquals(0.0, Direction.RIGHT.dot(Direction.DOWN), DELTA);
     assertEquals(0.0, Direction.DOWN.dot(Direction.LEFT), DELTA);
@@ -263,7 +263,7 @@ public class DirectionTest {
 
   /** Tests that opposite directions have dot product of -1. */
   @Test
-  public void testOppositeDirectionsDotProduct() {
+  void testOppositeDirectionsDotProduct() {
     assertEquals(-1.0, Direction.UP.dot(Direction.DOWN), DELTA);
     assertEquals(-1.0, Direction.RIGHT.dot(Direction.LEFT), DELTA);
     assertEquals(-1.0, Direction.DOWN.dot(Direction.UP), DELTA);

@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 public class TransferAllTest extends InventoryComponentTestBase {
 
   @Test
-  public void testTransferAllSuccess() {
+  void testTransferAllSuccess() {
     inventory.add(item1);
     inventory.add(item2);
 
@@ -23,7 +23,7 @@ public class TransferAllTest extends InventoryComponentTestBase {
   }
 
   @Test
-  public void testTransferAllPartialFails() {
+  void testTransferAllPartialFails() {
     inventory.add(item1);
     inventory.add(item2);
 

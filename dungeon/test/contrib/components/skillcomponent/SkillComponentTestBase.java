@@ -46,7 +46,7 @@ public class SkillComponentTestBase {
   protected TestSkill skillC;
 
   @BeforeEach
-  public void setUp() {
+  void setUp() {
     Game.removeAllEntities();
     entity = new Entity();
     skillA = new TestSkill("SkillA");
@@ -55,7 +55,7 @@ public class SkillComponentTestBase {
   }
 
   @AfterEach
-  public void tearDown() {
+  void tearDown() {
     Game.removeAllEntities();
   }
 }

@@ -31,7 +31,7 @@ public class ProtectOnAttackTest {
 
   /** WTF? . */
   @BeforeEach
-  public void setup() {
+  void setup() {
     // Get a protector
     protector = new Entity();
     Game.add(protector);
@@ -60,14 +60,14 @@ public class ProtectOnAttackTest {
 
   /** WTF? . */
   @AfterEach
-  public void cleanup() {
+  void cleanup() {
     Game.removeAllSystems();
     Game.removeAllEntities();
   }
 
   /** Add one entity to transition and inflict damage. */
   @Test
-  public void oneEntityAdded() {
+  void oneEntityAdded() {
     // given
     AIComponent attackerAI =
         new AIComponent(
@@ -87,7 +87,7 @@ public class ProtectOnAttackTest {
 
   /** Add one entity to transition and inflict no damage. */
   @Test
-  public void oneEntityAddedWithoutDamage() {
+  void oneEntityAddedWithoutDamage() {
     // given
     AIComponent attackerAI =
         new AIComponent(
@@ -105,7 +105,7 @@ public class ProtectOnAttackTest {
 
   /** Add a list of entities to the transition and inflict damage to all. */
   @Test
-  public void dmgToAllEntities() {
+  void dmgToAllEntities() {
     // given
     AIComponent attackerAI =
         new AIComponent(
@@ -130,7 +130,7 @@ public class ProtectOnAttackTest {
 
   /** Add an empty list of entities to the transition. */
   @Test
-  public void emptyListOfEntities() {
+  void emptyListOfEntities() {
     List<Entity> emptyList = new ArrayList<>();
     // given
     AIComponent attackerAI =

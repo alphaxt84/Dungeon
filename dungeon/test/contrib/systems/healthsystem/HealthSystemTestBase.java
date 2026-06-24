@@ -46,7 +46,7 @@ public class HealthSystemTestBase {
   }
 
   @BeforeEach
-  public void setUp() {
+  void setUp() {
     Game.removeAllEntities();
     system = new TestableHealthSystem();
     entity = new Entity();
@@ -59,7 +59,7 @@ public class HealthSystemTestBase {
   }
 
   @AfterEach
-  public void tearDown() {
+  void tearDown() {
     Game.removeAllEntities();
   }
 }

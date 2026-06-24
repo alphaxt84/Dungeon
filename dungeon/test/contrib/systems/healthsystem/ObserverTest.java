@@ -15,7 +15,7 @@ import org.mockito.Mockito;
 public class ObserverTest extends HealthSystemTestBase {
 
   @Test
-  public void testRegisterAndNotifyObserver() {
+  void testRegisterAndNotifyObserver() {
     IHealthObserver mockObserver = mock(IHealthObserver.class);
     system.registerObserver(mockObserver);
 
@@ -27,7 +27,7 @@ public class ObserverTest extends HealthSystemTestBase {
   }
 
   @Test
-  public void testRemoveObserverDoesNotNotify() {
+  void testRemoveObserverDoesNotNotify() {
     IHealthObserver mockObserver = mock(IHealthObserver.class);
     system.registerObserver(mockObserver);
     system.removeObserver(mockObserver);

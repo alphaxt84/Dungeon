@@ -27,13 +27,13 @@ public class InventoryComponentTest {
 
   /** WTF? . */
   @AfterEach
-  public void cleanup() {
+  void cleanup() {
     Game.removeAllEntities();
   }
 
   /** Constructor should create the inventory with the given parameters. */
   @Test
-  public void validCreation() {
+  void validCreation() {
 
     Entity e = new Entity();
     InventoryComponent ic = new InventoryComponent(1);
@@ -43,7 +43,7 @@ public class InventoryComponentTest {
 
   /** Adding one valid Item. */
   @Test
-  public void addItemValid() {
+  void addItemValid() {
     Entity e = new Entity();
     InventoryComponent ic = new InventoryComponent(1);
     e.add(ic);
@@ -56,7 +56,7 @@ public class InventoryComponentTest {
    * When there is enough space in the Inventory it should be possible to add more than one Item.
    */
   @Test
-  public void addItemValidMultiple() {
+  void addItemValidMultiple() {
     Entity e = new Entity();
     InventoryComponent ic = new InventoryComponent(3);
     e.add(ic);
@@ -68,7 +68,7 @@ public class InventoryComponentTest {
 
   /** Adding two Items to an Inventory with a size of 1 should only add the first. */
   @Test
-  public void addItemOverSize() {
+  void addItemOverSize() {
     Entity e = new Entity();
     InventoryComponent ic = new InventoryComponent(1);
     e.add(ic);
@@ -79,7 +79,7 @@ public class InventoryComponentTest {
 
   /** Removing of an added Item. */
   @Test
-  public void removeItemExisting() {
+  void removeItemExisting() {
     Entity e = new Entity();
     InventoryComponent ic = new InventoryComponent(1);
     e.add(ic);
@@ -92,7 +92,7 @@ public class InventoryComponentTest {
 
   /** Removing an Item which was already removed before. */
   @Test
-  public void removeItemTwice() {
+  void removeItemTwice() {
     Entity e = new Entity();
     InventoryComponent ic = new InventoryComponent(1);
     e.add(ic);
@@ -106,7 +106,7 @@ public class InventoryComponentTest {
 
   /** {@code null} should not remove any Item. */
   @Test
-  public void removeItemNull() {
+  void removeItemNull() {
     Entity e = new Entity();
     InventoryComponent ic = new InventoryComponent(1);
     e.add(ic);
@@ -119,7 +119,7 @@ public class InventoryComponentTest {
 
   /** Empty inventory should return an empty List. */
   @Test
-  public void getAllItemsEmptyInventory() {
+  void getAllItemsEmptyInventory() {
     Entity e = new Entity();
     InventoryComponent ic = new InventoryComponent(0);
     e.add(ic);
@@ -128,7 +128,7 @@ public class InventoryComponentTest {
 
   /** An inventory with one Item should return a List with this Item. */
   @Test
-  public void getAllItemsInventoryWithOnlyOneItem() {
+  void getAllItemsInventoryWithOnlyOneItem() {
     Entity e = new Entity();
     InventoryComponent ic = new InventoryComponent(1);
     e.add(ic);
@@ -141,7 +141,7 @@ public class InventoryComponentTest {
 
   /** An inventory with one Item should return a List with this Item. */
   @Test
-  public void getAllItemsInventoryWithTwoItems() {
+  void getAllItemsInventoryWithTwoItems() {
     Entity e = new Entity();
     InventoryComponent ic = new InventoryComponent(2);
     e.add(ic);
@@ -157,7 +157,7 @@ public class InventoryComponentTest {
 
   /** An inventory should only be able to return Items it contains. */
   @Test
-  public void getAllItemsInventoryNoAddedItemButCreated() {
+  void getAllItemsInventoryNoAddedItemButCreated() {
     Entity e = new Entity();
     InventoryComponent ic = new InventoryComponent(1);
     e.add(ic);
@@ -169,7 +169,7 @@ public class InventoryComponentTest {
 
   /** WTF? . */
   @Test
-  public void tranfserItem() {
+  void tranfserItem() {
     InventoryComponent ic = new InventoryComponent(1);
     InventoryComponent other = new InventoryComponent(1);
     Item item = mock(Item.class);
@@ -184,7 +184,7 @@ public class InventoryComponentTest {
 
   /** WTF? . */
   @Test
-  public void tranfserItemNoSpace() {
+  void tranfserItemNoSpace() {
     InventoryComponent ic = new InventoryComponent(1);
     InventoryComponent other = new InventoryComponent(0);
     Item item = mock(Item.class);
@@ -199,7 +199,7 @@ public class InventoryComponentTest {
 
   /** WTF? . */
   @Test
-  public void tranfserItemNoItem() {
+  void tranfserItemNoItem() {
     InventoryComponent ic = new InventoryComponent(1);
     InventoryComponent other = new InventoryComponent(1);
     Item item = mock(Item.class);
@@ -208,7 +208,7 @@ public class InventoryComponentTest {
 
   /** WTF? . */
   @Test
-  public void transferItemToItself() {
+  void transferItemToItself() {
     InventoryComponent ic = new InventoryComponent(1);
     Item item = mock(Item.class);
     when(item.maxStackSize()).thenReturn(1);
@@ -226,7 +226,7 @@ public class InventoryComponentTest {
    * stack size as the incoming item. - The method returns true.
    */
   @Test
-  public void addStack_NoExistingItem() {
+  void addStack_NoExistingItem() {
     InventoryComponent ic = new InventoryComponent(5);
 
     Item item = mock(Item.class);
@@ -253,7 +253,7 @@ public class InventoryComponentTest {
    * incoming stack size becomes zero (emptied). - The method returns true.
    */
   @Test
-  public void addStack_MergeCompletely() {
+  void addStack_MergeCompletely() {
     InventoryComponent ic = new InventoryComponent(5);
 
     DummyItem existing = new DummyItem(2, 5);
@@ -282,7 +282,7 @@ public class InventoryComponentTest {
    * merge.
    */
   @Test
-  public void addStack_SplitAcrossMultipleStacks() {
+  void addStack_SplitAcrossMultipleStacks() {
     InventoryComponent ic = new InventoryComponent(5);
 
     DummyItem stack1 = new DummyItem(5, 5);
@@ -314,7 +314,7 @@ public class InventoryComponentTest {
    * new stack. - Inventory count increases accordingly. - The method returns true.
    */
   @Test
-  public void addStack_PartialMerge_NewStackForRest() {
+  void addStack_PartialMerge_NewStackForRest() {
     InventoryComponent ic = new InventoryComponent(5);
 
     DummyItem stack1 = new DummyItem(4, 5);
@@ -338,7 +338,7 @@ public class InventoryComponentTest {
    * added due to full inventory. - The method returns false.
    */
   @Test
-  public void addStack_NoSpaceForRest() {
+  void addStack_NoSpaceForRest() {
     InventoryComponent ic = new InventoryComponent(1); // only 1 slot
 
     DummyItem stack1 = new DummyItem(4, 5);
@@ -357,7 +357,7 @@ public class InventoryComponentTest {
    * from inventory if the stack size reaches zero.
    */
   @Test
-  public void removeOne_DecreasesStackOrRemovesItem() {
+  void removeOne_DecreasesStackOrRemovesItem() {
     InventoryComponent ic = new InventoryComponent(2);
 
     final int[] stackSize = {1};

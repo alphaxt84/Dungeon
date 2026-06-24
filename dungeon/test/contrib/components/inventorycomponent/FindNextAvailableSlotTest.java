@@ -8,19 +8,19 @@ import org.junit.jupiter.api.Test;
 public class FindNextAvailableSlotTest extends InventoryComponentTestBase {
 
   @Test
-  public void testFindNextAvailableSlotEmpty() {
+  void testFindNextAvailableSlotEmpty() {
     assertEquals(0, inventory.findNextAvailableSlot());
   }
 
   @Test
-  public void testFindNextAvailableSlotPartial() {
+  void testFindNextAvailableSlotPartial() {
     inventory.set(0, item1);
     inventory.set(1, item2);
     assertEquals(2, inventory.findNextAvailableSlot());
   }
 
   @Test
-  public void testFindNextAvailableSlotFull() {
+  void testFindNextAvailableSlotFull() {
     inventory.set(0, item1);
     inventory.set(1, item2);
     inventory.set(2, item3);

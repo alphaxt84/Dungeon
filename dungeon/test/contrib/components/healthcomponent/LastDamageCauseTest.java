@@ -13,12 +13,12 @@ import org.junit.jupiter.api.Test;
 public class LastDamageCauseTest extends HealthComponentTestBase {
 
   @Test
-  public void testLastDamageCauseInitial() {
+  void testLastDamageCauseInitial() {
     assertFalse(hc.lastDamageCause().isPresent());
   }
 
   @Test
-  public void testLastDamageCauseAfterHit() {
+  void testLastDamageCauseAfterHit() {
     Entity damager = new Entity();
     Damage dmg = new Damage(5, DamageType.PHYSICAL, damager);
     hc.receiveHit(dmg);
@@ -27,7 +27,7 @@ public class LastDamageCauseTest extends HealthComponentTestBase {
   }
 
   @Test
-  public void testLastDamageCauseNullDamagerDoesNotOverwrite() {
+  void testLastDamageCauseNullDamagerDoesNotOverwrite() {
     Entity damager = new Entity();
     hc.receiveHit(new Damage(5, DamageType.PHYSICAL, damager));
     hc.receiveHit(new Damage(2, DamageType.FIRE, null));
@@ -36,7 +36,7 @@ public class LastDamageCauseTest extends HealthComponentTestBase {
   }
 
   @Test
-  public void testLastDamageCauseOverwrittenByNewDamager() {
+  void testLastDamageCauseOverwrittenByNewDamager() {
     Entity damager1 = new Entity();
     Entity damager2 = new Entity();
     hc.receiveHit(new Damage(5, DamageType.PHYSICAL, damager1));

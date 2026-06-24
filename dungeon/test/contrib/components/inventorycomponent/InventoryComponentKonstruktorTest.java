@@ -9,13 +9,13 @@ import org.junit.jupiter.api.Test;
 public class InventoryComponentKonstruktorTest {
 
   @Test
-  public void testDefaultConstructor() {
+  void testDefaultConstructor() {
     InventoryComponent inv = new InventoryComponent();
     assertEquals(24, inv.items().length);
   }
 
   @Test
-  public void testCustomSizeConstructor() {
+  void testCustomSizeConstructor() {
     InventoryComponent inv = new InventoryComponent(8);
     assertEquals(8, inv.items().length);
   }

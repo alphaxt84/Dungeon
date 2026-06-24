@@ -8,24 +8,24 @@ import org.junit.jupiter.api.Test;
 public class CurrentHealthpointsTest extends HealthComponentTestBase {
 
   @Test
-  public void testGetCurrentHealthpoints() {
+  void testGetCurrentHealthpoints() {
     assertEquals(10, hc.currentHealthpoints());
   }
 
   @Test
-  public void testSetCurrentHealthpointsValid() {
+  void testSetCurrentHealthpointsValid() {
     hc.currentHealthpoints(7);
     assertEquals(7, hc.currentHealthpoints());
   }
 
   @Test
-  public void testSetCurrentHealthpointsCapsAtMax() {
+  void testSetCurrentHealthpointsCapsAtMax() {
     hc.currentHealthpoints(15);
     assertEquals(10, hc.currentHealthpoints()); // Setup max is 10
   }
 
   @Test
-  public void testSetCurrentHealthpointsZeroOrNegative() {
+  void testSetCurrentHealthpointsZeroOrNegative() {
     hc.currentHealthpoints(0);
     assertEquals(0, hc.currentHealthpoints());
 
@@ -34,7 +34,7 @@ public class CurrentHealthpointsTest extends HealthComponentTestBase {
   }
 
   @Test
-  public void testSetCurrentHealthpointsWithGodMode() {
+  void testSetCurrentHealthpointsWithGodMode() {
     hc.godMode(true);
     hc.currentHealthpoints(5);
     assertEquals(5, hc.currentHealthpoints());

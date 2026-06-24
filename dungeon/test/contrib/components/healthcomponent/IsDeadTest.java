@@ -9,19 +9,19 @@ import org.junit.jupiter.api.Test;
 public class IsDeadTest extends HealthComponentTestBase {
 
   @Test
-  public void testIsDeadWithPositiveHealth() {
+  void testIsDeadWithPositiveHealth() {
     hc.currentHealthpoints(10);
     assertFalse(hc.isDead());
   }
 
   @Test
-  public void testIsDeadWithZeroHealth() {
+  void testIsDeadWithZeroHealth() {
     hc.currentHealthpoints(0);
     assertTrue(hc.isDead());
   }
 
   @Test
-  public void testIsDeadWithNegativeHealth() {
+  void testIsDeadWithNegativeHealth() {
     hc.currentHealthpoints(-5);
     assertTrue(hc.isDead());
   }

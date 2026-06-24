@@ -15,14 +15,14 @@ import org.junit.jupiter.api.Test;
 public class AddTest extends InventoryComponentTestBase {
 
   @Test
-  public void testAddItemSuccess() {
+  void testAddItemSuccess() {
     assertTrue(inventory.add(item1));
     assertEquals(1, inventory.count());
     assertEquals(item1, inventory.get(0).get());
   }
 
   @Test
-  public void testAddCallbackTriggered() {
+  void testAddCallbackTriggered() {
     Consumer<Item> mockCallback = mock(Consumer.class);
     inventory.onItemAdded(mockCallback);
 
@@ -31,7 +31,7 @@ public class AddTest extends InventoryComponentTestBase {
   }
 
   @Test
-  public void testAddFullInventoryReturnsFalse() {
+  void testAddFullInventoryReturnsFalse() {
     // Inventory size is 5 in setup
     assertTrue(inventory.add(new Item("I1", "D1", defaultAnimation)));
     assertTrue(inventory.add(new Item("I2", "D2", defaultAnimation)));
@@ -44,7 +44,7 @@ public class AddTest extends InventoryComponentTestBase {
   }
 
   @Test
-  public void testAddToExistingStack() {
+  void testAddToExistingStack() {
     Item stack1 = new Item("Stackable", "Desc", defaultAnimation, defaultAnimation, 3, 10);
     Item stack2 = new Item("Stackable", "Desc", defaultAnimation, defaultAnimation, 5, 10);
 

@@ -15,7 +15,7 @@ public class SessionTests {
 
   /** Validates that unreliable messages use UDP when the session marks UDP as healthy. */
   @Test
-  public void test_unreliableSendUsesUdpWhenReady() {
+  void test_unreliableSendUsesUdpWhenReady() {
     AtomicInteger udpCalls = new AtomicInteger();
     AtomicInteger tcpCalls = new AtomicInteger();
     Session session =
@@ -40,7 +40,7 @@ public class SessionTests {
 
   /** Validates that unreliable messages fall back to TCP when UDP is unavailable. */
   @Test
-  public void test_unreliableSendFallsBackToTcpWhenUdpUnavailable() {
+  void test_unreliableSendFallsBackToTcpWhenUdpUnavailable() {
     AtomicInteger udpCalls = new AtomicInteger();
     AtomicInteger tcpCalls = new AtomicInteger();
     Session session =
@@ -65,7 +65,7 @@ public class SessionTests {
 
   /** Validates that reliable messages always use TCP even when UDP is healthy. */
   @Test
-  public void test_reliableSendAlwaysUsesTcp() {
+  void test_reliableSendAlwaysUsesTcp() {
     AtomicInteger udpCalls = new AtomicInteger();
     AtomicInteger tcpCalls = new AtomicInteger();
     Session session =

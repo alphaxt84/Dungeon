@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 public class RemoveOneTest extends InventoryComponentTestBase {
 
   @Test
-  public void testRemoveOneDecrementsStack() {
+  void testRemoveOneDecrementsStack() {
     Item stackItem = new Item("Stackable", "Desc", defaultAnimation, defaultAnimation, 3, 10);
     inventory.add(stackItem);
 
@@ -21,7 +21,7 @@ public class RemoveOneTest extends InventoryComponentTestBase {
   }
 
   @Test
-  public void testRemoveOneClearsSlotAtZero() {
+  void testRemoveOneClearsSlotAtZero() {
     item1.stackSize(1);
     inventory.add(item1);
 
@@ -32,7 +32,7 @@ public class RemoveOneTest extends InventoryComponentTestBase {
   }
 
   @Test
-  public void testRemoveOneNotFoundReturnsFalse() {
+  void testRemoveOneNotFoundReturnsFalse() {
     assertFalse(inventory.removeOne(item1));
   }
 }

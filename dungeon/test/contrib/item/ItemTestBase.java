@@ -16,7 +16,7 @@ public class ItemTestBase {
   protected Item item;
 
   @BeforeEach
-  public void setUp() {
+  void setUp() {
     Game.add(new LevelSystem());
     defaultAnimation = new Animation(new SimpleIPath("animation/missing_texture.png"));
 
@@ -66,7 +66,7 @@ public class ItemTestBase {
   }
 
   @AfterEach
-  public void tearDown() {
+  void tearDown() {
     Game.removeAllEntities();
     Game.removeAllSystems();
     Game.currentLevel(null);

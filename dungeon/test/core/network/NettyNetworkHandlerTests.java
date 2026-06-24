@@ -34,27 +34,27 @@ public class NettyNetworkHandlerTests {
 
   /** Initializes a fresh {@link NettyNetworkHandler} instance before each test. */
   @BeforeEach
-  public void setup() {
+  void setup() {
     handler = new NettyNetworkHandler();
     MockNetworkHandler.useLocalNetworkHandler();
   }
 
   /** Shuts down the network handler after each test to ensure clean state. */
   @AfterEach
-  public void cleanup() {
+  void cleanup() {
     handler.shutdown("test");
   }
 
   /** Validates that the handler initializes correctly in server mode. */
   @Test
-  public void test_initializeServerMode() throws Exception {
+  void test_initializeServerMode() throws Exception {
     handler.initialize(true, null, TEST_PORT, null, Optional.empty());
     assertTrue(handler.isServer());
   }
 
   /** Validates that the handler initializes correctly in client mode. */
   @Test
-  public void test_initializeClientMode() throws Exception {
+  void test_initializeClientMode() throws Exception {
     handler.initialize(false, TEST_HOST, TEST_PORT, "TestPlayer", Optional.empty());
     assertFalse(handler.isServer());
   }
@@ -65,7 +65,7 @@ public class NettyNetworkHandlerTests {
    * <p>This test requires full {@link Game} initialization to ensure proper network setup.
    */
   @Test
-  public void test_broadcastInServerMode() throws Exception {
+  void test_broadcastInServerMode() throws Exception {
     handler.initialize(true, null, TEST_PORT, null, Optional.empty());
 
     handler.start();
@@ -78,7 +78,7 @@ public class NettyNetworkHandlerTests {
    * UnsupportedOperationException}.
    */
   @Test
-  public void test_broadcastInClientModeThrows() throws Exception {
+  void test_broadcastInClientModeThrows() throws Exception {
     handler.initialize(false, TEST_HOST, TEST_PORT, "TestPlayer", Optional.empty());
     NetworkMessage msg = Mockito.mock(NetworkMessage.class);
     assertThrows(UnsupportedOperationException.class, () -> handler.broadcast(msg, true));
@@ -86,14 +86,14 @@ public class NettyNetworkHandlerTests {
 
   /** Validates that the assigned client ID is 0 before connection is established. */
   @Test
-  public void test_assignedClientId() throws Exception {
+  void test_assignedClientId() throws Exception {
     handler.initialize(false, TEST_HOST, TEST_PORT, "TestPlayer", Optional.empty());
     assertEquals(0, (short) handler.assignedClientId());
   }
 
   /** Validates that calling shutdown multiple times is safe and idempotent. */
   @Test
-  public void test_shutdownIdempotent() throws Exception {
+  void test_shutdownIdempotent() throws Exception {
     handler.initialize(false, TEST_HOST, TEST_PORT, "TestPlayer", Optional.empty());
     handler.shutdown("test");
     handler.shutdown("test");
@@ -104,7 +104,7 @@ public class NettyNetworkHandlerTests {
    * CompletableFuture}.
    */
   @Test
-  public void test_sendWhenDisconnected() throws Exception {
+  void test_sendWhenDisconnected() throws Exception {
     handler.initialize(false, TEST_HOST, TEST_PORT, "TestPlayer", Optional.empty());
     NetworkMessage msg = Mockito.mock(NetworkMessage.class);
     CompletableFuture<Boolean> result = handler.send((short) 1, msg, true);
@@ -113,21 +113,21 @@ public class NettyNetworkHandlerTests {
 
   /** Validates that the message dispatcher is available after initialization. */
   @Test
-  public void test_messageDispatcherAvailable() throws Exception {
+  void test_messageDispatcherAvailable() throws Exception {
     handler.initialize(false, TEST_HOST, TEST_PORT, "TestPlayer", Optional.empty());
     assertNotNull(handler.messageDispatcher());
   }
 
   /** Validates that the handler reports as not connected before establishing a connection. */
   @Test
-  public void test_handlerConnectionState() throws Exception {
+  void test_handlerConnectionState() throws Exception {
     handler.initialize(false, TEST_HOST, TEST_PORT, "TestPlayer", Optional.empty());
     assertFalse(handler.isConnected());
   }
 
   /** Validates that the server mode indicator remains consistent across multiple calls. */
   @Test
-  public void test_serverModeConsistent() throws Exception {
+  void test_serverModeConsistent() throws Exception {
     handler.initialize(true, null, TEST_PORT, null, Optional.empty());
     assertTrue(handler.isServer());
     assertTrue(handler.isServer());
@@ -135,7 +135,7 @@ public class NettyNetworkHandlerTests {
 
   /** Validates that attempting to broadcast a null message throws {@link NullPointerException}. */
   @Test
-  public void test_broadcastNullMessageThrows() throws Exception {
+  void test_broadcastNullMessageThrows() throws Exception {
     handler.initialize(true, null, TEST_PORT, null, Optional.empty());
     assertThrows(NullPointerException.class, () -> handler.broadcast(null, true));
   }

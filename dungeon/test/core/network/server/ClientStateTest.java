@@ -16,7 +16,7 @@ public class ClientStateTest {
 
   /** Verifies client-side network entity tracking can be updated and cleared. */
   @Test
-  public void networkSyncedEntityIdsTracksAndClearsEntities() {
+  void networkSyncedEntityIdsTracksAndClearsEntities() {
     ClientState state = clientState();
 
     state.trackNetworkEntity(10);
@@ -32,7 +32,7 @@ public class ClientStateTest {
 
   /** Verifies server-side snapshot entity tracking follows the active full baseline window. */
   @Test
-  public void knownSnapshotEntityIdsTracksFullBaselineAndDeltaEntities() {
+  void knownSnapshotEntityIdsTracksFullBaselineAndDeltaEntities() {
     ClientState state = clientState();
     SnapshotMessage snapshot =
         new SnapshotMessage(
@@ -50,7 +50,7 @@ public class ClientStateTest {
 
   /** Verifies known entity tracking is reset when the acknowledged baseline changes. */
   @Test
-  public void knownSnapshotEntityIdsResetWhenBaselineChanges() {
+  void knownSnapshotEntityIdsResetWhenBaselineChanges() {
     ClientState state = clientState();
     SnapshotMessage firstBaseline =
         new SnapshotMessage(
@@ -72,7 +72,7 @@ public class ClientStateTest {
 
   /** Verifies known entity tracking is preserved while the acknowledged baseline is unchanged. */
   @Test
-  public void knownSnapshotEntityIdsPreservedForSameBaseline() {
+  void knownSnapshotEntityIdsPreservedForSameBaseline() {
     ClientState state = clientState();
     SnapshotMessage baseline =
         new SnapshotMessage(

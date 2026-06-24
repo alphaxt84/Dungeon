@@ -37,7 +37,7 @@ public class GameLoopNetworkReconciliationTest {
 
   /** Cleans up global game state after each test. */
   @AfterEach
-  public void cleanup() {
+  void cleanup() {
     Game.removeAllEntities();
     Game.removeAllSystems();
     Game.currentLevel(null);
@@ -46,7 +46,7 @@ public class GameLoopNetworkReconciliationTest {
 
   /** Verifies authoritative full snapshots remove only tracked network entities. */
   @Test
-  public void reconcileNetworkEntitiesRemovesOnlyTrackedEntitiesMissingFromSnapshot() {
+  void reconcileNetworkEntitiesRemovesOnlyTrackedEntitiesMissingFromSnapshot() {
     ClientState state =
         new ClientState((short) 1, "tester", 1, new byte[] {1, 2, 3}, CharacterClass.WIZARD);
     Entity keptNetworkEntity = new Entity();
@@ -74,7 +74,7 @@ public class GameLoopNetworkReconciliationTest {
 
   /** Verifies delta application forwards only changed entities with materialized field state. */
   @Test
-  public void changedSnapshotForDeltaContainsOnlyMaterializedChangedEntities() {
+  void changedSnapshotForDeltaContainsOnlyMaterializedChangedEntities() {
     Coordinate changedDoor = new Coordinate(2, 3);
     SnapshotMessage baseline =
         new SnapshotMessage(
@@ -114,7 +114,7 @@ public class GameLoopNetworkReconciliationTest {
 
   /** Verifies client snapshot handlers update telemetry for accepted and stale snapshots. */
   @Test
-  public void snapshotHandlersRecordApplyAndStaleTelemetry() throws Exception {
+  void snapshotHandlersRecordApplyAndStaleTelemetry() throws Exception {
     MockNetworkHandler.useLocalNetworkHandler();
     Game.network().snapshotTranslator(noopSnapshotTranslator());
     setupGameLoopMessageHandlers();

@@ -31,7 +31,7 @@ import org.junit.jupiter.api.Test;
 public class DungeonLevelTest {
   /** WTF? . */
   @Test
-  public void test_levelCTOR_Tiles() {
+  void test_levelCTOR_Tiles() {
     Tile[][] tileLayout =
         new Tile[][] {
           {
@@ -50,7 +50,7 @@ public class DungeonLevelTest {
 
   /** WTF? . */
   @Test
-  public void test_levelCTOR_LevelElements() {
+  void test_levelCTOR_LevelElements() {
     LevelElement[][] elementsLayout =
         new LevelElement[][] {
           {LevelElement.WALL, LevelElement.FLOOR}, {LevelElement.WALL, LevelElement.EXIT}
@@ -65,7 +65,7 @@ public class DungeonLevelTest {
 
   /** WTF? . */
   @Test
-  public void test_levelCTOR_LevelElements_connections() {
+  void test_levelCTOR_LevelElements_connections() {
     LevelElement[][] elementsLayout =
         new LevelElement[][] {{LevelElement.FLOOR, LevelElement.FLOOR, LevelElement.EXIT}};
     DungeonLevel tileLevel = new DungeonLevel(elementsLayout, DesignLabel.DEFAULT);
@@ -81,7 +81,7 @@ public class DungeonLevelTest {
 
   /** WTF? . */
   @Test
-  public void test_levelCTOR_LevelElements_tileTypeLists() {
+  void test_levelCTOR_LevelElements_tileTypeLists() {
     LevelElement[][] elementsLayout =
         new LevelElement[][] {
           {LevelElement.FLOOR, LevelElement.FLOOR, LevelElement.EXIT, LevelElement.SKIP},
@@ -98,7 +98,7 @@ public class DungeonLevelTest {
 
   /** WTF? . */
   @Test
-  public void test_nodeCount_NoAccessible() {
+  void test_nodeCount_NoAccessible() {
     LevelElement[][] elementsLayout =
         new LevelElement[][] {
           {LevelElement.FLOOR, LevelElement.WALL, LevelElement.WALL, LevelElement.WALL},
@@ -110,7 +110,7 @@ public class DungeonLevelTest {
 
   /** WTF? . */
   @Test
-  public void test_nodeCount_OneAccessible() {
+  void test_nodeCount_OneAccessible() {
     LevelElement[][] elementsLayout =
         new LevelElement[][] {
           {LevelElement.FLOOR, LevelElement.WALL, LevelElement.WALL, LevelElement.WALL},
@@ -121,7 +121,7 @@ public class DungeonLevelTest {
 
   /** WTF? . */
   @Test
-  public void test_nodeCount_FourAccessible() {
+  void test_nodeCount_FourAccessible() {
     LevelElement[][] elementsLayout =
         new LevelElement[][] {
           {LevelElement.FLOOR, LevelElement.FLOOR, LevelElement.FLOOR, LevelElement.FLOOR},
@@ -132,7 +132,7 @@ public class DungeonLevelTest {
 
   /** WTF? . */
   @Test
-  public void test_findPath_onlyOnePathPossible() {
+  void test_findPath_onlyOnePathPossible() {
     Tile[][] layout = new Tile[3][3];
     for (int x = 0; x < 3; x++) {
       for (int y = 0; y < 3; y++) {
@@ -161,7 +161,7 @@ public class DungeonLevelTest {
 
   /** WTF? . */
   @Test
-  public void test_findPath_moreThanOnePathPossible() {
+  void test_findPath_moreThanOnePathPossible() {
     Tile[][] layout = new Tile[3][3];
     for (int x = 0; x < 3; x++) {
       for (int y = 0; y < 3; y++) {
@@ -191,7 +191,7 @@ public class DungeonLevelTest {
 
   /** WTF? . */
   @Test
-  public void test_findPath_withSkips() {
+  void test_findPath_withSkips() {
     var levelElement = new LevelElement[3][2];
     for (int i = 0; i < 3; i++) {
       levelElement[i][0] = LevelElement.SKIP;
@@ -208,7 +208,7 @@ public class DungeonLevelTest {
 
   /** WTF? . */
   @Test
-  public void test_findPath_withoutSkips() {
+  void test_findPath_withoutSkips() {
     var levelElement = new LevelElement[3][1];
 
     for (int i = 0; i < 3; i++) {
@@ -223,7 +223,7 @@ public class DungeonLevelTest {
 
   /** WTF? . */
   @Test
-  public void test_findPath_startPositionNotAccessible() {
+  void test_findPath_startPositionNotAccessible() {
     Tile[][] layout = new Tile[3][3];
     for (int x = 0; x < 3; x++) {
       for (int y = 0; y < 3; y++) {
@@ -241,7 +241,7 @@ public class DungeonLevelTest {
 
   /** WTF? . */
   @Test
-  public void test_findPath_endPositionNotAccessible() {
+  void test_findPath_endPositionNotAccessible() {
     Tile[][] layout = new Tile[3][3];
     for (int x = 0; x < 3; x++) {
       for (int y = 0; y < 3; y++) {
@@ -259,7 +259,7 @@ public class DungeonLevelTest {
 
   /** WTF? . */
   @Test
-  public void test_findPath_startAndEndPositionNotAccessible() {
+  void test_findPath_startAndEndPositionNotAccessible() {
     Tile[][] layout = new Tile[3][3];
     for (int x = 0; x < 3; x++) {
       for (int y = 0; y < 3; y++) {
@@ -278,7 +278,7 @@ public class DungeonLevelTest {
 
   /** WTF? . */
   @Test
-  public void test_getTileAt() {
+  void test_getTileAt() {
     var levelLayout = new LevelElement[3][3];
 
     for (int y = 0; y < 3; y++) {
@@ -292,7 +292,7 @@ public class DungeonLevelTest {
 
   /** WTF? . */
   @Test
-  public void test_getRandomTile() {
+  void test_getRandomTile() {
     var levelLayout = new LevelElement[3][3];
     for (int y = 0; y < 3; y++) {
       Arrays.fill(levelLayout[y], LevelElement.FLOOR);
@@ -303,7 +303,7 @@ public class DungeonLevelTest {
 
   /** WTF? . */
   @Test
-  public void test_getRandomTile_WithElementType() {
+  void test_getRandomTile_WithElementType() {
     LevelElement[][] layout = new LevelElement[3][3];
     for (int x = 0; x < 3; x++) {
       for (int y = 0; y < 3; y++) {
@@ -327,7 +327,7 @@ public class DungeonLevelTest {
 
   /** WTF? . */
   @Test
-  public void test_getRandomTilePoint() {
+  void test_getRandomTilePoint() {
     var levelLayout = new LevelElement[3][3];
     for (int y = 0; y < 3; y++) {
       Arrays.fill(levelLayout[y], LevelElement.FLOOR);
@@ -340,7 +340,7 @@ public class DungeonLevelTest {
 
   /** WTF? . */
   @Test
-  public void test_getRandomTilePoint_WithElementType() {
+  void test_getRandomTilePoint_WithElementType() {
     LevelElement[][] layout = new LevelElement[3][3];
     for (int x = 0; x < 3; x++) {
       for (int y = 0; y < 3; y++) {
@@ -365,7 +365,7 @@ public class DungeonLevelTest {
 
   /** WTF? . */
   @Test
-  public void test_toString() {
+  void test_toString() {
     LevelElement[][] tileLayout =
         new LevelElement[][] {
           new LevelElement[] {
@@ -398,7 +398,7 @@ public class DungeonLevelTest {
 
   /** WTF? . */
   @Test
-  public void test_addTile_FloorTile() {
+  void test_addTile_FloorTile() {
     DungeonLevel level =
         new DungeonLevel(
             new LevelElement[][] {{LevelElement.FLOOR, LevelElement.FLOOR, LevelElement.FLOOR}},
@@ -429,7 +429,7 @@ public class DungeonLevelTest {
 
   /** WTF? . */
   @Test
-  public void test_addTile_ExitTile() {
+  void test_addTile_ExitTile() {
     DungeonLevel level =
         new DungeonLevel(
             new LevelElement[][] {{LevelElement.FLOOR, LevelElement.FLOOR, LevelElement.FLOOR}},
@@ -460,7 +460,7 @@ public class DungeonLevelTest {
 
   /** WTF? . */
   @Test
-  public void test_addTile_DoorTile() {
+  void test_addTile_DoorTile() {
     DungeonLevel level =
         new DungeonLevel(
             new LevelElement[][] {{LevelElement.FLOOR, LevelElement.FLOOR, LevelElement.FLOOR}},
@@ -491,7 +491,7 @@ public class DungeonLevelTest {
 
   /** WTF? . */
   @Test
-  public void test_addTile_SkipTile() {
+  void test_addTile_SkipTile() {
     DungeonLevel level =
         new DungeonLevel(
             new LevelElement[][] {{LevelElement.FLOOR, LevelElement.FLOOR, LevelElement.FLOOR}},
@@ -519,7 +519,7 @@ public class DungeonLevelTest {
 
   /** WTF? . */
   @Test
-  public void test_addTile_WallTile() {
+  void test_addTile_WallTile() {
     DungeonLevel level =
         new DungeonLevel(
             new LevelElement[][] {{LevelElement.FLOOR, LevelElement.FLOOR, LevelElement.FLOOR}},
@@ -547,7 +547,7 @@ public class DungeonLevelTest {
 
   /** WTF? . */
   @Test
-  public void test_addTile_HoleTile() {
+  void test_addTile_HoleTile() {
     DungeonLevel level =
         new DungeonLevel(
             new LevelElement[][] {{LevelElement.FLOOR, LevelElement.FLOOR, LevelElement.FLOOR}},
@@ -575,7 +575,7 @@ public class DungeonLevelTest {
 
   /** WTF? . */
   @Test
-  public void test_changeTileElementType_SameElementType() {
+  void test_changeTileElementType_SameElementType() {
     LevelElement[][] layout =
         new LevelElement[][] {
           new LevelElement[] {LevelElement.FLOOR, LevelElement.FLOOR, LevelElement.FLOOR}
@@ -595,7 +595,7 @@ public class DungeonLevelTest {
 
   /** WTF? . */
   @Test
-  public void test_changeTileElementType_SameAccess() {
+  void test_changeTileElementType_SameAccess() {
     LevelElement[][] layout =
         new LevelElement[][] {
           new LevelElement[] {LevelElement.FLOOR, LevelElement.FLOOR, LevelElement.FLOOR}
@@ -615,7 +615,7 @@ public class DungeonLevelTest {
 
   /** WTF? . */
   @Test
-  public void test_changeTileElementType_toNotAccessible() {
+  void test_changeTileElementType_toNotAccessible() {
     LevelElement[][] layout =
         new LevelElement[][] {
           new LevelElement[] {LevelElement.FLOOR, LevelElement.FLOOR, LevelElement.FLOOR}
@@ -635,7 +635,7 @@ public class DungeonLevelTest {
 
   /** WTF? . */
   @Test
-  public void test_changeTileElementType_notOnLevel() {
+  void test_changeTileElementType_notOnLevel() {
     LevelElement[][] layout =
         new LevelElement[][] {
           new LevelElement[] {LevelElement.FLOOR, LevelElement.FLOOR, LevelElement.FLOOR}

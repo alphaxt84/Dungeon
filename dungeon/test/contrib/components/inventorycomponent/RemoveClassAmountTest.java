@@ -16,7 +16,7 @@ public class RemoveClassAmountTest extends InventoryComponentTestBase {
   }
 
   @Test
-  public void testRemoveClassAndAmount() {
+  void testRemoveClassAndAmount() {
     CustomRemoveItem stack1 = new CustomRemoveItem(5);
     CustomRemoveItem stack2 = new CustomRemoveItem(3);
 

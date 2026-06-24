@@ -94,7 +94,7 @@ public class ServerRuntimeTests {
    * instance on a unique port.
    */
   @BeforeEach
-  public void setup() {
+  void setup() {
     MockNetworkHandler.useLocalNetworkHandler();
     int port = uniquePort();
     ServerRuntime runtime = new ServerRuntime(port);
@@ -111,7 +111,7 @@ public class ServerRuntimeTests {
    * isolation between tests.
    */
   @AfterEach
-  public void cleanup() {
+  void cleanup() {
     ServerRuntime runtime = currentRuntime.get();
     if (runtime != null) {
       runtime.stop();
@@ -122,14 +122,14 @@ public class ServerRuntimeTests {
 
   /** Validates that the server runtime starts without throwing exceptions. */
   @Test
-  public void test_serverStarts() {
+  void test_serverStarts() {
     ServerRuntime runtime = currentRuntime.get();
     assertDoesNotThrow(runtime::start);
   }
 
   /** Validates that broadcasting a message returns a completed {@link CompletableFuture}. */
   @Test
-  public void test_broadcastReturnsCompletableFuture() {
+  void test_broadcastReturnsCompletableFuture() {
     ServerRuntime runtime = currentRuntime.get();
     runtime.start();
     NetworkMessage msg = Mockito.mock(NetworkMessage.class);
@@ -140,7 +140,7 @@ public class ServerRuntimeTests {
 
   /** Validates that starting the server multiple times is safe and idempotent. */
   @Test
-  public void test_startIdempotent() {
+  void test_startIdempotent() {
     ServerRuntime runtime = currentRuntime.get();
     runtime.start();
     runtime.start();
@@ -148,7 +148,7 @@ public class ServerRuntimeTests {
 
   /** Validates that stopping the server multiple times is safe and idempotent. */
   @Test
-  public void test_stopIdempotent() {
+  void test_stopIdempotent() {
     ServerRuntime runtime = currentRuntime.get();
     runtime.start();
     runtime.stop();
@@ -157,7 +157,7 @@ public class ServerRuntimeTests {
 
   /** Validates that sending a message to a specific client returns a {@link CompletableFuture}. */
   @Test
-  public void test_sendMessageReturnsFuture() {
+  void test_sendMessageReturnsFuture() {
     ServerRuntime runtime = currentRuntime.get();
     runtime.start();
     NetworkMessage msg = Mockito.mock(NetworkMessage.class);

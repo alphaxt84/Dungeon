@@ -1,6 +1,8 @@
 package contrib.entities.herocontroller;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import contrib.components.InventoryComponent;
 import contrib.entities.HeroController;
@@ -24,7 +26,7 @@ public class UseItemTest {
   private Animation defaultAnimation;
 
   @BeforeEach
-  public void setUp() {
+  void setUp() {
     Game.removeAllEntities();
     Game.add(new LevelSystem());
     defaultAnimation = new Animation(new SimpleIPath("animation/missing_texture.png"));
@@ -51,14 +53,14 @@ public class UseItemTest {
   }
 
   @AfterEach
-  public void tearDown() {
+  void tearDown() {
     Game.removeAllEntities();
     Game.removeAllSystems();
     Game.currentLevel(null);
   }
 
   @Test
-  public void testUseItemSuccessfully() {
+  void testUseItemSuccessfully() {
     Item item = new Item("Potion", "Heals", defaultAnimation);
     inventory.add(item);
     boolean result = HeroController.useItem(hero, 0);
@@ -66,13 +68,13 @@ public class UseItemTest {
   }
 
   @Test
-  public void testUseItemEmptySlotReturnsFalse() {
+  void testUseItemEmptySlotReturnsFalse() {
     boolean result = HeroController.useItem(hero, 0);
     assertFalse(result, "useItem should return false when slot is empty");
   }
 
   @Test
-  public void testUseItemCallsItemUse() {
+  void testUseItemCallsItemUse() {
     // After use(), the default Item.use() removes the item from inventory
     Item item = new Item("Potion", "Heals", defaultAnimation);
     inventory.add(item);
@@ -83,7 +85,7 @@ public class UseItemTest {
   }
 
   @Test
-  public void testUseItemNoInventoryComponentThrows() {
+  void testUseItemNoInventoryComponentThrows() {
     hero.remove(InventoryComponent.class);
     assertThrows(
         Exception.class,

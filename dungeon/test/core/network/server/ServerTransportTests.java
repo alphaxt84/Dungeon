@@ -88,7 +88,7 @@ public class ServerTransportTests {
    * instance.
    */
   @BeforeEach
-  public void setup() {
+  void setup() {
     ServerTransport transport = new ServerTransport();
     transports.add(transport);
     currentTransport.set(transport);
@@ -103,7 +103,7 @@ public class ServerTransportTests {
    * isolation between tests.
    */
   @AfterEach
-  public void cleanup() {
+  void cleanup() {
     ServerTransport transport = currentTransport.get();
     if (transport != null) {
       transport.stop();
@@ -119,7 +119,7 @@ public class ServerTransportTests {
    * TCP and UDP channels.
    */
   @Test
-  public void test_transportStartsOnConfiguredPort() {
+  void test_transportStartsOnConfiguredPort() {
     ServerTransport transport = currentTransport.get();
     int port = uniquePort();
     transport.start(port);
@@ -129,7 +129,7 @@ public class ServerTransportTests {
 
   /** Validates that both TCP and UDP channels are active after the transport starts. */
   @Test
-  public void test_transportChannelsActive() {
+  void test_transportChannelsActive() {
     ServerTransport transport = currentTransport.get();
     int port = uniquePort();
 
@@ -140,7 +140,7 @@ public class ServerTransportTests {
 
   /** Validates that both TCP and UDP channels are properly closed when the transport stops. */
   @Test
-  public void test_stopClosesChannels() {
+  void test_stopClosesChannels() {
     ServerTransport transport = currentTransport.get();
     int port = uniquePort();
     transport.start(port);
@@ -154,7 +154,7 @@ public class ServerTransportTests {
 
   /** Validates that the session map is empty after transport initialization. */
   @Test
-  public void test_sessionsMapEmpty() {
+  void test_sessionsMapEmpty() {
     ServerTransport transport = currentTransport.get();
     int port = uniquePort();
     transport.start(port);
@@ -163,7 +163,7 @@ public class ServerTransportTests {
 
   /** Validates that the client ID to session mapping is empty after transport initialization. */
   @Test
-  public void test_clientIdMappingEmpty() {
+  void test_clientIdMappingEmpty() {
     ServerTransport transport = currentTransport.get();
     int port = uniquePort();
     transport.start(port);
@@ -175,7 +175,7 @@ public class ServerTransportTests {
    * CompletableFuture}.
    */
   @Test
-  public void test_broadcastEmptySessionMap() {
+  void test_broadcastEmptySessionMap() {
     ServerTransport transport = currentTransport.get();
     int port = uniquePort();
     transport.start(port);
@@ -190,7 +190,7 @@ public class ServerTransportTests {
    * demonstrating idempotent lifecycle management.
    */
   @Test
-  public void test_startStopIdempotent() {
+  void test_startStopIdempotent() {
     ServerTransport transport = currentTransport.get();
     int port1 = uniquePort();
 
@@ -216,7 +216,7 @@ public class ServerTransportTests {
 
   /** Validates that calling start() multiple times without stop() is idempotent. */
   @Test
-  public void test_doubleStartIsIdempotent() {
+  void test_doubleStartIsIdempotent() {
     ServerTransport transport = currentTransport.get();
     int port = uniquePort();
 
@@ -234,7 +234,7 @@ public class ServerTransportTests {
 
   /** Validates that calling stop() before start() does not cause errors. */
   @Test
-  public void test_stopWithoutStartIsIdempotent() {
+  void test_stopWithoutStartIsIdempotent() {
     ServerTransport transport = currentTransport.get();
     transport.stop();
     transport.stop();
@@ -242,7 +242,7 @@ public class ServerTransportTests {
 
   /** Validates that multiple transport instances can run concurrently on different ports. */
   @Test
-  public void test_multipleTransportsCanCoexist() {
+  void test_multipleTransportsCanCoexist() {
     ServerTransport transport1 = new ServerTransport();
     ServerTransport transport2 = new ServerTransport();
     transports.add(transport1);
@@ -268,7 +268,7 @@ public class ServerTransportTests {
 
   /** Validates that fallback character classes are assigned in round-robin order. */
   @Test
-  public void test_fallbackCharacterClassesRotate() {
+  void test_fallbackCharacterClassesRotate() {
     ServerTransport transport = currentTransport.get();
     PreRunConfiguration.multiplayerCharacterClasses(
         CharacterClass.THE_LAST_HOUR_ROGUE, CharacterClass.THE_LAST_HOUR_CHAR03);
@@ -286,7 +286,7 @@ public class ServerTransportTests {
 
   /** Validates that explicit character-class requests do not consume the fallback rotation. */
   @Test
-  public void test_explicitCharacterClassDoesNotAdvanceFallbackRotation() {
+  void test_explicitCharacterClassDoesNotAdvanceFallbackRotation() {
     ServerTransport transport = currentTransport.get();
     PreRunConfiguration.multiplayerCharacterClasses(
         CharacterClass.THE_LAST_HOUR_ROGUE, CharacterClass.THE_LAST_HOUR_CHAR03);
@@ -305,7 +305,7 @@ public class ServerTransportTests {
    * Validates that UDP registration marks the session as UDP-ready and stores the sender mapping.
    */
   @Test
-  public void test_udpRegisterActivatesSession() throws Exception {
+  void test_udpRegisterActivatesSession() throws Exception {
     ServerTransport transport = currentTransport.get();
     AtomicInteger tcpCalls = new AtomicInteger();
     Session session = testSession(tcpCalls);
@@ -328,7 +328,7 @@ public class ServerTransportTests {
 
   /** Validates that stale UDP mappings are removed without closing the TCP session. */
   @Test
-  public void test_expireStaleUdpSessionsClearsMapping() throws Exception {
+  void test_expireStaleUdpSessionsClearsMapping() throws Exception {
     ServerTransport transport = currentTransport.get();
     Session session = testSession(new AtomicInteger());
     short clientId = 5;
@@ -355,7 +355,7 @@ public class ServerTransportTests {
 
   /** Validates that the same client can reactivate UDP after the stale mapping was removed. */
   @Test
-  public void test_udpCanReregisterAfterStaleExpiry() throws Exception {
+  void test_udpCanReregisterAfterStaleExpiry() throws Exception {
     ServerTransport transport = currentTransport.get();
     AtomicInteger tcpCalls = new AtomicInteger();
     Session session = testSession(tcpCalls);
@@ -385,7 +385,7 @@ public class ServerTransportTests {
 
   /** Verifies explicit snapshot acknowledgements update client snapshot state. */
   @Test
-  public void snapshotAckUpdatesClientSnapshotSyncState() throws Exception {
+  void snapshotAckUpdatesClientSnapshotSyncState() throws Exception {
     ServerTransport transport = currentTransport.get();
     Session session = registeredSession(transport, (short) 7);
 
@@ -396,7 +396,7 @@ public class ServerTransportTests {
 
   /** Verifies piggybacked input snapshot acknowledgements update client snapshot state. */
   @Test
-  public void inputMessageSnapshotAckUpdatesClientSnapshotSyncState() throws Exception {
+  void inputMessageSnapshotAckUpdatesClientSnapshotSyncState() throws Exception {
     ServerTransport transport = currentTransport.get();
     Session session = registeredSession(transport, (short) 8);
 
@@ -416,7 +416,7 @@ public class ServerTransportTests {
 
   /** Verifies piggybacked snapshot acknowledgements survive input sequence rejection. */
   @Test
-  public void implausibleInputSnapshotAckUpdatesClientSnapshotSyncState() throws Exception {
+  void implausibleInputSnapshotAckUpdatesClientSnapshotSyncState() throws Exception {
     ServerTransport transport = currentTransport.get();
     Session session = registeredSession(transport, (short) 8);
     ClientState state = session.clientState().orElseThrow();
@@ -438,7 +438,7 @@ public class ServerTransportTests {
 
   /** Verifies stale snapshot acknowledgements do not move the client backwards. */
   @Test
-  public void olderSnapshotAckDoesNotMoveBackwards() throws Exception {
+  void olderSnapshotAckDoesNotMoveBackwards() throws Exception {
     ServerTransport transport = currentTransport.get();
     Session session = registeredSession(transport, (short) 9);
 
@@ -450,7 +450,7 @@ public class ServerTransportTests {
 
   /** Verifies one-shot debug telemetry requests require the explicit telemetry opt-in. */
   @Test
-  public void debugTelemetryOnceSendsSnapshotResponse() throws Exception {
+  void debugTelemetryOnceSendsSnapshotResponse() throws Exception {
     ServerTransport transport = currentTransport.get();
     transport.start(uniquePort());
     List<NetworkMessage> tcpMessages = new CopyOnWriteArrayList<>();
@@ -472,7 +472,7 @@ public class ServerTransportTests {
 
   /** Verifies debug pings require the explicit telemetry opt-in. */
   @Test
-  public void debugPingSendsPongResponse() throws Exception {
+  void debugPingSendsPongResponse() throws Exception {
     ServerTransport transport = currentTransport.get();
     transport.start(uniquePort());
     List<NetworkMessage> tcpMessages = new CopyOnWriteArrayList<>();
@@ -496,7 +496,7 @@ public class ServerTransportTests {
 
   /** Verifies debug telemetry request intervals are clamped to the production policy. */
   @Test
-  public void debugTelemetryStreamIntervalIsClamped() {
+  void debugTelemetryStreamIntervalIsClamped() {
     ServerTransport transport = currentTransport.get();
 
     assertEquals(1_000, transport.debugTelemetryIntervalMs(0));
@@ -506,7 +506,7 @@ public class ServerTransportTests {
 
   /** Verifies debug telemetry streaming stops on request. */
   @Test
-  public void debugTelemetryStreamStopsOnRequest() throws Exception {
+  void debugTelemetryStreamStopsOnRequest() throws Exception {
     enableDebugTelemetry();
     ServerTransport transport = currentTransport.get();
     transport.start(uniquePort());
@@ -524,7 +524,7 @@ public class ServerTransportTests {
 
   /** Verifies debug telemetry streaming stops when a reliable snapshot send fails. */
   @Test
-  public void debugTelemetryStreamStopsOnFailedSend() throws Exception {
+  void debugTelemetryStreamStopsOnFailedSend() throws Exception {
     enableDebugTelemetry();
     ServerTransport transport = currentTransport.get();
     transport.start(uniquePort());

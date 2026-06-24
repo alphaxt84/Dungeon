@@ -21,7 +21,7 @@ public class CommonProtoConvertersTest {
 
   /** Verifies point conversion roundtrip. */
   @Test
-  public void testPointRoundTrip() {
+  void testPointRoundTrip() {
     Point point = new Point(1.25f, -2.5f);
     core.network.proto.common.Point protoPoint = CommonProtoConverters.toProto(point);
     Point roundTrip = CommonProtoConverters.fromProto(protoPoint);
@@ -34,7 +34,7 @@ public class CommonProtoConvertersTest {
 
   /** Verifies vector conversion roundtrip. */
   @Test
-  public void testVector2RoundTrip() {
+  void testVector2RoundTrip() {
     Vector2 vector = Vector2.of(3.5f, -4.75f);
     core.network.proto.common.Vector2 protoVector = CommonProtoConverters.toProto(vector);
     Vector2 roundTrip = CommonProtoConverters.fromProto(protoVector);
@@ -47,7 +47,7 @@ public class CommonProtoConvertersTest {
 
   /** Verifies coordinate conversion roundtrip. */
   @Test
-  public void testCoordinateRoundTrip() {
+  void testCoordinateRoundTrip() {
     Coordinate coordinate = new Coordinate(7, -3);
     core.network.proto.common.Coordinate protoCoordinate =
         CommonProtoConverters.toProto(coordinate);
@@ -60,7 +60,7 @@ public class CommonProtoConvertersTest {
 
   /** Verifies direction conversion to protobuf. */
   @Test
-  public void testDirectionToProto() {
+  void testDirectionToProto() {
     assertEquals(
         core.network.proto.common.Direction.DIRECTION_UP,
         CommonProtoConverters.toProto(Direction.UP));
@@ -80,7 +80,7 @@ public class CommonProtoConvertersTest {
 
   /** Verifies direction conversion from protobuf. */
   @Test
-  public void testDirectionFromProto() {
+  void testDirectionFromProto() {
     assertEquals(
         Direction.UP,
         CommonProtoConverters.fromProto(core.network.proto.common.Direction.DIRECTION_UP));
@@ -106,7 +106,7 @@ public class CommonProtoConvertersTest {
 
   /** Verifies position component conversion roundtrip. */
   @Test
-  public void testPositionComponentRoundTrip() {
+  void testPositionComponentRoundTrip() {
     PositionComponent component = new PositionComponent(new Point(1.5f, -2.0f), Direction.RIGHT);
     component.rotation(30.0f);
     component.scale(Vector2.of(1.25f, 0.75f));
@@ -130,7 +130,7 @@ public class CommonProtoConvertersTest {
 
   /** Verifies sound specification conversion roundtrip. */
   @Test
-  public void testSoundSpecRoundTrip() {
+  void testSoundSpecRoundTrip() {
     SoundSpec spec =
         SoundSpec.builder("torch")
             .instanceId(42L)
@@ -168,7 +168,7 @@ public class CommonProtoConvertersTest {
 
   /** Verifies draw info conversion roundtrip for spritesheet-backed entities. */
   @Test
-  public void testDrawInfoRoundTrip_withSpritesheetConfig() {
+  void testDrawInfoRoundTrip_withSpritesheetConfig() {
     DrawInfoData.StateAnimationData closedAnimation =
         new DrawInfoData.StateAnimationData(
             "animation/missing_texture.png",
@@ -220,7 +220,7 @@ public class CommonProtoConvertersTest {
 
   /** Verifies draw info conversion roundtrip for plain textures without spritesheet geometry. */
   @Test
-  public void testDrawInfoRoundTrip_plainTexture() {
+  void testDrawInfoRoundTrip_plainTexture() {
     DrawInfoData drawInfo =
         new DrawInfoData(
             "animation/missing_texture.png",

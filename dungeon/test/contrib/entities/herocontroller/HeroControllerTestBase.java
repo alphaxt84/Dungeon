@@ -39,7 +39,7 @@ public class HeroControllerTestBase {
   }
 
   @BeforeEach
-  public void setUp() {
+  void setUp() {
     Game.removeAllEntities();
     hero = new Entity();
     hero.add(new VelocityComponent(5.0f));
@@ -48,7 +48,7 @@ public class HeroControllerTestBase {
   }
 
   @AfterEach
-  public void tearDown() {
+  void tearDown() {
     Game.removeAllEntities();
   }
 }

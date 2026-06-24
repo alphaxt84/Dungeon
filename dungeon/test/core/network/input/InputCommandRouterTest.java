@@ -30,7 +30,7 @@ public class InputCommandRouterTest {
 
   /** Verifies duplicate registration with same source is replaced automatically. */
   @Test
-  public void registerOverridesExistingRouteHandler() {
+  void registerOverridesExistingRouteHandler() {
     AtomicInteger firstCount = new AtomicInteger();
     AtomicInteger secondCount = new AtomicInteger();
 
@@ -56,7 +56,7 @@ public class InputCommandRouterTest {
 
   /** Verifies built-in handlers can be overridden by later registrations. */
   @Test
-  public void builtInRouteCanBeOverridden() {
+  void builtInRouteCanBeOverridden() {
     AtomicInteger defaultCount = new AtomicInteger();
     AtomicInteger overrideCount = new AtomicInteger();
     String route = InputCommandRouter.routeKey(InputMessage.Action.MOVE);
@@ -74,7 +74,7 @@ public class InputCommandRouterTest {
 
   /** Verifies explicit pause behavior per handler. */
   @Test
-  public void pausedDispatchSkipsHandlerWhenIgnorePauseIsFalse() {
+  void pausedDispatchSkipsHandlerWhenIgnorePauseIsFalse() {
     AtomicInteger executionCount = new AtomicInteger();
 
     InputCommandRouter.register(
@@ -90,7 +90,7 @@ public class InputCommandRouterTest {
 
   /** Verifies pause-ignoring handlers still run while paused. */
   @Test
-  public void pausedDispatchExecutesHandlerWhenIgnorePauseIsTrue() {
+  void pausedDispatchExecutesHandlerWhenIgnorePauseIsTrue() {
     AtomicInteger executionCount = new AtomicInteger();
     String route = "mod:pause_allowed";
 

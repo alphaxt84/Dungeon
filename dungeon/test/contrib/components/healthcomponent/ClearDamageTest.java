@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 public class ClearDamageTest extends HealthComponentTestBase {
 
   @Test
-  public void testClearDamageResetsAccumulatedDamage() {
+  void testClearDamageResetsAccumulatedDamage() {
     hc.receiveHit(new Damage(5, DamageType.FIRE, null));
     hc.receiveHit(new Damage(10, DamageType.PHYSICAL, null));
     assertEquals(5, hc.calculateDamageOf(DamageType.FIRE));

@@ -1,6 +1,8 @@
 package contrib.entities.herocontroller;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import contrib.components.SkillComponent;
 import contrib.entities.HeroController;
@@ -11,7 +13,7 @@ import org.junit.jupiter.api.Test;
 public class UseMainSkillTest extends HeroControllerTestBase {
 
   @Test
-  public void testUseMainSkillExecutesActiveSkill() {
+  void testUseMainSkillExecutesActiveSkill() {
     TestSkill skill = new TestSkill("MainSkill");
     SkillComponent sc = new SkillComponent(skill);
     hero.add(sc);
@@ -21,7 +23,7 @@ public class UseMainSkillTest extends HeroControllerTestBase {
   }
 
   @Test
-  public void testUseMainSkillNoSkillComponentDoesNotThrow() {
+  void testUseMainSkillNoSkillComponentDoesNotThrow() {
     hero.remove(SkillComponent.class);
     assertDoesNotThrow(
         () -> HeroController.useMainSkill(hero, new Point(1.0f, 1.0f)),
@@ -29,7 +31,7 @@ public class UseMainSkillTest extends HeroControllerTestBase {
   }
 
   @Test
-  public void testUseMainSkillNoActiveSkillDoesNotThrow() {
+  void testUseMainSkillNoActiveSkillDoesNotThrow() {
     SkillComponent sc = new SkillComponent();
     hero.add(sc);
     assertDoesNotThrow(
@@ -38,7 +40,7 @@ public class UseMainSkillTest extends HeroControllerTestBase {
   }
 
   @Test
-  public void testUseMainSkillWithNullTarget() {
+  void testUseMainSkillWithNullTarget() {
     TestSkill skill = new TestSkill("MainSkill");
     SkillComponent sc = new SkillComponent(skill);
     hero.add(sc);
@@ -48,7 +50,7 @@ public class UseMainSkillTest extends HeroControllerTestBase {
   }
 
   @Test
-  public void testUseMainSkillWithMultipleSkillsUsesMain() {
+  void testUseMainSkillWithMultipleSkillsUsesMain() {
     TestSkill mainSkill = new TestSkill("Main");
     TestSkill secondSkill = new TestSkill("Second");
     SkillComponent sc = new SkillComponent(mainSkill, secondSkill);

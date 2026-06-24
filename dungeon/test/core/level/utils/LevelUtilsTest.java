@@ -24,7 +24,7 @@ public class LevelUtilsTest {
 
   /** WTF? . */
   @BeforeEach
-  public void setup() {
+  void setup() {
     Game.add(new LevelSystem());
 
     Game.currentLevel(
@@ -71,20 +71,20 @@ public class LevelUtilsTest {
 
   /** WTF? . */
   @AfterEach
-  public void cleanup() {
+  void cleanup() {
     Game.removeAllSystems();
   }
 
   /** WTF? . */
   @Test
-  public void tilesInRangeCenterNotInLevel() {
+  void tilesInRangeCenterNotInLevel() {
     var tiles = LevelUtils.tilesInRange(new Point(-10, -10), 1.1f);
     assertEquals(0, tiles.size());
   }
 
   /** WTF? . */
   @Test
-  public void tilesInRangeOnlyCorners() {
+  void tilesInRangeOnlyCorners() {
     var tiles = LevelUtils.tilesInRange(new Point(0, 0), 1.1f);
     assertEquals(3, tiles.size());
     assertTrue(
@@ -97,7 +97,7 @@ public class LevelUtilsTest {
 
   /** WTF? . */
   @Test
-  public void tilesInRangeNotInCorner() {
+  void tilesInRangeNotInCorner() {
     var tiles = LevelUtils.tilesInRange(new Point(0.5f, 0.5f), 0.6f);
     assertEquals(3, tiles.size());
     assertTrue(

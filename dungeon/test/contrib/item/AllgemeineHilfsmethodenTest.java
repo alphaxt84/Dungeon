@@ -15,7 +15,7 @@ import org.junit.jupiter.api.Test;
 public class AllgemeineHilfsmethodenTest extends ItemTestBase {
 
   @Test
-  public void testDisplayNameAndSetter() {
+  void testDisplayNameAndSetter() {
     assertEquals("Test Item", item.displayName());
 
     item.displayName("New Name");
@@ -26,7 +26,7 @@ public class AllgemeineHilfsmethodenTest extends ItemTestBase {
   }
 
   @Test
-  public void testDescriptionAndSetter() {
+  void testDescriptionAndSetter() {
     assertEquals("Test Description", item.description());
 
     item.description("New Description");
@@ -34,7 +34,7 @@ public class AllgemeineHilfsmethodenTest extends ItemTestBase {
   }
 
   @Test
-  public void testAnimationsSetters() {
+  void testAnimationsSetters() {
     Animation otherAnim = new Animation(new SimpleIPath("other.png"));
 
     item.inventoryAnimation(otherAnim);
@@ -45,7 +45,7 @@ public class AllgemeineHilfsmethodenTest extends ItemTestBase {
   }
 
   @Test
-  public void testUseItem() {
+  void testUseItem() {
     Entity entity = new Entity();
     InventoryComponent inventory = new InventoryComponent(2);
     entity.add(inventory);
@@ -57,7 +57,7 @@ public class AllgemeineHilfsmethodenTest extends ItemTestBase {
   }
 
   @Test
-  public void testEqualsAndHashCode() {
+  void testEqualsAndHashCode() {
     Item item2 = new Item("Test Item", "Test Description", defaultAnimation);
     assertTrue(item.equals(item2));
 

@@ -1,6 +1,8 @@
 package contrib.components.skillcomponent;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import contrib.components.SkillComponent;
 import org.junit.jupiter.api.Test;
@@ -9,7 +11,7 @@ import org.junit.jupiter.api.Test;
 public class SkillComponentKonstruktorTest extends SkillComponentTestBase {
 
   @Test
-  public void testDefaultConstructorNoSkills() {
+  void testDefaultConstructorNoSkills() {
     sc = new SkillComponent();
     assertTrue(sc.getSkills().isEmpty(), "SkillComponent without args should have no skills");
     assertTrue(sc.activeMainSkill().isEmpty(), "No active main skill when no skills provided");
@@ -17,7 +19,7 @@ public class SkillComponentKonstruktorTest extends SkillComponentTestBase {
   }
 
   @Test
-  public void testConstructorWithOneSkill() {
+  void testConstructorWithOneSkill() {
     sc = new SkillComponent(skillA);
     assertEquals(1, sc.getSkills().size(), "Should have one skill");
     assertTrue(sc.activeMainSkill().isPresent(), "First skill should become active main skill");
@@ -26,7 +28,7 @@ public class SkillComponentKonstruktorTest extends SkillComponentTestBase {
   }
 
   @Test
-  public void testConstructorWithTwoSkills() {
+  void testConstructorWithTwoSkills() {
     sc = new SkillComponent(skillA, skillB);
     assertEquals(2, sc.getSkills().size(), "Should have two skills");
     assertTrue(sc.activeMainSkill().isPresent(), "Main skill should be present");
@@ -37,7 +39,7 @@ public class SkillComponentKonstruktorTest extends SkillComponentTestBase {
   }
 
   @Test
-  public void testConstructorWithMultipleSkills() {
+  void testConstructorWithMultipleSkills() {
     sc = new SkillComponent(skillA, skillB, skillC);
     assertEquals(3, sc.getSkills().size(), "Should have three skills");
     assertEquals(skillA, sc.activeMainSkill().get(), "Active main should be first skill");
@@ -45,7 +47,7 @@ public class SkillComponentKonstruktorTest extends SkillComponentTestBase {
   }
 
   @Test
-  public void testGetSkillsReturnsImmutableCopy() {
+  void testGetSkillsReturnsImmutableCopy() {
     sc = new SkillComponent(skillA);
     assertThrows(
         UnsupportedOperationException.class,

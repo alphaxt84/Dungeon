@@ -33,7 +33,7 @@ public class HealthSystemTest {
 
   /** WTF? . */
   @AfterEach
-  public void cleanup() {
+  void cleanup() {
     Game.removeAllEntities();
     Game.currentLevel(null);
     Game.removeAllSystems();
@@ -41,7 +41,7 @@ public class HealthSystemTest {
 
   /** WTF? . */
   @BeforeEach
-  public void setup() {
+  void setup() {
     Map<String, Animation> animationMap = Animation.loadAnimationSpritesheet(ANIMATION_PATH);
     State stIdle = new DirectionalState(StateMachine.IDLE_STATE, animationMap);
     State stMove = new DirectionalState(VelocitySystem.STATE_NAME, animationMap, "run");
@@ -63,7 +63,7 @@ public class HealthSystemTest {
 
   /** WTF? . */
   @Test
-  public void updateEntityDies() {
+  void updateEntityDies() {
     Game.removeAllEntities();
     Entity entity = new Entity();
     Consumer<Entity> onDeath = entity1 -> Game.remove(entity1);
@@ -82,7 +82,7 @@ public class HealthSystemTest {
 
   /** WTF? . */
   @Test
-  public void updateEntityDiesGodMode() {
+  void updateEntityDiesGodMode() {
     Game.removeAllEntities();
     Entity entity = new Entity();
     Consumer<Entity> onDeath = Mockito.mock(Consumer.class);
@@ -101,7 +101,7 @@ public class HealthSystemTest {
 
   /** WTF? . */
   @Test
-  public void updateEntityGetDamage() {
+  void updateEntityGetDamage() {
     Game.removeAllEntities();
     Entity entity = new Entity();
     Consumer<Entity> onDeath = Mockito.mock(Consumer.class);
@@ -121,7 +121,7 @@ public class HealthSystemTest {
 
   /** WTF? . */
   @Test
-  public void updateEntityGetNegativeDamage() {
+  void updateEntityGetNegativeDamage() {
     Game.removeAllEntities();
     Entity entity = new Entity();
     Consumer<Entity> onDeath = Mockito.mock(Consumer.class);
@@ -140,7 +140,7 @@ public class HealthSystemTest {
 
   /** WTF? . */
   @Test
-  public void updateEntityGetZeroDamage() {
+  void updateEntityGetZeroDamage() {
     Game.removeAllEntities();
     Entity entity = new Entity();
     Consumer<Entity> onDeath = Mockito.mock(Consumer.class);
@@ -158,7 +158,7 @@ public class HealthSystemTest {
 
   /** WTF? . */
   @Test
-  public void updateWithoutHealthComponent() {
+  void updateWithoutHealthComponent() {
     Game.removeAllEntities();
     HealthSystem system = new HealthSystem();
     Game.add(system);

@@ -24,7 +24,7 @@ public class DialogShowConverterTest {
 
   /** Verifies dialog context conversion roundtrip. */
   @Test
-  public void testDialogContextRoundTrip() {
+  void testDialogContextRoundTrip() {
     DialogContext context =
         DialogContext.builder()
             .type(DialogType.DefaultTypes.TEXT)
@@ -100,7 +100,7 @@ public class DialogShowConverterTest {
 
   /** Verifies custom codec roundtrip via CUSTOM_VALUE. */
   @Test
-  public void testCustomCodecRoundTrip() {
+  void testCustomCodecRoundTrip() {
     DialogValueCodecRegistry registry = DialogValueCodecRegistry.global();
     if (registry.byTypeId("DialogShowConverterTestData").isEmpty()) {
       registry.register(

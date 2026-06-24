@@ -1,6 +1,7 @@
 package contrib.components.skillcomponent;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import contrib.components.SkillComponent;
 import org.junit.jupiter.api.Test;
@@ -9,7 +10,7 @@ import org.junit.jupiter.api.Test;
 public class NextMainSkillTest extends SkillComponentTestBase {
 
   @Test
-  public void testNextMainSkillCyclesToNextSkill() {
+  void testNextMainSkillCyclesToNextSkill() {
     sc = new SkillComponent(skillA, skillB, skillC);
     // Initial: main=skillA(0), second=skillB(1)
     sc.nextMainSkill();
@@ -18,7 +19,7 @@ public class NextMainSkillTest extends SkillComponentTestBase {
   }
 
   @Test
-  public void testNextMainSkillWrapsAround() {
+  void testNextMainSkillWrapsAround() {
     sc = new SkillComponent(skillA, skillB, skillC);
     // main=0, second=1. nextMain -> 2 (skip 1)
     sc.nextMainSkill();
@@ -29,7 +30,7 @@ public class NextMainSkillTest extends SkillComponentTestBase {
   }
 
   @Test
-  public void testNextMainSkillWithTwoSkillsSwaps() {
+  void testNextMainSkillWithTwoSkillsSwaps() {
     sc = new SkillComponent(skillA, skillB);
     // main=0, second=1. nextMain should skip 1, wrap to 0 again (stuck)
     sc.nextMainSkill();
@@ -38,14 +39,14 @@ public class NextMainSkillTest extends SkillComponentTestBase {
   }
 
   @Test
-  public void testNextMainSkillWithOneSkillDoesNothing() {
+  void testNextMainSkillWithOneSkillDoesNothing() {
     sc = new SkillComponent(skillA);
     sc.nextMainSkill();
     assertEquals(skillA, sc.activeMainSkill().get(), "Only one skill, no change");
   }
 
   @Test
-  public void testNextMainSkillWithNoSkillsDoesNothing() {
+  void testNextMainSkillWithNoSkillsDoesNothing() {
     sc = new SkillComponent();
     sc.nextMainSkill();
     assertTrue(sc.activeMainSkill().isEmpty(), "No skills means no change");

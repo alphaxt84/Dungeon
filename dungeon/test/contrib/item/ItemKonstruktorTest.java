@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 public class ItemKonstruktorTest extends ItemTestBase {
 
   @Test
-  public void testConstructorThreeParameter() {
+  void testConstructorThreeParameter() {
     Item it = new Item("Name", "Desc", defaultAnimation);
     assertEquals("Name", it.displayName());
     assertEquals("Desc", it.description());
@@ -20,7 +20,7 @@ public class ItemKonstruktorTest extends ItemTestBase {
   }
 
   @Test
-  public void testConstructorFourParameter() {
+  void testConstructorFourParameter() {
     Item it = new Item("Name", "Desc", defaultAnimation, defaultAnimation);
     assertEquals("Name", it.displayName());
     assertEquals(defaultAnimation, it.inventoryAnimation());
@@ -28,7 +28,7 @@ public class ItemKonstruktorTest extends ItemTestBase {
   }
 
   @Test
-  public void testConstructorSixParameter() {
+  void testConstructorSixParameter() {
     Item it = new Item("Name", "Desc", defaultAnimation, defaultAnimation, 5, 10);
     assertEquals("5 x Name", it.displayName()); // prefix is added when stack size > 1
     assertEquals(5, it.stackSize());
@@ -36,7 +36,7 @@ public class ItemKonstruktorTest extends ItemTestBase {
   }
 
   @Test
-  public void testConstructorThrowsOnTooLargeStack() {
+  void testConstructorThrowsOnTooLargeStack() {
     assertThrows(
         IllegalArgumentException.class,
         () -> new Item("Name", "Desc", defaultAnimation, defaultAnimation, 65, 10));

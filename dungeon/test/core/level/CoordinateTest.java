@@ -17,20 +17,20 @@ public class CoordinateTest {
 
   /** WTF? . */
   @BeforeEach
-  public void setup() {
+  void setup() {
     coordinate = new Coordinate(x, y);
   }
 
   /** WTF? . */
   @Test
-  public void test_equals() {
+  void test_equals() {
     assertEquals(coordinate, new Coordinate(x, y));
     assertNotEquals(coordinate, new Coordinate(y, x));
   }
 
   /** WTF? . */
   @Test
-  public void test_toPoint() {
+  void test_toPoint() {
     Point point = coordinate.toPoint();
     assertEquals((float) coordinate.x(), point.x(), 0.0f);
     assertEquals((float) coordinate.y(), point.y(), 0.0f);

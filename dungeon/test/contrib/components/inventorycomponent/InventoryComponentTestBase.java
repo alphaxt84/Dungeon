@@ -17,7 +17,7 @@ public class InventoryComponentTestBase {
   protected InventoryComponent inventory;
 
   @BeforeEach
-  public void setUp() {
+  void setUp() {
     Game.removeAllEntities();
     defaultAnimation = new Animation(new SimpleIPath("animation/missing_texture.png"));
 
@@ -29,7 +29,7 @@ public class InventoryComponentTestBase {
   }
 
   @AfterEach
-  public void tearDown() {
+  void tearDown() {
     Game.removeAllEntities();
   }
 }

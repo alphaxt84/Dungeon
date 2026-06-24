@@ -16,7 +16,7 @@ public class HasItemClassTest extends InventoryComponentTestBase {
   }
 
   @Test
-  public void testHasItemClass() {
+  void testHasItemClass() {
     assertFalse(inventory.hasItem(CustomHasClassItem.class));
 
     CustomHasClassItem custom = new CustomHasClassItem();

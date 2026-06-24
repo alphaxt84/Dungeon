@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
 public class CollectTest extends ItemTestBase {
 
   @Test
-  public void testCollectSuccess() {
+  void testCollectSuccess() {
     Entity worldItem = item.drop(new Point(1, 1)).get();
     Entity collector = new Entity();
     InventoryComponent inventory = new InventoryComponent(3);
@@ -26,7 +26,7 @@ public class CollectTest extends ItemTestBase {
   }
 
   @Test
-  public void testCollectNoInventory() {
+  void testCollectNoInventory() {
     Entity worldItem = item.drop(new Point(1, 1)).get();
     Entity collector = new Entity(); // No InventoryComponent
 
@@ -35,7 +35,7 @@ public class CollectTest extends ItemTestBase {
   }
 
   @Test
-  public void testCollectFullInventory() {
+  void testCollectFullInventory() {
     Entity worldItem = item.drop(new Point(1, 1)).get();
     Entity collector = new Entity();
     InventoryComponent inventory = new InventoryComponent(0); // Size 0 is full

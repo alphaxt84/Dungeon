@@ -118,7 +118,7 @@ public class JsonHandlerTest {
    * @throws IOException if an I/O error occurs reading the JSON file.
    */
   @Test
-  public void test_readJson_validSimple() throws IOException {
+  void test_readJson_validSimple() throws IOException {
     String json = readJsonFile("valid_simple.json");
     Map<String, Object> result = JsonHandler.readJson(json);
 
@@ -135,7 +135,7 @@ public class JsonHandlerTest {
    * @throws IOException if an I/O error occurs reading the JSON file.
    */
   @Test
-  public void test_readJson_validNested() throws IOException {
+  void test_readJson_validNested() throws IOException {
     String json = readJsonFile("valid_nested.json");
     Map<String, Object> result = JsonHandler.readJson(json);
 
@@ -160,7 +160,7 @@ public class JsonHandlerTest {
    * @throws IOException if an I/O error occurs reading the JSON file.
    */
   @Test
-  public void test_readJson_validArrays() throws IOException {
+  void test_readJson_validArrays() throws IOException {
     String json = readJsonFile("valid_arrays.json");
     Map<String, Object> result = JsonHandler.readJson(json);
 
@@ -196,7 +196,7 @@ public class JsonHandlerTest {
    * correct parsing of strings with quotes, newlines, tabs, unicode, and special characters.
    */
   @Test
-  public void test_readJson_validMixed() {
+  void test_readJson_validMixed() {
     String json = readJsonFile("valid_mixed.json");
     Map<String, Object> result = JsonHandler.readJson(json);
 
@@ -216,7 +216,7 @@ public class JsonHandlerTest {
    * parsed into an empty map.
    */
   @Test
-  public void test_readJson_validEmpty() {
+  void test_readJson_validEmpty() {
     String json = readJsonFile("valid_empty.json");
     Map<String, Object> result = JsonHandler.readJson(json);
     assertTrue(result.isEmpty());
@@ -227,7 +227,7 @@ public class JsonHandlerTest {
    * the integrity of a more elaborate JSON structure after parsing.
    */
   @Test
-  public void test_readJson_validComplex() {
+  void test_readJson_validComplex() {
     String json = readJsonFile("valid_complex.json");
     Map<String, Object> result = JsonHandler.readJson(json);
 
@@ -256,7 +256,7 @@ public class JsonHandlerTest {
    * Tests reading a null JSON input. Verifies that an {@link IllegalArgumentException} is thrown.
    */
   @Test
-  public void test_readJson_nullInput() {
+  void test_readJson_nullInput() {
     assertThrows(IllegalArgumentException.class, () -> JsonHandler.readJson(null));
   }
 
@@ -265,7 +265,7 @@ public class JsonHandlerTest {
    * thrown.
    */
   @Test
-  public void test_readJson_emptyString() {
+  void test_readJson_emptyString() {
     assertThrows(IllegalArgumentException.class, () -> JsonHandler.readJson(""));
   }
 
@@ -274,7 +274,7 @@ public class JsonHandlerTest {
    * an {@link IllegalArgumentException} is thrown for arrays, strings, or numbers as root.
    */
   @Test
-  public void test_readJson_notObject() {
+  void test_readJson_notObject() {
     assertThrows(IllegalArgumentException.class, () -> JsonHandler.readJson("[1,2,3]"));
     assertThrows(IllegalArgumentException.class, () -> JsonHandler.readJson("\"string\""));
     assertThrows(IllegalArgumentException.class, () -> JsonHandler.readJson("123"));
@@ -287,7 +287,7 @@ public class JsonHandlerTest {
    * @throws IOException if an I/O error occurs reading the JSON file.
    */
   @Test
-  public void test_readJson_invalidSyntax() throws IOException {
+  void test_readJson_invalidSyntax() throws IOException {
     String json = readJsonFile("invalid_syntax.json");
     assertThrows(IllegalArgumentException.class, () -> JsonHandler.readJson(json));
   }
@@ -299,7 +299,7 @@ public class JsonHandlerTest {
    * @throws IOException if an I/O error occurs reading the JSON file.
    */
   @Test
-  public void test_readJson_unclosedString() throws IOException {
+  void test_readJson_unclosedString() throws IOException {
     String json = readJsonFile("invalid_unclosed_string.json");
     assertThrows(IllegalArgumentException.class, () -> JsonHandler.readJson(json));
   }
@@ -311,7 +311,7 @@ public class JsonHandlerTest {
    * @throws IOException if an I/O error occurs reading the JSON file.
    */
   @Test
-  public void test_readJson_missingComma() throws IOException {
+  void test_readJson_missingComma() throws IOException {
     String json = readJsonFile("invalid_missing_comma.json");
     assertThrows(IllegalArgumentException.class, () -> JsonHandler.readJson(json));
   }
@@ -323,7 +323,7 @@ public class JsonHandlerTest {
    * @throws IOException if an I/O error occurs reading the JSON file.
    */
   @Test
-  public void test_readJson_invalidEscape() throws IOException {
+  void test_readJson_invalidEscape() throws IOException {
     String json = readJsonFile("invalid_escape.json");
     assertThrows(IllegalArgumentException.class, () -> JsonHandler.readJson(json));
   }
@@ -335,7 +335,7 @@ public class JsonHandlerTest {
    * @throws IOException if an I/O error occurs reading the JSON file.
    */
   @Test
-  public void test_readJson_invalidBrackets() throws IOException {
+  void test_readJson_invalidBrackets() throws IOException {
     String json = readJsonFile("invalid_brackets.json");
     assertThrows(IllegalArgumentException.class, () -> JsonHandler.readJson(json));
   }
@@ -347,7 +347,7 @@ public class JsonHandlerTest {
    * thrown for both write methods.
    */
   @Test
-  public void test_writeJson_nullInput() {
+  void test_writeJson_nullInput() {
     assertThrows(IllegalArgumentException.class, () -> JsonHandler.writeJson(null));
     assertThrows(IllegalArgumentException.class, () -> JsonHandler.writeJson(null, true));
   }
@@ -357,7 +357,7 @@ public class JsonHandlerTest {
    * expected key-value pairs.
    */
   @Test
-  public void test_writeJson_simple() {
+  void test_writeJson_simple() {
     Map<String, Object> data = Map.of("name", "John", "age", 30, "active", true);
     String json = JsonHandler.writeJson(data);
     assertTrue(json.contains("\"name\":\"John\""));
@@ -370,7 +370,7 @@ public class JsonHandlerTest {
    * strings, and mixed types (including null) are correctly serialized.
    */
   @Test
-  public void test_writeJson_withArrays() {
+  void test_writeJson_withArrays() {
     Map<String, Object> data =
         Map.of(
             "numbers",
@@ -390,7 +390,7 @@ public class JsonHandlerTest {
    * newlines and indentation.
    */
   @Test
-  public void test_writeJson_prettyPrint() {
+  void test_writeJson_prettyPrint() {
     Map<String, Object> data = Map.of("name", "John", "nested", Map.of("key", "value"));
     String json = JsonHandler.writeJson(data, true);
     assertTrue(json.contains("\n"));
@@ -402,7 +402,7 @@ public class JsonHandlerTest {
    * tabs, and backslashes are correctly escaped.
    */
   @Test
-  public void test_writeJson_specialCharacters() {
+  void test_writeJson_specialCharacters() {
     Map<String, Object> data =
         Map.of(
             "quotes",
@@ -426,7 +426,7 @@ public class JsonHandlerTest {
    * toString()} representation if direct JSON mapping is not possible.
    */
   @Test
-  public void test_writeJson_nonStringKeyMap() {
+  void test_writeJson_nonStringKeyMap() {
     Map<Integer, String> invalidMap = Map.of(1, "one", 2, "two");
     Map<String, Object> data = Map.of("invalid", invalidMap);
     String json = JsonHandler.writeJson(data);
@@ -444,7 +444,7 @@ public class JsonHandlerTest {
    * the parsed map is equivalent to the original map for basic data types.
    */
   @Test
-  public void test_roundTrip_simple() {
+  void test_roundTrip_simple() {
     Map<String, Object> original =
         Map.of("name", "Alice", "age", 25L, "active", true, "score", 99.5);
     String json = JsonHandler.writeJson(original);
@@ -461,7 +461,7 @@ public class JsonHandlerTest {
    * booleans are correctly serialized and then parsed back.
    */
   @Test
-  public void test_roundTrip_withArrays() {
+  void test_roundTrip_withArrays() {
     Map<String, Object> original =
         Map.of(
             "numbers",
@@ -491,7 +491,7 @@ public class JsonHandlerTest {
    * preserved after serialization and parsing.
    */
   @Test
-  public void test_roundTrip_nested() {
+  void test_roundTrip_nested() {
     Map<String, Object> original =
         Map.of(
             "level1",
@@ -517,7 +517,7 @@ public class JsonHandlerTest {
    * structures are correctly handled in a round trip.
    */
   @Test
-  public void test_emptyArrayAndObject() {
+  void test_emptyArrayAndObject() {
     Map<String, Object> data = Map.of("emptyObject", Map.of(), "emptyArray", List.of());
     String json = JsonHandler.writeJson(data);
     Map<String, Object> parsed = JsonHandler.readJson(json);
@@ -536,7 +536,7 @@ public class JsonHandlerTest {
    * correctly written as JSON null and parsed back as Java null.
    */
   @Test
-  public void test_nullValues() {
+  void test_nullValues() {
     Map<String, Object> data = Map.of("nullValue", "will be replaced");
     // Can't use Map.of with null values, so create mutable map
     Map<String, Object> mutableData = new HashMap<>(data);
@@ -555,7 +555,7 @@ public class JsonHandlerTest {
    * Long and floating-point numbers as Double.
    */
   @Test
-  public void test_numberTypes() {
+  void test_numberTypes() {
     Map<String, Object> data = new HashMap<>();
     data.put("longValue", 9223372036854775807L);
     data.put("doubleValue", 3.141592653589793);

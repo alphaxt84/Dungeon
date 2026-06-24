@@ -8,19 +8,19 @@ import org.junit.jupiter.api.Test;
 public class MaximalHealthpointsTest extends HealthComponentTestBase {
 
   @Test
-  public void testGetMaximalHealthpoints() {
+  void testGetMaximalHealthpoints() {
     assertEquals(10, hc.maximalHealthpoints());
   }
 
   @Test
-  public void testSetMaximalHealthpointsHigher() {
+  void testSetMaximalHealthpointsHigher() {
     hc.maximalHealthpoints(15);
     assertEquals(15, hc.maximalHealthpoints());
     assertEquals(10, hc.currentHealthpoints()); // Current HP remains unchanged
   }
 
   @Test
-  public void testSetMaximalHealthpointsLower() {
+  void testSetMaximalHealthpointsLower() {
     hc.maximalHealthpoints(8);
     assertEquals(8, hc.maximalHealthpoints());
     assertEquals(8, hc.currentHealthpoints()); // Current HP reduced to new max

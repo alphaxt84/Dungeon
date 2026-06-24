@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 public class TransferTest extends InventoryComponentTestBase {
 
   @Test
-  public void testTransferSuccess() {
+  void testTransferSuccess() {
     inventory.add(item1);
     InventoryComponent other = new InventoryComponent(3);
 
@@ -20,19 +20,19 @@ public class TransferTest extends InventoryComponentTestBase {
   }
 
   @Test
-  public void testTransferSelfReturnsFalse() {
+  void testTransferSelfReturnsFalse() {
     inventory.add(item1);
     assertFalse(inventory.transfer(item1, inventory));
   }
 
   @Test
-  public void testTransferItemNotFoundReturnsFalse() {
+  void testTransferItemNotFoundReturnsFalse() {
     InventoryComponent other = new InventoryComponent(3);
     assertFalse(inventory.transfer(item1, other));
   }
 
   @Test
-  public void testTransferToFullInventoryReturnsFalse() {
+  void testTransferToFullInventoryReturnsFalse() {
     inventory.add(item1);
     InventoryComponent other = new InventoryComponent(0); // Size 0 is full
 

@@ -58,7 +58,7 @@ public class C2SConverterTest {
 
   /** Verifies connect request conversion with session data. */
   @Test
-  public void testConnectRequestRoundTripWithSession() {
+  void testConnectRequestRoundTripWithSession() {
     byte[] token = new byte[] {1, 2, 3};
     ConnectRequest request =
         new ConnectRequest((short) 3, "Alice", 42, token, Optional.of(CharacterClass.HUNTER));
@@ -83,7 +83,7 @@ public class C2SConverterTest {
 
   /** Verifies connect request conversion without session data. */
   @Test
-  public void testConnectRequestRoundTripWithoutSession() {
+  void testConnectRequestRoundTripWithoutSession() {
     ConnectRequest request = new ConnectRequest((short) 1, "Bob");
 
     core.network.proto.c2s.ConnectRequest proto = CONNECT_REQUEST_CONVERTER.toProto(request);
@@ -101,7 +101,7 @@ public class C2SConverterTest {
 
   /** Verifies move action conversion. */
   @Test
-  public void testInputMessageMoveRoundTrip() {
+  void testInputMessageMoveRoundTrip() {
     InputMessage message =
         new InputMessage(
             5,
@@ -125,7 +125,7 @@ public class C2SConverterTest {
 
   /** Verifies input messages carry piggybacked snapshot acknowledgements. */
   @Test
-  public void testInputMessageCarriesLastSnapshotTick() {
+  void testInputMessageCarriesLastSnapshotTick() {
     InputMessage message =
         new InputMessage(
             5,
@@ -145,7 +145,7 @@ public class C2SConverterTest {
 
   /** Verifies input messages without snapshot acknowledgement remain compatible. */
   @Test
-  public void testInputMessageWithoutSnapshotTickRoundTrip() {
+  void testInputMessageWithoutSnapshotTickRoundTrip() {
     InputMessage message =
         new InputMessage(
             5,
@@ -163,7 +163,7 @@ public class C2SConverterTest {
 
   /** Verifies cast skill action conversion. */
   @Test
-  public void testInputMessageCastSkillRoundTrip() {
+  void testInputMessageCastSkillRoundTrip() {
     InputMessage message =
         new InputMessage(
             1,
@@ -186,7 +186,7 @@ public class C2SConverterTest {
 
   /** Verifies interact action conversion. */
   @Test
-  public void testInputMessageInteractRoundTrip() {
+  void testInputMessageInteractRoundTrip() {
     InputMessage message =
         new InputMessage(
             9,
@@ -209,7 +209,7 @@ public class C2SConverterTest {
 
   /** Verifies next skill action conversion. */
   @Test
-  public void testInputMessageNextSkillRoundTrip() {
+  void testInputMessageNextSkillRoundTrip() {
     InputMessage message =
         new InputMessage(
             1,
@@ -231,7 +231,7 @@ public class C2SConverterTest {
 
   /** Verifies previous skill action conversion. */
   @Test
-  public void testInputMessagePrevSkillRoundTrip() {
+  void testInputMessagePrevSkillRoundTrip() {
     InputMessage message =
         new InputMessage(
             2,
@@ -253,7 +253,7 @@ public class C2SConverterTest {
 
   /** Verifies inventory drop action conversion. */
   @Test
-  public void testInputMessageInventoryDropRoundTrip() {
+  void testInputMessageInventoryDropRoundTrip() {
     InputMessage message =
         new InputMessage(
             3, 4, (short) 5, InputMessage.Action.INV_DROP, new InputMessage.InventoryDrop(2));
@@ -270,7 +270,7 @@ public class C2SConverterTest {
 
   /** Verifies inventory move action conversion. */
   @Test
-  public void testInputMessageInventoryMoveRoundTrip() {
+  void testInputMessageInventoryMoveRoundTrip() {
     InputMessage message =
         new InputMessage(
             3, 4, (short) 5, InputMessage.Action.INV_MOVE, new InputMessage.InventoryMove(-1, 4));
@@ -289,7 +289,7 @@ public class C2SConverterTest {
 
   /** Verifies inventory use action conversion. */
   @Test
-  public void testInputMessageInventoryUseRoundTrip() {
+  void testInputMessageInventoryUseRoundTrip() {
     InputMessage message =
         new InputMessage(
             3, 4, (short) 5, InputMessage.Action.INV_USE, new InputMessage.InventoryUse(7));
@@ -306,7 +306,7 @@ public class C2SConverterTest {
 
   /** Verifies toggle inventory action conversion. */
   @Test
-  public void testInputMessageToggleInventoryRoundTrip() {
+  void testInputMessageToggleInventoryRoundTrip() {
     InputMessage message =
         new InputMessage(
             1,
@@ -326,7 +326,7 @@ public class C2SConverterTest {
 
   /** Verifies custom action conversion. */
   @Test
-  public void testInputMessageCustomRoundTrip() {
+  void testInputMessageCustomRoundTrip() {
     byte[] payload = new byte[] {4, 5, 6};
     InputMessage message =
         new InputMessage(
@@ -352,7 +352,7 @@ public class C2SConverterTest {
 
   /** Verifies fallback defaults for custom action metadata. */
   @Test
-  public void testInputMessageCustomFromProtoDefaults() {
+  void testInputMessageCustomFromProtoDefaults() {
     core.network.proto.c2s.InputMessage proto =
         core.network.proto.c2s.InputMessage.newBuilder()
             .setSessionId(3)
@@ -374,7 +374,7 @@ public class C2SConverterTest {
 
   /** Ensures input message actions are required. */
   @Test
-  public void testInputMessageActionRequired() {
+  void testInputMessageActionRequired() {
     core.network.proto.c2s.InputMessage proto =
         core.network.proto.c2s.InputMessage.newBuilder()
             .setSessionId(1)
@@ -387,7 +387,7 @@ public class C2SConverterTest {
 
   /** Verifies dialog response conversion with custom data and closed callback. */
   @Test
-  public void testDialogResponseClosedRoundTrip() {
+  void testDialogResponseClosedRoundTrip() {
     DialogResponseMessage message =
         new DialogResponseMessage(
             "dialog-1", null, new DialogResponseMessage.StringValue("payload"));
@@ -407,7 +407,7 @@ public class C2SConverterTest {
 
   /** Verifies dialog response conversion without custom data. */
   @Test
-  public void testDialogResponseRoundTrip() {
+  void testDialogResponseRoundTrip() {
     DialogResponseMessage message = new DialogResponseMessage("dialog-2", "onConfirm", null);
 
     core.network.proto.c2s.DialogResponseMessage proto = DIALOG_RESPONSE_CONVERTER.toProto(message);
@@ -425,7 +425,7 @@ public class C2SConverterTest {
 
   /** Verifies custom payload codec roundtrip via CUSTOM_VALUE. */
   @Test
-  public void testDialogResponseCustomPayloadRoundTrip() {
+  void testDialogResponseCustomPayloadRoundTrip() {
     DialogValueCodecRegistry registry = DialogValueCodecRegistry.global();
     if (registry.byTypeId("C2SConverterTestPayload").isEmpty()) {
       registry.register(
@@ -470,7 +470,7 @@ public class C2SConverterTest {
 
   /** Verifies custom codec decode fallback to {@link DialogResponseMessage.CustomPayload}. */
   @Test
-  public void testDialogResponseCustomPayloadWrapperRoundTrip() {
+  void testDialogResponseCustomPayloadWrapperRoundTrip() {
     DialogValueCodecRegistry registry = DialogValueCodecRegistry.global();
     if (registry.byTypeId("C2SConverterTestData").isEmpty()) {
       registry.register(
@@ -521,7 +521,7 @@ public class C2SConverterTest {
 
   /** Verifies UDP registration conversion. */
   @Test
-  public void testRegisterUdpRoundTrip() {
+  void testRegisterUdpRoundTrip() {
     byte[] token = new byte[] {5, 6};
     RegisterUdp message = new RegisterUdp(12, token, (short) 4);
 
@@ -538,7 +538,7 @@ public class C2SConverterTest {
 
   /** Verifies entity spawn request conversion. */
   @Test
-  public void testRequestEntitySpawnRoundTrip() {
+  void testRequestEntitySpawnRoundTrip() {
     RequestEntitySpawn message = new RequestEntitySpawn(99);
 
     core.network.proto.c2s.RequestEntitySpawn proto =
@@ -551,7 +551,7 @@ public class C2SConverterTest {
 
   /** Verifies sound finished message conversion. */
   @Test
-  public void testSoundFinishedRoundTrip() {
+  void testSoundFinishedRoundTrip() {
     SoundFinishedMessage message = new SoundFinishedMessage(123L);
 
     core.network.proto.c2s.SoundFinishedMessage proto = SOUND_FINISHED_CONVERTER.toProto(message);
@@ -563,7 +563,7 @@ public class C2SConverterTest {
 
   /** Verifies snapshot ack conversion. */
   @Test
-  public void testSnapshotAckRoundTrip() {
+  void testSnapshotAckRoundTrip() {
     SnapshotAck message = new SnapshotAck(123);
 
     core.network.proto.c2s.SnapshotAck proto = SNAPSHOT_ACK_CONVERTER.toProto(message);
@@ -586,7 +586,7 @@ public class C2SConverterTest {
 
   /** Verifies debug telemetry request conversion. */
   @Test
-  public void testDebugTelemetryRequestRoundTrip() {
+  void testDebugTelemetryRequestRoundTrip() {
     DebugTelemetryRequest message =
         new DebugTelemetryRequest(77L, DebugTelemetryRequest.Mode.START_STREAM, 250);
 
@@ -606,7 +606,7 @@ public class C2SConverterTest {
 
   /** Verifies debug ping conversion. */
   @Test
-  public void testDebugPingRoundTrip() {
+  void testDebugPingRoundTrip() {
     DebugPing message = new DebugPing(78L, 123_456L, 13.5f);
 
     core.network.proto.c2s.DebugPing proto = DEBUG_PING_CONVERTER.toProto(message);
@@ -622,7 +622,7 @@ public class C2SConverterTest {
 
   /** Verifies initial world ready conversion. */
   @Test
-  public void testInitialWorldReadyRoundTrip() {
+  void testInitialWorldReadyRoundTrip() {
     InitialWorldReady message = new InitialWorldReady();
 
     core.network.proto.c2s.InitialWorldReady proto = INITIAL_WORLD_READY_CONVERTER.toProto(message);

@@ -1,6 +1,8 @@
 package contrib.components.skillcomponent;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import contrib.components.SkillComponent;
 import org.junit.jupiter.api.Test;
@@ -23,7 +25,7 @@ public class RemoveSkillClassTest extends SkillComponentTestBase {
   }
 
   @Test
-  public void testRemoveByClassRemovesMatchingSkills() {
+  void testRemoveByClassRemovesMatchingSkills() {
     FireSkill fire1 = new FireSkill("Fire1");
     FireSkill fire2 = new FireSkill("Fire2");
     IceSkill ice1 = new IceSkill("Ice1");
@@ -36,7 +38,7 @@ public class RemoveSkillClassTest extends SkillComponentTestBase {
   }
 
   @Test
-  public void testRemoveByClassUpdatesActiveIndices() {
+  void testRemoveByClassUpdatesActiveIndices() {
     FireSkill fire1 = new FireSkill("Fire1");
     IceSkill ice1 = new IceSkill("Ice1");
     IceSkill ice2 = new IceSkill("Ice2");
@@ -48,7 +50,7 @@ public class RemoveSkillClassTest extends SkillComponentTestBase {
   }
 
   @Test
-  public void testRemoveByClassRemovesAll() {
+  void testRemoveByClassRemovesAll() {
     FireSkill fire1 = new FireSkill("Fire1");
     FireSkill fire2 = new FireSkill("Fire2");
     sc = new SkillComponent(fire1, fire2);
@@ -59,7 +61,7 @@ public class RemoveSkillClassTest extends SkillComponentTestBase {
   }
 
   @Test
-  public void testRemoveByClassNoMatch() {
+  void testRemoveByClassNoMatch() {
     sc = new SkillComponent(skillA, skillB);
     sc.removeSkill(FireSkill.class);
     assertEquals(2, sc.getSkills().size(), "No skills removed when none match the class");

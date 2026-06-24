@@ -16,13 +16,13 @@ public class InputComponentTest {
 
   /** WTF? . */
   @BeforeEach
-  public void setup() {
+  void setup() {
     inputComponent = new InputComponent();
   }
 
   /** WTF? . */
   @Test
-  public void addFunction() {
+  void addFunction() {
     Consumer<Entity> function =
         new Consumer<Entity>() {
           @Override

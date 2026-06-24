@@ -16,20 +16,20 @@ public class EntityTest {
 
   /** WTF? . */
   @BeforeEach
-  public void setup() {
+  void setup() {
     entity = new Entity();
     entity.add(testComponent);
   }
 
   /** WTF? . */
   @Test
-  public void addComponent() {
+  void addComponent() {
     assertEquals(testComponent, entity.fetch(testComponent.getClass()).get());
   }
 
   /** WTF? . */
   @Test
-  public void addAlreadyExistingComponent() {
+  void addAlreadyExistingComponent() {
     Component newComponent = Mockito.mock(Component.class);
     entity.add(newComponent);
     assertEquals(newComponent, entity.fetch(testComponent.getClass()).get());
@@ -37,21 +37,21 @@ public class EntityTest {
 
   /** WTF? . */
   @Test
-  public void removeComponent() {
+  void removeComponent() {
     entity.remove(testComponent.getClass());
     assertTrue(entity.fetch(testComponent.getClass()).isEmpty());
   }
 
   /** WTF? . */
   @Test
-  public void compareToSameID() {
+  void compareToSameID() {
     assertEquals(entity.id(), entity.id());
     assertEquals(0, entity.compareTo(entity));
   }
 
   /** WTF? . */
   @Test
-  public void compareToLowerID() {
+  void compareToLowerID() {
     Entity entity1 = new Entity();
     Entity entity2 = new Entity();
     assertTrue(entity1.id() < entity2.id());
@@ -60,7 +60,7 @@ public class EntityTest {
 
   /** WTF? . */
   @Test
-  public void compareToHigherID() {
+  void compareToHigherID() {
     Entity entity1 = new Entity();
     Entity entity2 = new Entity();
 
@@ -70,7 +70,7 @@ public class EntityTest {
 
   /** Gets called after each @Test and cleans up any Entity left in game. */
   @AfterEach
-  public void tearDown() {
+  void tearDown() {
     Game.removeAllEntities();
   }
 }

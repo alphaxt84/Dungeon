@@ -31,7 +31,7 @@ public class DrawComponentTest {
 
   /** Creates a {@link DrawComponent} to be used in testing, similar to a basic player. */
   @BeforeEach
-  public void setup() {
+  void setup() {
     // Create file system handle. WARNING: This will assume all future paths to be relative to the
     // working directory (probably the root of the project)
     TextureMap.instance().clear(); // reset any existing mappings
@@ -65,7 +65,7 @@ public class DrawComponentTest {
    * <p>Checks initial state, transition to a new state, and self-transitions with updated data.
    */
   @Test
-  public void complexAnimationTransition() {
+  void complexAnimationTransition() {
     // Ensure that the current animation is initially set to the expected value
     assertEquals(StateMachine.IDLE_STATE, animationComponent.currentState().name);
     assertNull(animationComponent.currentState().getData());
@@ -86,7 +86,7 @@ public class DrawComponentTest {
    * is correctly set to "idle".
    */
   @Test
-  public void simpleAnimation() {
+  void simpleAnimation() {
     DrawComponent simpleAnimation = new DrawComponent(simplePath);
     assertEquals(StateMachine.IDLE_STATE, simpleAnimation.currentState().name);
   }
@@ -98,7 +98,7 @@ public class DrawComponentTest {
    * <p>Verifies that all expected states exist and that the animation configuration is correct.
    */
   @Test
-  public void complexAnimationLoad() {
+  void complexAnimationLoad() {
     assertNotEquals(null, animationComponent.stateMachine().getState(StateMachine.IDLE_STATE));
     assertNotEquals(null, animationComponent.stateMachine().getState(VelocitySystem.STATE_NAME));
     assertNotEquals(null, animationComponent.stateMachine().getState(HealthSystem.DEATH_STATE));

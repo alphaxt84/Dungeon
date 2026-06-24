@@ -20,7 +20,7 @@ public class LocalNetworkHandlerTest {
    * @throws Exception if any unexpected error occurs during the test execution.
    */
   @Test
-  public void connectionListener_isCalled_onStartAndShutdown() throws Exception {
+  void connectionListener_isCalled_onStartAndShutdown() throws Exception {
     LocalNetworkHandler handler = new LocalNetworkHandler();
     AtomicInteger connected = new AtomicInteger();
     AtomicInteger disconnected = new AtomicInteger();

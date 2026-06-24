@@ -14,7 +14,7 @@ public class UdpRecoveryStateTests {
 
   /** Validates that retry delay starts at the configured initial delay. */
   @Test
-  public void test_retryDelayStartsAtInitialValue() {
+  void test_retryDelayStartsAtInitialValue() {
     UdpRecoveryState state = new UdpRecoveryState();
 
     assertEquals(UDP_RETRY_INITIAL_DELAY_MS, state.nextDelayMs());
@@ -24,7 +24,7 @@ public class UdpRecoveryStateTests {
 
   /** Validates that retry delay doubles until it reaches the configured maximum. */
   @Test
-  public void test_retryDelayDoublesUntilCapped() {
+  void test_retryDelayDoublesUntilCapped() {
     UdpRecoveryState state = new UdpRecoveryState();
 
     state.afterMaintenanceAttempt();
@@ -39,7 +39,7 @@ public class UdpRecoveryStateTests {
 
   /** Validates that a successful acknowledgement resets backoff and marks UDP healthy. */
   @Test
-  public void test_successfulAckResetsBackoff() {
+  void test_successfulAckResetsBackoff() {
     UdpRecoveryState state = new UdpRecoveryState();
     state.afterMaintenanceAttempt();
     state.afterMaintenanceAttempt();
@@ -56,7 +56,7 @@ public class UdpRecoveryStateTests {
 
   /** Validates that stale detection returns to retry mode and resets the retry delay. */
   @Test
-  public void test_staleDetectionReturnsToRetryMode() {
+  void test_staleDetectionReturnsToRetryMode() {
     UdpRecoveryState state = new UdpRecoveryState();
     state.markRecovered(1_000L);
 

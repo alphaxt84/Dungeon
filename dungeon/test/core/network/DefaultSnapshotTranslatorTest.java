@@ -26,7 +26,7 @@ public class DefaultSnapshotTranslatorTest {
 
   /** Cleans global game state after each test. */
   @AfterEach
-  public void cleanup() {
+  void cleanup() {
     Game.removeAllEntities();
     Game.removeAllSystems();
     Game.currentLevel(null);
@@ -36,7 +36,7 @@ public class DefaultSnapshotTranslatorTest {
 
   /** Verifies snapshot inventory apply grows too-small existing inventory components. */
   @Test
-  public void applySnapshotGrowsExistingInventoryForIncomingSlots() {
+  void applySnapshotGrowsExistingInventoryForIncomingSlots() {
     DefaultSnapshotTranslator translator = new DefaultSnapshotTranslator();
     Entity entity = new Entity(42);
     entity.add(new InventoryComponent(1));
@@ -62,7 +62,7 @@ public class DefaultSnapshotTranslatorTest {
 
   /** Verifies multiplayer clients smooth small snapshot position updates instead of snapping. */
   @Test
-  public void applySnapshotOnMultiplayerClientStoresNetworkPositionTarget() {
+  void applySnapshotOnMultiplayerClientStoresNetworkPositionTarget() {
     PreRunConfiguration.multiplayerEnabled(true);
     PreRunConfiguration.isNetworkServer(false);
     DefaultSnapshotTranslator translator = new DefaultSnapshotTranslator();

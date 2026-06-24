@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 public class RemoveAtIndexTest extends InventoryComponentTestBase {
 
   @Test
-  public void testRemoveAtIndexSuccess() {
+  void testRemoveAtIndexSuccess() {
     inventory.set(2, item1);
 
     Optional<Item> removed = inventory.remove(2);
@@ -26,7 +26,7 @@ public class RemoveAtIndexTest extends InventoryComponentTestBase {
   }
 
   @Test
-  public void testRemoveAtIndexOutOfBounds() {
+  void testRemoveAtIndexOutOfBounds() {
     Optional<Item> removed = inventory.remove(10); // inventory size is 5
     assertFalse(removed.isPresent());
 
@@ -35,13 +35,13 @@ public class RemoveAtIndexTest extends InventoryComponentTestBase {
   }
 
   @Test
-  public void testRemoveAtIndexEmpty() {
+  void testRemoveAtIndexEmpty() {
     Optional<Item> removed = inventory.remove(1);
     assertFalse(removed.isPresent());
   }
 
   @Test
-  public void testRemoveAtIndexCallback() {
+  void testRemoveAtIndexCallback() {
     Consumer<Item> mockCallback = mock(Consumer.class);
     inventory.onItemRemoved(mockCallback);
 

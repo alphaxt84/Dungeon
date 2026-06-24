@@ -19,7 +19,7 @@ public class DrawComponentFactoryTest {
 
   /** Verifies reconstruction with plain texture payloads. */
   @Test
-  public void testFromDrawInfo_singleTexture() {
+  void testFromDrawInfo_singleTexture() {
     DrawInfoData info =
         new DrawInfoData(
             TEXTURE_PATH,
@@ -49,7 +49,7 @@ public class DrawComponentFactoryTest {
 
   /** Verifies reconstruction with explicit spritesheet payloads. */
   @Test
-  public void testFromDrawInfo_spritesheet() {
+  void testFromDrawInfo_spritesheet() {
     DrawInfoData info =
         new DrawInfoData(
             TEXTURE_PATH,
@@ -84,7 +84,7 @@ public class DrawComponentFactoryTest {
 
   /** Verifies frames-per-sprite values below 1 are clamped during reconstruction. */
   @Test
-  public void testFromDrawInfo_framesPerSpriteGuard() {
+  void testFromDrawInfo_framesPerSpriteGuard() {
     DrawInfoData info =
         new DrawInfoData(
             TEXTURE_PATH,
@@ -107,7 +107,7 @@ public class DrawComponentFactoryTest {
 
   /** Verifies custom state definitions are reconstructed for spawn synchronization. */
   @Test
-  public void testFromDrawInfo_customStateDefinitions() {
+  void testFromDrawInfo_customStateDefinitions() {
     DrawInfoData.StateAnimationData closedAnimation =
         new DrawInfoData.StateAnimationData(
             TEXTURE_PATH,

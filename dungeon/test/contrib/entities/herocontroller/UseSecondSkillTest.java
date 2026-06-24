@@ -1,6 +1,8 @@
 package contrib.entities.herocontroller;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import contrib.components.SkillComponent;
 import contrib.entities.HeroController;
@@ -11,7 +13,7 @@ import org.junit.jupiter.api.Test;
 public class UseSecondSkillTest extends HeroControllerTestBase {
 
   @Test
-  public void testUseSecondSkillExecutesActiveSecondSkill() {
+  void testUseSecondSkillExecutesActiveSecondSkill() {
     TestSkill mainSkill = new TestSkill("Main");
     TestSkill secondSkill = new TestSkill("Second");
     SkillComponent sc = new SkillComponent(mainSkill, secondSkill);
@@ -23,7 +25,7 @@ public class UseSecondSkillTest extends HeroControllerTestBase {
   }
 
   @Test
-  public void testUseSecondSkillNoSkillComponentDoesNotThrow() {
+  void testUseSecondSkillNoSkillComponentDoesNotThrow() {
     hero.remove(SkillComponent.class);
     assertDoesNotThrow(
         () -> HeroController.useSecondSkill(hero, new Point(1.0f, 1.0f)),
@@ -31,7 +33,7 @@ public class UseSecondSkillTest extends HeroControllerTestBase {
   }
 
   @Test
-  public void testUseSecondSkillNoActiveSecondDoesNothing() {
+  void testUseSecondSkillNoActiveSecondDoesNothing() {
     TestSkill onlySkill = new TestSkill("Only");
     SkillComponent sc = new SkillComponent(onlySkill);
     hero.add(sc);
@@ -41,7 +43,7 @@ public class UseSecondSkillTest extends HeroControllerTestBase {
   }
 
   @Test
-  public void testUseSecondSkillWithNullTarget() {
+  void testUseSecondSkillWithNullTarget() {
     TestSkill mainSkill = new TestSkill("Main");
     TestSkill secondSkill = new TestSkill("Second");
     SkillComponent sc = new SkillComponent(mainSkill, secondSkill);

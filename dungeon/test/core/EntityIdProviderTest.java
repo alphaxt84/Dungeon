@@ -34,7 +34,7 @@ public class EntityIdProviderTest {
    * @throws RuntimeException if reflective access to internal fields fails
    */
   @AfterEach
-  public void resetProviderState() {
+  void resetProviderState() {
     try {
       Field nextField = EntityIdProvider.class.getDeclaredField("NEXT");
       nextField.setAccessible(true);
@@ -54,7 +54,7 @@ public class EntityIdProviderTest {
 
   /** Verifies that nextId() produces unique, non-negative IDs across a sequence of calls. */
   @Test
-  public void nextIdGeneratesUniqueNonNegativeIds() {
+  void nextIdGeneratesUniqueNonNegativeIds() {
     Set<Integer> ids = new HashSet<>();
     int count = 10_000;
     for (int i = 0; i < count; i++) {
@@ -70,7 +70,7 @@ public class EntityIdProviderTest {
    * released).
    */
   @Test
-  public void registerOrThrowWithFreshIdSucceeds() {
+  void registerOrThrowWithFreshIdSucceeds() {
     int id = EntityIdProvider.nextId();
     EntityIdProvider.unregister(id);
     assertDoesNotThrow(() -> EntityIdProvider.registerOrThrow(id));
@@ -78,7 +78,7 @@ public class EntityIdProviderTest {
 
   /** Verifies that registerOrThrow throws when attempting to register an already used ID. */
   @Test
-  public void registerOrThrowDuplicateThrows() {
+  void registerOrThrowDuplicateThrows() {
     int id = EntityIdProvider.nextId();
     assertThrows(IllegalArgumentException.class, () -> EntityIdProvider.registerOrThrow(id));
   }
@@ -88,7 +88,7 @@ public class EntityIdProviderTest {
    * registerOrThrow on the same ID fails.
    */
   @Test
-  public void ensureRegisteredIsIdempotentAndReserves() {
+  void ensureRegisteredIsIdempotentAndReserves() {
     int id = 1234;
     assertDoesNotThrow(() -> EntityIdProvider.ensureRegistered(id));
     assertDoesNotThrow(() -> EntityIdProvider.ensureRegistered(id));
@@ -100,7 +100,7 @@ public class EntityIdProviderTest {
    * succeeds).
    */
   @Test
-  public void unregisterReleasesIdAndIsIdempotent() {
+  void unregisterReleasesIdAndIsIdempotent() {
     int id = 777;
     EntityIdProvider.ensureRegistered(id);
     EntityIdProvider.unregister(id);
@@ -113,7 +113,7 @@ public class EntityIdProviderTest {
    * the provider's internal NEXT position.
    */
   @Test
-  public void nextIdDoesNotReturnExplicitlyRegisteredId() {
+  void nextIdDoesNotReturnExplicitlyRegisteredId() {
     int base = EntityIdProvider.nextId();
     int reserved = base + 2;
     EntityIdProvider.ensureRegistered(reserved);
@@ -132,7 +132,7 @@ public class EntityIdProviderTest {
    * @throws InterruptedException if the test is interrupted while awaiting thread completion
    */
   @Test
-  public void concurrentGenerationProducesUniqueIds() throws InterruptedException {
+  void concurrentGenerationProducesUniqueIds() throws InterruptedException {
     final int threads = 8;
     final int perThread = 200;
     ExecutorService pool = Executors.newFixedThreadPool(threads);
@@ -172,7 +172,7 @@ public class EntityIdProviderTest {
    * registered; calling nextId() must then fail.
    */
   @Test
-  public void exhaustionWhenMaxValueIsTaken() {
+  void exhaustionWhenMaxValueIsTaken() {
     // Set NEXT to Integer.MAX_VALUE
     setNextTo(Integer.MAX_VALUE);
     // Ensure MAX_VALUE is marked used

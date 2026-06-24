@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 public class TriggerOnDeathTest extends HealthComponentTestBase {
 
   @Test
-  public void testTriggerOnDeathInvokesConsumer() {
+  void testTriggerOnDeathInvokesConsumer() {
     Consumer<Entity> mockOnDeath = mock(Consumer.class);
     hc.onDeath(mockOnDeath);
 

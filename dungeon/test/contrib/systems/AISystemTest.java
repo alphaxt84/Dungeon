@@ -25,7 +25,7 @@ public class AISystemTest {
 
   /** WTF? . */
   @BeforeEach
-  public void setup() {
+  void setup() {
     Game.removeAllEntities();
     Game.removeAllSystems();
     system = new AISystem();
@@ -44,7 +44,7 @@ public class AISystemTest {
 
   /** WTF? . */
   @AfterEach
-  public void cleanup() {
+  void cleanup() {
     Game.removeAllEntities();
     Game.currentLevel(null);
     Game.removeAllSystems();
@@ -52,14 +52,14 @@ public class AISystemTest {
 
   /** WTF? . */
   @Test
-  public void update() {
+  void update() {
     system.execute();
     assertEquals(1, updateCounter);
   }
 
   /** WTF? . */
   @Test
-  public void update_executeFight() {
+  void update_executeFight() {
     Function<Entity, Boolean> transition = Mockito.mock(Function.class);
     Consumer<Entity> fight = Mockito.mock(Consumer.class);
     Consumer<Entity> idle = Mockito.mock(Consumer.class);
@@ -74,7 +74,7 @@ public class AISystemTest {
 
   /** WTF? . */
   @Test
-  public void update_executeIdle() {
+  void update_executeIdle() {
     Function<Entity, Boolean> transition = Mockito.mock(Function.class);
     Consumer<Entity> fight = Mockito.mock(Consumer.class);
     Consumer<Entity> idle = Mockito.mock(Consumer.class);

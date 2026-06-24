@@ -1,6 +1,8 @@
 package contrib.entities.herocontroller;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import contrib.entities.CharacterClass;
 import contrib.entities.HeroController;
@@ -27,7 +29,7 @@ public class EnqueueInputTest extends HeroControllerTestBase {
 
   @Override
   @BeforeEach
-  public void setUp() {
+  void setUp() {
     super.setUp();
     clientState =
         new ClientState((short) 1, "testUser", 1, new byte[] {1, 2, 3}, CharacterClass.WIZARD);
@@ -39,7 +41,7 @@ public class EnqueueInputTest extends HeroControllerTestBase {
   }
 
   @Test
-  public void testEnqueueInputAddsToQueue() throws Exception {
+  void testEnqueueInputAddsToQueue() throws Exception {
     InputMessage msg =
         new InputMessage(
             0,
@@ -56,7 +58,7 @@ public class EnqueueInputTest extends HeroControllerTestBase {
   }
 
   @Test
-  public void testEnqueueMultipleInputs() throws Exception {
+  void testEnqueueMultipleInputs() throws Exception {
     InputMessage msg1 =
         new InputMessage(
             0,
@@ -80,7 +82,7 @@ public class EnqueueInputTest extends HeroControllerTestBase {
   }
 
   @Test
-  public void testEnqueueInputFIFOOrder() throws Exception {
+  void testEnqueueInputFIFOOrder() throws Exception {
     InputMessage msg1 =
         new InputMessage(
             0,

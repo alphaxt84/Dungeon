@@ -129,7 +129,7 @@ public class S2CConverterTest {
 
   /** Verifies connect ack conversion roundtrip. */
   @Test
-  public void testConnectAckRoundTrip() {
+  void testConnectAckRoundTrip() {
     byte[] token = new byte[] {4, 5, 6};
     ConnectAck message = new ConnectAck((short) 7, 42, token);
 
@@ -146,7 +146,7 @@ public class S2CConverterTest {
 
   /** Verifies connect reject conversion roundtrip. */
   @Test
-  public void testConnectRejectRoundTrip() {
+  void testConnectRejectRoundTrip() {
     ConnectReject message = new ConnectReject(ConnectReject.Reason.INCOMPATIBLE_VERSION);
 
     core.network.proto.s2c.ConnectReject proto = CONNECT_REJECT_CONVERTER.toProto(message);
@@ -160,7 +160,7 @@ public class S2CConverterTest {
 
   /** Verifies dialog show message conversion roundtrip. */
   @Test
-  public void testDialogShowRoundTrip() {
+  void testDialogShowRoundTrip() {
     DialogContext context =
         DialogContext.builder()
             .type(DialogType.DefaultTypes.OK)
@@ -182,7 +182,7 @@ public class S2CConverterTest {
 
   /** Verifies dialog close message conversion roundtrip. */
   @Test
-  public void testDialogCloseRoundTrip() {
+  void testDialogCloseRoundTrip() {
     DialogCloseMessage message = new DialogCloseMessage("dialog-200");
 
     core.network.proto.s2c.DialogCloseMessage proto = DIALOG_CLOSE_CONVERTER.toProto(message);
@@ -194,7 +194,7 @@ public class S2CConverterTest {
 
   /** Verifies entity spawn event conversion roundtrip. */
   @Test
-  public void testEntitySpawnRoundTrip() {
+  void testEntitySpawnRoundTrip() {
     PositionComponent position = new PositionComponent(new Point(4.0f, 5.0f), Direction.UP);
     position.rotation(45.0f);
     position.scale(Vector2.of(1.5f, 0.75f));
@@ -253,7 +253,7 @@ public class S2CConverterTest {
 
   /** Verifies entity spawn batch conversion roundtrip. */
   @Test
-  public void testEntitySpawnBatchRoundTrip() {
+  void testEntitySpawnBatchRoundTrip() {
     EntitySpawnEvent first =
         new EntitySpawnEvent(
             1,
@@ -283,7 +283,7 @@ public class S2CConverterTest {
 
   /** Verifies entity despawn event conversion roundtrip. */
   @Test
-  public void testEntityDespawnRoundTrip() {
+  void testEntityDespawnRoundTrip() {
     EntityDespawnEvent message = new EntityDespawnEvent(99, "destroyed");
 
     core.network.proto.s2c.EntityDespawnEvent proto = ENTITY_DESPAWN_CONVERTER.toProto(message);
@@ -297,7 +297,7 @@ public class S2CConverterTest {
 
   /** Verifies entity state conversion roundtrip. */
   @Test
-  public void testEntityStateRoundTrip() {
+  void testEntityStateRoundTrip() {
     ItemPotionHealth item = new ItemPotionHealth(HealthPotionType.GREATER);
     EntityState message =
         EntityState.builder()
@@ -360,7 +360,7 @@ public class S2CConverterTest {
 
   /** Verifies empty inventory slots survive entity state conversion. */
   @Test
-  public void testEntityStateEmptyInventoryRoundTrip() {
+  void testEntityStateEmptyInventoryRoundTrip() {
     EntityState message =
         EntityState.builder().entityId(7).inventory(new Item[] {null, null}).build();
 
@@ -380,7 +380,7 @@ public class S2CConverterTest {
 
   /** Verifies empty metadata maps are normalized to absent metadata. */
   @Test
-  public void testEntityStateEmptyMetadataIsAbsent() {
+  void testEntityStateEmptyMetadataIsAbsent() {
     EntityState message = EntityState.builder().entityId(7).metadata(Map.of()).build();
 
     assertTrue(message.metadata().isEmpty());
@@ -388,7 +388,7 @@ public class S2CConverterTest {
 
   /** Verifies item data without a registered factory fails instead of being ignored. */
   @Test
-  public void testItemStateDataWithoutFactoryFails() {
+  void testItemStateDataWithoutFactoryFails() {
     ItemState itemState = new ItemState("ItemKey", 1, 1, Map.of("custom", "value"));
 
     IllegalArgumentException exception =
@@ -403,7 +403,7 @@ public class S2CConverterTest {
 
   /** Verifies entity state conversion supports partial position-component updates. */
   @Test
-  public void testEntityStatePartialPositionInfoRoundTrip() {
+  void testEntityStatePartialPositionInfoRoundTrip() {
     EntityState message =
         EntityState.builder()
             .entityId(7)
@@ -429,7 +429,7 @@ public class S2CConverterTest {
 
   /** Verifies snapshot message conversion roundtrip. */
   @Test
-  public void testSnapshotRoundTrip() {
+  void testSnapshotRoundTrip() {
     EntityState state = EntityState.builder().entityId(5).build();
     LevelState levelState = new LevelState(Set.of(new DoorTileState(new Coordinate(4, 7), false)));
     SnapshotMessage message = new SnapshotMessage(123, List.of(state), levelState);
@@ -454,7 +454,7 @@ public class S2CConverterTest {
 
   /** Verifies delta snapshot message conversion roundtrip. */
   @Test
-  public void testDeltaSnapshotRoundTrip() {
+  void testDeltaSnapshotRoundTrip() {
     EntityState changedState =
         EntityState.builder()
             .entityId(5)
@@ -490,7 +490,7 @@ public class S2CConverterTest {
 
   /** Verifies game over conversion roundtrip. */
   @Test
-  public void testGameOverRoundTrip() {
+  void testGameOverRoundTrip() {
     GameOverEvent message = new GameOverEvent("all_levels_completed");
 
     core.network.proto.s2c.GameOverEvent proto = GAME_OVER_CONVERTER.toProto(message);
@@ -502,7 +502,7 @@ public class S2CConverterTest {
 
   /** Verifies level change conversion roundtrip. */
   @Test
-  public void testLevelChangeRoundTrip() {
+  void testLevelChangeRoundTrip() {
     LevelChangeEvent message = new LevelChangeEvent("level-1", "data");
 
     core.network.proto.s2c.LevelChangeEvent proto = LEVEL_CHANGE_CONVERTER.toProto(message);
@@ -516,7 +516,7 @@ public class S2CConverterTest {
 
   /** Verifies register ack conversion roundtrip. */
   @Test
-  public void testRegisterAckRoundTrip() {
+  void testRegisterAckRoundTrip() {
     RegisterAck message = new RegisterAck(true);
 
     core.network.proto.s2c.RegisterAck proto = REGISTER_ACK_CONVERTER.toProto(message);
@@ -528,7 +528,7 @@ public class S2CConverterTest {
 
   /** Verifies sound play conversion roundtrip. */
   @Test
-  public void testSoundPlayRoundTrip() {
+  void testSoundPlayRoundTrip() {
     SoundSpec soundSpec =
         SoundSpec.builder("torch")
             .instanceId(11L)
@@ -555,7 +555,7 @@ public class S2CConverterTest {
 
   /** Verifies sound stop conversion roundtrip. */
   @Test
-  public void testSoundStopRoundTrip() {
+  void testSoundStopRoundTrip() {
     SoundStopMessage message = new SoundStopMessage(55L);
 
     core.network.proto.s2c.SoundStopMessage proto = SOUND_STOP_CONVERTER.toProto(message);
@@ -567,7 +567,7 @@ public class S2CConverterTest {
 
   /** Verifies debug telemetry snapshot conversion roundtrip. */
   @Test
-  public void testDebugTelemetrySnapshotRoundTrip() {
+  void testDebugTelemetrySnapshotRoundTrip() {
     DebugTelemetrySnapshot message =
         new DebugTelemetrySnapshot(
             12L,
@@ -663,7 +663,7 @@ public class S2CConverterTest {
 
   /** Verifies debug pong conversion roundtrip. */
   @Test
-  public void testDebugPongRoundTrip() {
+  void testDebugPongRoundTrip() {
     DebugPong message = new DebugPong(5L, 10L, 20L, 30L);
 
     core.network.proto.s2c.DebugPong proto = DEBUG_PONG_CONVERTER.toProto(message);
@@ -681,7 +681,7 @@ public class S2CConverterTest {
 
   /** Verifies initial world complete conversion. */
   @Test
-  public void testInitialWorldCompleteRoundTrip() {
+  void testInitialWorldCompleteRoundTrip() {
     InitialWorldComplete message = new InitialWorldComplete();
 
     core.network.proto.s2c.InitialWorldComplete proto =

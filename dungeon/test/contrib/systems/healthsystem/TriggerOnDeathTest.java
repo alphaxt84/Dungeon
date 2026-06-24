@@ -16,7 +16,7 @@ import org.mockito.Mockito;
 public class TriggerOnDeathTest extends HealthSystemTestBase {
 
   @Test
-  public void testTriggerOnDeathSetsAlreadyDeadAndNotifies() {
+  void testTriggerOnDeathSetsAlreadyDeadAndNotifies() {
     Consumer<Entity> mockOnDeath = mock(Consumer.class);
     hc.onDeath(mockOnDeath);
 

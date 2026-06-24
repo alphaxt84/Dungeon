@@ -14,7 +14,7 @@ public class InteractionComponentTest {
 
   /** Tests if the simple ctor sets the attributes to the default values. */
   @Test
-  public void createSimpleConstructor() {
+  void createSimpleConstructor() {
     Entity e = new Entity();
     InteractionComponent component = new InteractionComponent();
     e.add(component);
@@ -26,7 +26,7 @@ public class InteractionComponentTest {
 
   /** Tests if the complex Constructor sets the attributes to the parameter. */
   @Test
-  public void createComplexConstructor() {
+  void createComplexConstructor() {
     Entity e = new Entity();
     float radius = 100;
     boolean repeat = true;

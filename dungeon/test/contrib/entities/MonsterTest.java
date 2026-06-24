@@ -23,13 +23,13 @@ import org.junit.jupiter.api.Test;
 public class MonsterTest {
   /** Setup a LevelSystem before each test. */
   @BeforeEach
-  public void setup() {
+  void setup() {
     Game.add(new LevelSystem());
   }
 
   /** Cleanup after each test. */
   @AfterEach
-  public void cleanup() {
+  void cleanup() {
     Game.removeAllEntities();
     Game.currentLevel(null);
     Game.removeAllSystems();
@@ -37,7 +37,7 @@ public class MonsterTest {
 
   /** Tests the creation of a DungeonMonster. */
   @Test
-  public void checkCreation() {
+  void checkCreation() {
     Game.currentLevel(
         new DungeonLevel(
             new LevelElement[][] {

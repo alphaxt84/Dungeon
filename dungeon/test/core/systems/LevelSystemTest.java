@@ -46,7 +46,7 @@ public class LevelSystemTest {
 
   /** Clears all levels from the DungeonLoader before all tests. */
   @BeforeAll
-  public static void beforeAll() {
+  static void beforeAll() {
     DungeonLoader.clearLevels();
   }
 
@@ -57,7 +57,7 @@ public class LevelSystemTest {
    * system to the game.
    */
   @BeforeEach
-  public void setup() {
+  void setup() {
     Texture texture = Mockito.mock(Texture.class);
     TextureMap textureMap = Mockito.mock(TextureMap.class);
     textureMockedConstruction = Mockito.mockConstruction(Texture.class);
@@ -81,7 +81,7 @@ public class LevelSystemTest {
    * constructions.
    */
   @AfterEach
-  public void cleanup() {
+  void cleanup() {
     Game.currentLevel(null);
     Game.removeAllEntities();
     Game.removeAllSystems();
@@ -90,7 +90,7 @@ public class LevelSystemTest {
 
   /** Tests that a level is loaded correctly and the onLevelLoader callback is executed once. */
   @Test
-  public void test_loadLevel() {
+  void test_loadLevel() {
     api.loadLevel(level);
     verify(onLevelLoader).execute();
     Mockito.verifyNoMoreInteractions(onLevelLoader);
@@ -102,7 +102,7 @@ public class LevelSystemTest {
    * callback.
    */
   @Test
-  public void test_execute_noLevel() {
+  void test_execute_noLevel() {
     assertTrue(LevelSystem.level().isEmpty());
     api.execute();
     verify(onLevelLoader, never()).execute();
@@ -114,7 +114,7 @@ public class LevelSystemTest {
    * <p>Verifies that the onEndTile callback triggers reloading the level.
    */
   @Test
-  public void test_execute_heroOnEndTile() {
+  void test_execute_heroOnEndTile() {
     api.loadLevel(level);
     api.onEndTile(() -> api.loadLevel(level));
     Entity hero = new Entity();
@@ -143,7 +143,7 @@ public class LevelSystemTest {
    * onLevelLoader callback.
    */
   @Test
-  public void test_setLevel() {
+  void test_setLevel() {
     api.loadLevel(level);
     api.onEndTile(() -> api.loadLevel(level));
     verify(onLevelLoader).execute();

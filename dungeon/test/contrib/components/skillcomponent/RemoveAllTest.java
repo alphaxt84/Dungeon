@@ -1,6 +1,7 @@
 package contrib.components.skillcomponent;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import contrib.components.SkillComponent;
 import org.junit.jupiter.api.Test;
@@ -9,7 +10,7 @@ import org.junit.jupiter.api.Test;
 public class RemoveAllTest extends SkillComponentTestBase {
 
   @Test
-  public void testRemoveAllFromPopulated() {
+  void testRemoveAllFromPopulated() {
     sc = new SkillComponent(skillA, skillB, skillC);
     sc.removeAll();
     assertTrue(sc.getSkills().isEmpty(), "All skills should be removed");
@@ -18,7 +19,7 @@ public class RemoveAllTest extends SkillComponentTestBase {
   }
 
   @Test
-  public void testRemoveAllFromEmpty() {
+  void testRemoveAllFromEmpty() {
     sc = new SkillComponent();
     sc.removeAll();
     assertTrue(sc.getSkills().isEmpty(), "Still empty after removeAll on empty component");
@@ -27,7 +28,7 @@ public class RemoveAllTest extends SkillComponentTestBase {
   }
 
   @Test
-  public void testRemoveAllThenAddSkill() {
+  void testRemoveAllThenAddSkill() {
     sc = new SkillComponent(skillA, skillB);
     sc.removeAll();
     sc.addSkill(skillC);

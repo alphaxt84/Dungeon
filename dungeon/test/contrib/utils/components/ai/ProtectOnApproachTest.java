@@ -21,7 +21,7 @@ public class ProtectOnApproachTest {
 
   /** WTF? . */
   @BeforeEach
-  public void setup() {
+  void setup() {
 
     // Protected Entity
     protectedEntity = new Entity();

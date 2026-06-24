@@ -45,7 +45,7 @@ public class CollisionSystemTest {
 
   /** Creating a clean Systemcontroller to avoid interferences. */
   @BeforeEach
-  public void prepareEnvironment() {
+  void prepareEnvironment() {
     cs = new CollisionSystem();
     Game.add(cs);
   }
@@ -64,7 +64,7 @@ public class CollisionSystemTest {
 
   /** WTF? . */
   @AfterEach
-  public void cleanup() {
+  void cleanup() {
     cleanUpEnvironment();
   }
 
@@ -74,7 +74,7 @@ public class CollisionSystemTest {
    * <p>Left means the Position of B is higher on the x-axis.
    */
   @Test
-  public void checkForCollisionRight() {
+  void checkForCollisionRight() {
     Vector2 offset = Vector2.of(0, 0);
     Vector2 size = Vector2.of(1, 1);
     Entity e1 = prepareEntityWithPosition(new Point(0, 0));
@@ -107,7 +107,7 @@ public class CollisionSystemTest {
    * possible intersection between A and B and there is A gap between to avoid float inaccuracy.
    */
   @Test
-  public void checkForCollisionRightNoIntersection() {
+  void checkForCollisionRightNoIntersection() {
     Vector2 offset = Vector2.of(0, 0);
     Vector2 size = Vector2.of(1, 1);
     Entity e1 = prepareEntityWithPosition(new Point(0, 0));
@@ -140,7 +140,7 @@ public class CollisionSystemTest {
    * possible intersection between A and B and there is A gap between to avoid float inaccuracy.
    */
   @Test
-  public void checkForCollisionLeft() {
+  void checkForCollisionLeft() {
     Vector2 offset = Vector2.of(0, 0);
     Vector2 size = Vector2.of(1, 1);
     Entity e1 = prepareEntityWithPosition(new Point(0, 0));
@@ -172,7 +172,7 @@ public class CollisionSystemTest {
    * possible intersection between A and B and there is A gap between to avoid float inaccuracy.
    */
   @Test
-  public void checkForCollisionLeftNoIntersection() {
+  void checkForCollisionLeftNoIntersection() {
     Entity e1 = prepareEntityWithPosition(new Point(0, 0));
 
     Vector2 offset = Vector2.of(0, 0);
@@ -204,7 +204,7 @@ public class CollisionSystemTest {
    * <p>above means the Position of B is higher on the y-axis.
    */
   @Test
-  public void checkForCollisionTopWithIntersection() {
+  void checkForCollisionTopWithIntersection() {
     Vector2 offset = Vector2.of(0, 0);
     Vector2 size = Vector2.of(1, 1);
     Entity e1 = prepareEntityWithPosition(new Point(0, 0));
@@ -235,7 +235,7 @@ public class CollisionSystemTest {
    * possible intersection between A and B and there is A gap between to avoid float inaccuracy.
    */
   @Test
-  public void checkForCollisionTopWithNoIntersection() {
+  void checkForCollisionTopWithNoIntersection() {
     Vector2 offset = Vector2.of(0, 0);
     Vector2 size = Vector2.of(1, 1);
     Entity e1 = prepareEntityWithPosition(new Point(0, 0));
@@ -265,7 +265,7 @@ public class CollisionSystemTest {
    * <p>Below means the Position of B is lower on the y-axis.
    */
   @Test
-  public void checkForCollisionBottomWithIntersection() {
+  void checkForCollisionBottomWithIntersection() {
     Vector2 offset = Vector2.of(0, 0);
     Vector2 size = Vector2.of(1, 1);
     Entity e1 = prepareEntityWithPosition(new Point(0, 0));
@@ -296,7 +296,7 @@ public class CollisionSystemTest {
    * possible intersection between A and B and there is A gap between to avoid float inaccuracy.
    */
   @Test
-  public void checkForCollisionBottomNoIntersection() {
+  void checkForCollisionBottomNoIntersection() {
     Vector2 offset = Vector2.of(0, 0);
     Vector2 size = Vector2.of(1, 1);
     Entity e1 = prepareEntityWithPosition(new Point(0, 0));
@@ -325,7 +325,7 @@ public class CollisionSystemTest {
    * box B.
    */
   @Test
-  public void checkForCollisionBoxAAroundB() {
+  void checkForCollisionBoxAAroundB() {
     Entity e1 = prepareEntityWithPosition(new Point(-.1f, -.1f));
     TriConsumer<Entity, Entity, Direction> collider = (a, b, c) -> {};
     CollideComponent hb1 =
@@ -350,7 +350,7 @@ public class CollisionSystemTest {
    * box A.
    */
   @Test
-  public void checkForCollisionBoxBAroundA() {
+  void checkForCollisionBoxBAroundA() {
     Entity e1 = prepareEntityWithPosition(new Point(0, 0));
     TriConsumer<Entity, Entity, Direction> collider = (a, b, c) -> {};
     CollideComponent hb1 =
@@ -372,14 +372,14 @@ public class CollisionSystemTest {
 
   /** Checks if the System is still Working even if there is no Entity. */
   @Test
-  public void checkUpdateNoEntities() {
+  void checkUpdateNoEntities() {
     cs.execute();
     cleanUpEnvironment();
   }
 
   /** Checks that the System is still working when there is no Entity with A hit box component. */
   @Test
-  public void checkUpdateNoEntitiesWithHitboxComponent() {
+  void checkUpdateNoEntitiesWithHitboxComponent() {
     prepareEntityWithPosition(new Point(0, 0));
     cs.execute();
     cleanUpEnvironment();
@@ -389,7 +389,7 @@ public class CollisionSystemTest {
    * Checks that there is no call off the collider Methods when there is only one hit box entity.
    */
   @Test
-  public void checkUpdateOneEntityWithHitboxComponent() {
+  void checkUpdateOneEntityWithHitboxComponent() {
     Entity e1 = prepareEntityWithPosition(new Point(0, 0));
     SimpleCounter sc1OnEnter = new SimpleCounter();
     SimpleCounter sc1OnLeave = new SimpleCounter();
@@ -407,7 +407,7 @@ public class CollisionSystemTest {
 
   /** Checks that there is no call off the collider Methods when there is no Collision. */
   @Test
-  public void checkUpdateTwoEntitiesWithHitboxComponentNonColliding() {
+  void checkUpdateTwoEntitiesWithHitboxComponentNonColliding() {
     Entity e1 = prepareEntityWithPosition(new Point(0, 0));
     SimpleCounter sc1OnEnter = new SimpleCounter();
     SimpleCounter sc1OnLeave = new SimpleCounter();

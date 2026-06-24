@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 public class GetItemTest extends InventoryComponentTestBase {
 
   @Test
-  public void testGetItemFound() {
+  void testGetItemFound() {
     inventory.set(1, item1);
 
     Optional<Item> found = inventory.get(1);
@@ -21,13 +21,13 @@ public class GetItemTest extends InventoryComponentTestBase {
   }
 
   @Test
-  public void testGetItemEmptySlot() {
+  void testGetItemEmptySlot() {
     Optional<Item> found = inventory.get(1);
     assertFalse(found.isPresent());
   }
 
   @Test
-  public void testGetItemOutOfBounds() {
+  void testGetItemOutOfBounds() {
     Optional<Item> foundUpper = inventory.get(10); // inventory size is 5
     assertFalse(foundUpper.isPresent());
 

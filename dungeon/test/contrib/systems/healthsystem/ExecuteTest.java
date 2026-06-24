@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 public class ExecuteTest extends HealthSystemTestBase {
 
   @Test
-  public void testExecuteAppliesDamageToAliveEntity() {
+  void testExecuteAppliesDamageToAliveEntity() {
     hc.receiveHit(new Damage(3, DamageType.FIRE, null));
     assertEquals(10, hc.currentHealthpoints());
 
@@ -20,7 +20,7 @@ public class ExecuteTest extends HealthSystemTestBase {
   }
 
   @Test
-  public void testExecuteTriggersDeathForDeadEntity() {
+  void testExecuteTriggersDeathForDeadEntity() {
     hc.currentHealthpoints(0);
     assertTrue(hc.isDead());
 

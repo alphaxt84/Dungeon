@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 public class HasItemTest extends InventoryComponentTestBase {
 
   @Test
-  public void testHasItemInstance() {
+  void testHasItemInstance() {
     assertFalse(inventory.hasItem(item1));
 
     inventory.add(item1);

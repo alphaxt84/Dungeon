@@ -18,7 +18,7 @@ import org.junit.jupiter.api.Test;
 public class TileTest {
   /** WTF? . */
   @Test
-  public void test_isAccessible() {
+  void test_isAccessible() {
     Coordinate dummyCoordinate = new Coordinate(0, 0);
     Tile wall = new WallTile(new SimpleIPath(""), dummyCoordinate, DesignLabel.DEFAULT);
     Tile floor = new FloorTile(new SimpleIPath(""), dummyCoordinate, DesignLabel.DEFAULT);
@@ -34,7 +34,7 @@ public class TileTest {
 
   /** WTF? . */
   @Test
-  public void test_directionTo() {
+  void test_directionTo() {
     Tile north = new FloorTile(new SimpleIPath(""), new Coordinate(0, 1), DesignLabel.DEFAULT);
     Tile south = new FloorTile(new SimpleIPath(""), new Coordinate(0, -1), DesignLabel.DEFAULT);
     Tile east = new FloorTile(new SimpleIPath(""), new Coordinate(1, 0), DesignLabel.DEFAULT);

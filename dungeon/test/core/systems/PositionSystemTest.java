@@ -33,7 +33,7 @@ public class PositionSystemTest {
 
   /** Setup before each test. */
   @BeforeEach
-  public void setup() {
+  void setup() {
     pc = new PositionComponent();
     Game.add(new LevelSystem());
     Game.currentLevel(level);
@@ -51,7 +51,7 @@ public class PositionSystemTest {
 
   /** Cleanup after each test. */
   @AfterEach
-  public void cleanup() {
+  void cleanup() {
     Game.currentLevel(null);
     Game.removeAllSystems();
     Game.removeAllEntities();
@@ -59,7 +59,7 @@ public class PositionSystemTest {
 
   /** Test that the position is set to a random free tile if the position is illegal. */
   @Test
-  public void test_illegalPosition() {
+  void test_illegalPosition() {
     LevelElement[][] elementsLayout =
         new LevelElement[][] {
           {LevelElement.FLOOR, LevelElement.WALL}, {LevelElement.WALL, LevelElement.WALL}
@@ -81,7 +81,7 @@ public class PositionSystemTest {
 
   /** Test that the position is not changed if the position is legal. */
   @Test
-  public void test_legalPosition() {
+  void test_legalPosition() {
     pc.position(new Point(2, 2));
     system.execute();
     assertNotEquals(pc.position(), point);

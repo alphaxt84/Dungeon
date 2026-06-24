@@ -12,14 +12,14 @@ import org.junit.jupiter.api.Test;
 public class ReceiveHitTest extends HealthComponentTestBase {
 
   @Test
-  public void testReceiveHitAddsDamage() {
+  void testReceiveHitAddsDamage() {
     Damage dmg = new Damage(5, DamageType.PHYSICAL, null);
     hc.receiveHit(dmg);
     assertEquals(5, hc.calculateDamageOf(DamageType.PHYSICAL));
   }
 
   @Test
-  public void testReceiveHitUpdatesLastCause() {
+  void testReceiveHitUpdatesLastCause() {
     Entity damager = new Entity();
     hc.receiveHit(new Damage(5, DamageType.PHYSICAL, damager));
     assertTrue(hc.lastDamageCause().isPresent());

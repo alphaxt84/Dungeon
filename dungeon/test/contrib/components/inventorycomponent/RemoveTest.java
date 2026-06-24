@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 public class RemoveTest extends InventoryComponentTestBase {
 
   @Test
-  public void testRemoveItemSuccess() {
+  void testRemoveItemSuccess() {
     inventory.add(item1);
     inventory.add(item2);
 
@@ -28,7 +28,7 @@ public class RemoveTest extends InventoryComponentTestBase {
   }
 
   @Test
-  public void testRemoveCallbackTriggered() {
+  void testRemoveCallbackTriggered() {
     Consumer<Item> mockCallback = mock(Consumer.class);
     inventory.onItemRemoved(mockCallback);
 
@@ -39,7 +39,7 @@ public class RemoveTest extends InventoryComponentTestBase {
   }
 
   @Test
-  public void testRemoveItemNotFound() {
+  void testRemoveItemNotFound() {
     inventory.add(item1);
     Optional<Item> removed = inventory.remove(item2);
     assertFalse(removed.isPresent());

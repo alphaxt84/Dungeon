@@ -17,7 +17,7 @@ public class ItemsClassTest extends InventoryComponentTestBase {
   }
 
   @Test
-  public void testItemsClassSet() {
+  void testItemsClassSet() {
     CustomItemsClassItem custom1 = new CustomItemsClassItem();
     CustomItemsClassItem custom2 = new CustomItemsClassItem();
 

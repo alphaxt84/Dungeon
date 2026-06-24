@@ -1,6 +1,8 @@
 package contrib.components.skillcomponent;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import contrib.components.SkillComponent;
 import org.junit.jupiter.api.Test;
@@ -9,7 +11,7 @@ import org.junit.jupiter.api.Test;
 public class RemoveSkillInstanceTest extends SkillComponentTestBase {
 
   @Test
-  public void testRemoveExistingSkill() {
+  void testRemoveExistingSkill() {
     sc = new SkillComponent(skillA, skillB, skillC);
     sc.removeSkill(skillB);
     assertEquals(2, sc.getSkills().size(), "Should have two skills after removal");
@@ -17,7 +19,7 @@ public class RemoveSkillInstanceTest extends SkillComponentTestBase {
   }
 
   @Test
-  public void testRemoveSkillAdjustsActiveIndices() {
+  void testRemoveSkillAdjustsActiveIndices() {
     sc = new SkillComponent(skillA, skillB, skillC);
     sc.removeSkill(skillA);
     assertEquals(2, sc.getSkills().size());
@@ -27,7 +29,7 @@ public class RemoveSkillInstanceTest extends SkillComponentTestBase {
   }
 
   @Test
-  public void testRemoveDownToOneSkill() {
+  void testRemoveDownToOneSkill() {
     sc = new SkillComponent(skillA, skillB);
     sc.removeSkill(skillB);
     assertEquals(1, sc.getSkills().size());
@@ -36,7 +38,7 @@ public class RemoveSkillInstanceTest extends SkillComponentTestBase {
   }
 
   @Test
-  public void testRemoveLastSkill() {
+  void testRemoveLastSkill() {
     sc = new SkillComponent(skillA);
     sc.removeSkill(skillA);
     assertTrue(sc.getSkills().isEmpty(), "No skills after removing last one");
@@ -45,7 +47,7 @@ public class RemoveSkillInstanceTest extends SkillComponentTestBase {
   }
 
   @Test
-  public void testRemoveNonExistingSkillDoesNothing() {
+  void testRemoveNonExistingSkillDoesNothing() {
     sc = new SkillComponent(skillA, skillB);
     TestSkill unknown = new TestSkill("Unknown");
     sc.removeSkill(unknown);

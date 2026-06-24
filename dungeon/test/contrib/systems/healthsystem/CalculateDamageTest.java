@@ -11,20 +11,20 @@ import org.junit.jupiter.api.Test;
 public class CalculateDamageTest extends HealthSystemTestBase {
 
   @Test
-  public void testCalculateDamageNoHits() {
+  void testCalculateDamageNoHits() {
     HealthSystem.HSData hsd = new HealthSystem.HSData(entity, hc, dc);
     assertEquals(0, system.calculateDamage(hsd));
   }
 
   @Test
-  public void testCalculateDamageSingleHit() {
+  void testCalculateDamageSingleHit() {
     hc.receiveHit(new Damage(5, DamageType.FIRE, null));
     HealthSystem.HSData hsd = new HealthSystem.HSData(entity, hc, dc);
     assertEquals(5, system.calculateDamage(hsd));
   }
 
   @Test
-  public void testCalculateDamageMultipleHits() {
+  void testCalculateDamageMultipleHits() {
     hc.receiveHit(new Damage(3, DamageType.FIRE, null));
     hc.receiveHit(new Damage(4, DamageType.PHYSICAL, null));
     hc.receiveHit(new Damage(2, DamageType.FIRE, null));

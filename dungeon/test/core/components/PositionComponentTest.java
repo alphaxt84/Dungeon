@@ -14,13 +14,13 @@ public class PositionComponentTest {
 
   /** WTF? . */
   @BeforeEach
-  public void setup() {
+  void setup() {
     positionComponent = new PositionComponent(position);
   }
 
   /** WTF? . */
   @Test
-  public void setPosition() {
+  void setPosition() {
     assertTrue(position.equals(positionComponent.position()));
     Point newPoint = new Point(3, 4);
     positionComponent.position(newPoint);

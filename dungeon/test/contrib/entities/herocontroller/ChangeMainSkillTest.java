@@ -1,6 +1,7 @@
 package contrib.entities.herocontroller;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import contrib.components.SkillComponent;
 import contrib.entities.HeroController;
@@ -10,7 +11,7 @@ import org.junit.jupiter.api.Test;
 public class ChangeMainSkillTest extends HeroControllerTestBase {
 
   @Test
-  public void testChangeMainSkillNextCyclesToNextSkill() {
+  void testChangeMainSkillNextCyclesToNextSkill() {
     TestSkill skillA = new TestSkill("A");
     TestSkill skillB = new TestSkill("B");
     TestSkill skillC = new TestSkill("C");
@@ -26,7 +27,7 @@ public class ChangeMainSkillTest extends HeroControllerTestBase {
   }
 
   @Test
-  public void testChangeMainSkillPrevCyclesToPreviousSkill() {
+  void testChangeMainSkillPrevCyclesToPreviousSkill() {
     TestSkill skillA = new TestSkill("A");
     TestSkill skillB = new TestSkill("B");
     TestSkill skillC = new TestSkill("C");
@@ -39,7 +40,7 @@ public class ChangeMainSkillTest extends HeroControllerTestBase {
   }
 
   @Test
-  public void testChangeMainSkillNoSkillComponentDoesNotThrow() {
+  void testChangeMainSkillNoSkillComponentDoesNotThrow() {
     hero.remove(SkillComponent.class);
     assertDoesNotThrow(
         () -> HeroController.changeMainSkill(hero, true),
@@ -47,7 +48,7 @@ public class ChangeMainSkillTest extends HeroControllerTestBase {
   }
 
   @Test
-  public void testChangeMainSkillWithSingleSkill() {
+  void testChangeMainSkillWithSingleSkill() {
     TestSkill onlySkill = new TestSkill("Only");
     SkillComponent sc = new SkillComponent(onlySkill);
     hero.add(sc);

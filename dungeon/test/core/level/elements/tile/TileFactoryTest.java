@@ -15,7 +15,7 @@ public class TileFactoryTest {
 
   /** Checks if Tile of type SKIP can be generated. */
   @Test
-  public void createSKIPTile() {
+  void createSKIPTile() {
     Tile t =
         TileFactory.createTile(
             new SimpleIPath(""), new Coordinate(0, 0), LevelElement.SKIP, DesignLabel.DEFAULT);
@@ -29,7 +29,7 @@ public class TileFactoryTest {
 
   /** Checks if Tile of type FLOOR can be generated. */
   @Test
-  public void createFLOORTile() {
+  void createFLOORTile() {
     Tile t =
         TileFactory.createTile(
             new SimpleIPath(""), new Coordinate(0, 0), LevelElement.FLOOR, DesignLabel.DEFAULT);
@@ -43,7 +43,7 @@ public class TileFactoryTest {
 
   /** Checks if Tile of type WALL can be generated. */
   @Test
-  public void createWALLTile() {
+  void createWALLTile() {
     Tile t =
         TileFactory.createTile(
             new SimpleIPath(""), new Coordinate(0, 0), LevelElement.WALL, DesignLabel.DEFAULT);
@@ -57,7 +57,7 @@ public class TileFactoryTest {
 
   /** Checks if Tile of type HOLE can be generated. */
   @Test
-  public void createHOLETile() {
+  void createHOLETile() {
     Tile t =
         TileFactory.createTile(
             new SimpleIPath(""), new Coordinate(0, 0), LevelElement.HOLE, DesignLabel.DEFAULT);
@@ -71,7 +71,7 @@ public class TileFactoryTest {
 
   /** Checks if Tile of type EXIT can be generated. */
   @Test
-  public void createEXITTile() {
+  void createEXITTile() {
     Tile t =
         TileFactory.createTile(
             new SimpleIPath(""), new Coordinate(0, 0), LevelElement.EXIT, DesignLabel.DEFAULT);
@@ -85,7 +85,7 @@ public class TileFactoryTest {
 
   /** Checks if Tile of type DOOR can be generated. */
   @Test
-  public void createDOORTile() {
+  void createDOORTile() {
     Tile t =
         TileFactory.createTile(
             new SimpleIPath(".png"), new Coordinate(0, 0), LevelElement.DOOR, DesignLabel.DEFAULT);

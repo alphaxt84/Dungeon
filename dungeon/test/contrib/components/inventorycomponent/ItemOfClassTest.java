@@ -18,7 +18,7 @@ public class ItemOfClassTest extends InventoryComponentTestBase {
   }
 
   @Test
-  public void testItemOfClassFound() {
+  void testItemOfClassFound() {
     CustomOfClassItem custom = new CustomOfClassItem();
     inventory.add(custom);
 
@@ -28,7 +28,7 @@ public class ItemOfClassTest extends InventoryComponentTestBase {
   }
 
   @Test
-  public void testItemOfClassNotFound() {
+  void testItemOfClassNotFound() {
     Optional<Item> found = inventory.itemOfClass(CustomOfClassItem.class);
     assertFalse(found.isPresent());
   }

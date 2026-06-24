@@ -26,7 +26,7 @@ public class ChestTest {
 
   /** WTF? . */
   @AfterEach
-  public void cleanup() {
+  void cleanup() {
     Game.removeAllEntities();
     Game.currentLevel(null);
     Game.removeAllSystems();
@@ -34,7 +34,7 @@ public class ChestTest {
 
   /** Checks the correct creation of the Chest. */
   @Test
-  public void checkCreation() throws IOException {
+  void checkCreation() throws IOException {
     Set<Item> itemData = Set.of();
     Point position = new Point(0, 0);
     Entity c = null;
@@ -59,7 +59,7 @@ public class ChestTest {
    * cant be tested.
    */
   /* @Test
-  public void checkInteractionDroppingItems() {
+  void checkInteractionDroppingItems() {
       Point position = new Point(0, 0);
       Entity c = EntityFactory.getChest(itemData, position);
 
@@ -78,7 +78,7 @@ public class ChestTest {
    * cant be tested.
    */
   /*@Test
-  public void checkInteractionOnDroppedItems() {
+  void checkInteractionOnDroppedItems() {
       List<Item> itemData = List.of(new ItemGenerator().generateItemData());
       Point position = new Point(0, 0);
       Entity c = EntityFactory.getChest(itemData, position);
@@ -99,7 +99,7 @@ public class ChestTest {
 
   /** WTF? . */
   @Test
-  public void checkGeneratorMethod() throws IOException {
+  void checkGeneratorMethod() throws IOException {
     Game.add(new LevelSystem());
 
     Game.currentLevel(

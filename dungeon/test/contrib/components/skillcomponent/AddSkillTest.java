@@ -1,6 +1,7 @@
 package contrib.components.skillcomponent;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import contrib.components.SkillComponent;
 import org.junit.jupiter.api.Test;
@@ -9,7 +10,7 @@ import org.junit.jupiter.api.Test;
 public class AddSkillTest extends SkillComponentTestBase {
 
   @Test
-  public void testAddSkillToEmpty() {
+  void testAddSkillToEmpty() {
     sc = new SkillComponent();
     sc.addSkill(skillA);
     assertEquals(1, sc.getSkills().size(), "Should have one skill after adding");
@@ -20,7 +21,7 @@ public class AddSkillTest extends SkillComponentTestBase {
   }
 
   @Test
-  public void testAddSecondSkillBecomesActiveSecond() {
+  void testAddSecondSkillBecomesActiveSecond() {
     sc = new SkillComponent(skillA);
     sc.addSkill(skillB);
     assertEquals(2, sc.getSkills().size(), "Should have two skills");
@@ -29,7 +30,7 @@ public class AddSkillTest extends SkillComponentTestBase {
   }
 
   @Test
-  public void testAddThirdSkillDoesNotChangeActive() {
+  void testAddThirdSkillDoesNotChangeActive() {
     sc = new SkillComponent(skillA, skillB);
     sc.addSkill(skillC);
     assertEquals(3, sc.getSkills().size(), "Should have three skills");
@@ -38,7 +39,7 @@ public class AddSkillTest extends SkillComponentTestBase {
   }
 
   @Test
-  public void testAddNullSkillIsIgnored() {
+  void testAddNullSkillIsIgnored() {
     sc = new SkillComponent();
     sc.addSkill(null);
     assertTrue(sc.getSkills().isEmpty(), "Null skill should be ignored");

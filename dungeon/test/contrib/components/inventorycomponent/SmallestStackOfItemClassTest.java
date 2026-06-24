@@ -18,7 +18,7 @@ public class SmallestStackOfItemClassTest extends InventoryComponentTestBase {
   }
 
   @Test
-  public void testSmallestStackFound() {
+  void testSmallestStackFound() {
     CustomSmallestItem stack1 = new CustomSmallestItem(5);
     CustomSmallestItem stack2 = new CustomSmallestItem(2);
     CustomSmallestItem stack3 = new CustomSmallestItem(8);
@@ -33,7 +33,7 @@ public class SmallestStackOfItemClassTest extends InventoryComponentTestBase {
   }
 
   @Test
-  public void testSmallestStackNotFound() {
+  void testSmallestStackNotFound() {
     Optional<Item> smallest = inventory.smallestStackOfItemClass(CustomSmallestItem.class);
     assertFalse(smallest.isPresent());
   }

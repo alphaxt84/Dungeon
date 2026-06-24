@@ -1,6 +1,6 @@
 package contrib.systems;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import contrib.components.HealthComponent;
 import contrib.components.ManaComponent;

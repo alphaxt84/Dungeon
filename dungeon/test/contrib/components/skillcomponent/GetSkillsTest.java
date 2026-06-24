@@ -1,6 +1,8 @@
 package contrib.components.skillcomponent;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import contrib.components.SkillComponent;
 import java.util.List;
@@ -10,7 +12,7 @@ import org.junit.jupiter.api.Test;
 public class GetSkillsTest extends SkillComponentTestBase {
 
   @Test
-  public void testGetSkillsReturnsAllSkills() {
+  void testGetSkillsReturnsAllSkills() {
     sc = new SkillComponent(skillA, skillB, skillC);
     List<?> skills = sc.getSkills();
     assertEquals(3, skills.size());
@@ -20,13 +22,13 @@ public class GetSkillsTest extends SkillComponentTestBase {
   }
 
   @Test
-  public void testGetSkillsReturnsEmptyForEmptyComponent() {
+  void testGetSkillsReturnsEmptyForEmptyComponent() {
     sc = new SkillComponent();
     assertTrue(sc.getSkills().isEmpty());
   }
 
   @Test
-  public void testGetSkillsReturnsImmutableList() {
+  void testGetSkillsReturnsImmutableList() {
     sc = new SkillComponent(skillA);
     assertThrows(
         UnsupportedOperationException.class,
@@ -35,7 +37,7 @@ public class GetSkillsTest extends SkillComponentTestBase {
   }
 
   @Test
-  public void testGetSkillsPreservesOrder() {
+  void testGetSkillsPreservesOrder() {
     sc = new SkillComponent(skillA, skillB, skillC);
     var skills = sc.getSkills();
     assertEquals(skillA, skills.get(0), "First should be skillA");
@@ -44,7 +46,7 @@ public class GetSkillsTest extends SkillComponentTestBase {
   }
 
   @Test
-  public void testGetSkillsReflectsChanges() {
+  void testGetSkillsReflectsChanges() {
     sc = new SkillComponent(skillA);
     assertEquals(1, sc.getSkills().size());
     sc.addSkill(skillB);

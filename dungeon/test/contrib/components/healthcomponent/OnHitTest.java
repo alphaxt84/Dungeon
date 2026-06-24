@@ -14,7 +14,7 @@ import org.junit.jupiter.api.Test;
 public class OnHitTest extends HealthComponentTestBase {
 
   @Test
-  public void testOnHitCallbackTriggered() {
+  void testOnHitCallbackTriggered() {
     BiConsumer<Entity, Damage> mockOnHit = mock(BiConsumer.class);
     hc.onHit(mockOnHit);
 

@@ -17,7 +17,7 @@ public class SystemTest {
 
   /** WTF? . */
   @BeforeEach
-  public void setup() {
+  void setup() {
     testSystem =
         new System(DummyComponent.class) {
           @Override
@@ -30,7 +30,7 @@ public class SystemTest {
 
   /** WTF? . */
   @AfterEach
-  public void cleanup() {
+  void cleanup() {
     Game.removeAllEntities();
     Game.removeAllSystems();
     onAdd[0] = false;
@@ -39,7 +39,7 @@ public class SystemTest {
 
   /** WTF? . */
   @Test
-  public void add() {
+  void add() {
     Entity e = new Entity();
     testSystem.triggerOnAdd(e);
     assertTrue(onAdd[0]);
@@ -47,7 +47,7 @@ public class SystemTest {
 
   /** WTF? . */
   @Test
-  public void remove() {
+  void remove() {
     Entity e = new Entity();
     testSystem.triggerOnRemove(e);
     assertTrue(onRemove[0]);
@@ -58,7 +58,7 @@ public class SystemTest {
    * entities matching the default filter rules defined in the system constructor.
    */
   @Test
-  public void filteredEntityStream_no_parameter() {
+  void filteredEntityStream_no_parameter() {
     Entity e1 = new Entity();
     Entity e2 = new Entity();
     e1.add(new DummyComponent());
@@ -74,7 +74,7 @@ public class SystemTest {
    * entities matching the specified filter rule (DummyComponent).
    */
   @Test
-  public void filteredEntityStream_array_parameter() {
+  void filteredEntityStream_array_parameter() {
     Entity e1 = new Entity();
     Entity e2 = new Entity();
     e1.add(new DummyComponent());
@@ -90,7 +90,7 @@ public class SystemTest {
    * entities matching the specified filter rule (DummyComponent).
    */
   @Test
-  public void filteredEntityStream_set_parameter() {
+  void filteredEntityStream_set_parameter() {
     Entity e1 = new Entity();
     Entity e2 = new Entity();
     e1.add(new DummyComponent());
@@ -106,7 +106,7 @@ public class SystemTest {
    * contains all entities as no filter rules are applied.
    */
   @Test
-  public void filteredEntityStream_empty_set_parameter() {
+  void filteredEntityStream_empty_set_parameter() {
     Entity e1 = new Entity();
     Entity e2 = new Entity();
     e1.add(new DummyComponent());

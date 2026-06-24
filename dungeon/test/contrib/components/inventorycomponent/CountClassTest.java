@@ -15,7 +15,7 @@ public class CountClassTest extends InventoryComponentTestBase {
   }
 
   @Test
-  public void testCountClassSum() {
+  void testCountClassSum() {
     CustomCountItem stack1 = new CustomCountItem(3);
     CustomCountItem stack2 = new CustomCountItem(4);
 

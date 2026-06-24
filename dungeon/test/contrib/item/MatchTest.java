@@ -15,7 +15,7 @@ public class MatchTest extends ItemTestBase {
   }
 
   @Test
-  public void testMatchSameClassLessOrEqualStack() {
+  void testMatchSameClassLessOrEqualStack() {
     item.stackSize(5);
 
     Item input = new Item("Other", "Other desc", defaultAnimation);
@@ -25,7 +25,7 @@ public class MatchTest extends ItemTestBase {
   }
 
   @Test
-  public void testMatchSameClassGreaterStack() {
+  void testMatchSameClassGreaterStack() {
     item.stackSize(3);
 
     Item input = new Item("Other", "Other desc", defaultAnimation);
@@ -35,7 +35,7 @@ public class MatchTest extends ItemTestBase {
   }
 
   @Test
-  public void testMatchDifferentClasses() {
+  void testMatchDifferentClasses() {
     item.stackSize(5);
 
     CustomTestItem subItem = new CustomTestItem("Sub", "Sub desc");

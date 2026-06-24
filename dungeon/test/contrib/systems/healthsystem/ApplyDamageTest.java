@@ -15,7 +15,7 @@ import org.mockito.Mockito;
 public class ApplyDamageTest extends HealthSystemTestBase {
 
   @Test
-  public void testApplyDamageReducesHealthAndClearsDamage() {
+  void testApplyDamageReducesHealthAndClearsDamage() {
     hc.receiveHit(new Damage(4, DamageType.PHYSICAL, null));
     HealthSystem.HSData hsd = new HealthSystem.HSData(entity, hc, dc);
 
@@ -27,14 +27,14 @@ public class ApplyDamageTest extends HealthSystemTestBase {
   }
 
   @Test
-  public void testApplyDamageSendsSignal() {
+  void testApplyDamageSendsSignal() {
     hc.receiveHit(new Damage(4, DamageType.PHYSICAL, null));
     system.execute();
     verify(dc, times(1)).sendSignal(HealthSystem.DAMAGE_SIGNAL);
   }
 
   @Test
-  public void testApplyDamageNotifiesObservers() {
+  void testApplyDamageNotifiesObservers() {
     IHealthObserver mockObserver = Mockito.mock(IHealthObserver.class);
     system.registerObserver(mockObserver);
 

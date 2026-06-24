@@ -28,7 +28,7 @@ public class CameraSystemTest {
 
   /** WTF? . */
   @BeforeEach
-  public void setup() {
+  void setup() {
     cameraSystem = new CameraSystem();
     Game.add(cameraSystem);
     Mockito.when(startTile.position()).thenReturn(testPoint);
@@ -39,7 +39,7 @@ public class CameraSystemTest {
 
   /** WTF? . */
   @AfterEach
-  public void cleanup() {
+  void cleanup() {
     Game.removeAllEntities();
     Game.currentLevel(null);
     Game.removeAllSystems();
@@ -51,7 +51,7 @@ public class CameraSystemTest {
 
   /** WTF? . */
   @Test
-  public void executeWithEntity() {
+  void executeWithEntity() {
     Game.currentLevel(level);
     Entity entity = new Entity();
     expectedFocusPoint = new Point(3, 3);
@@ -66,7 +66,7 @@ public class CameraSystemTest {
 
   /** WTF? . */
   @Test
-  public void executeWithoutEntity() {
+  void executeWithoutEntity() {
     Game.currentLevel(level);
 
     expectedFocusPoint = level.startTile().orElseThrow().position();
@@ -79,7 +79,7 @@ public class CameraSystemTest {
 
   /** WTF? . */
   @Test
-  public void executeWithoutLevel() {
+  void executeWithoutLevel() {
     Game.currentLevel(null);
     Point expectedFocusPoint = new Point(0, 0);
     cameraSystem.execute();
@@ -93,7 +93,7 @@ public class CameraSystemTest {
    * <p>It checks if a point within the camera's frustum is correctly identified as visible.
    */
   @Test
-  public void isPointInFrustumWithVisiblePoint() {
+  void isPointInFrustumWithVisiblePoint() {
     float x = 1.0f;
     float y = 1.0f;
     assertTrue(CameraSystem.isPointInFrustum(new Point(x, y)));
@@ -105,7 +105,7 @@ public class CameraSystemTest {
    * <p>It checks if a point outside the camera's frustum is correctly identified as not visible.
    */
   @Test
-  public void isPointInFrustumWithInvisiblePoint() {
+  void isPointInFrustumWithInvisiblePoint() {
     float x = 100.0f;
     float y = 100.0f;
     assertFalse(CameraSystem.isPointInFrustum(new Point(x, y)));

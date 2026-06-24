@@ -1,6 +1,7 @@
 package contrib.components.skillcomponent;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import contrib.components.SkillComponent;
 import org.junit.jupiter.api.Test;
@@ -9,7 +10,7 @@ import org.junit.jupiter.api.Test;
 public class PrevSecondSkillTest extends SkillComponentTestBase {
 
   @Test
-  public void testPrevSecondSkillCyclesToPrevious() {
+  void testPrevSecondSkillCyclesToPrevious() {
     sc = new SkillComponent(skillA, skillB, skillC);
     // Initial: main=skillA(0), second=skillB(1)
     sc.prevSecondSkill();
@@ -19,7 +20,7 @@ public class PrevSecondSkillTest extends SkillComponentTestBase {
   }
 
   @Test
-  public void testPrevSecondSkillMultipleCycles() {
+  void testPrevSecondSkillMultipleCycles() {
     sc = new SkillComponent(skillA, skillB, skillC);
     sc.prevSecondSkill(); // 1 -> 0(skip) -> 2
     assertEquals(skillC, sc.activeSecondSkill().get());
@@ -28,7 +29,7 @@ public class PrevSecondSkillTest extends SkillComponentTestBase {
   }
 
   @Test
-  public void testPrevSecondSkillWithTwoSkills() {
+  void testPrevSecondSkillWithTwoSkills() {
     sc = new SkillComponent(skillA, skillB);
     sc.prevSecondSkill();
     // With 2 skills, cycles 1->0(skip)->1, no change
@@ -36,14 +37,14 @@ public class PrevSecondSkillTest extends SkillComponentTestBase {
   }
 
   @Test
-  public void testPrevSecondSkillWithOneSkillDoesNothing() {
+  void testPrevSecondSkillWithOneSkillDoesNothing() {
     sc = new SkillComponent(skillA);
     sc.prevSecondSkill();
     assertTrue(sc.activeSecondSkill().isEmpty());
   }
 
   @Test
-  public void testPrevSecondSkillWithNoSkillsDoesNothing() {
+  void testPrevSecondSkillWithNoSkillsDoesNothing() {
     sc = new SkillComponent();
     sc.prevSecondSkill();
     assertTrue(sc.activeSecondSkill().isEmpty());

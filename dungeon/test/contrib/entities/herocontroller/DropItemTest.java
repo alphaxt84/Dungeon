@@ -1,6 +1,8 @@
 package contrib.entities.herocontroller;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import contrib.components.InventoryComponent;
 import contrib.entities.HeroController;
@@ -26,7 +28,7 @@ public class DropItemTest {
   private Animation defaultAnimation;
 
   @BeforeEach
-  public void setUp() {
+  void setUp() {
     Game.removeAllEntities();
     Game.add(new LevelSystem());
     defaultAnimation = new Animation(new SimpleIPath("animation/missing_texture.png"));
@@ -56,14 +58,14 @@ public class DropItemTest {
   }
 
   @AfterEach
-  public void tearDown() {
+  void tearDown() {
     Game.removeAllEntities();
     Game.removeAllSystems();
     Game.currentLevel(null);
   }
 
   @Test
-  public void testDropItemFromValidSlot() {
+  void testDropItemFromValidSlot() {
     Item item = new Item("Sword", "A weapon", defaultAnimation);
     inventory.add(item);
     assertDoesNotThrow(
@@ -72,7 +74,7 @@ public class DropItemTest {
   }
 
   @Test
-  public void testDropItemRemovesFromInventory() {
+  void testDropItemRemovesFromInventory() {
     Item item = new Item("Sword", "A weapon", defaultAnimation);
     inventory.add(item);
     HeroController.dropItem(hero, inventory, 0);
@@ -80,7 +82,7 @@ public class DropItemTest {
   }
 
   @Test
-  public void testDropItemFromEmptySlotThrows() {
+  void testDropItemFromEmptySlotThrows() {
     assertThrows(
         IllegalArgumentException.class,
         () -> HeroController.dropItem(hero, inventory, 0),

@@ -20,7 +20,7 @@ public class GameTest {
 
   /** WTF? . */
   @BeforeEach
-  public void setup() throws Exception {
+  void setup() throws Exception {
     /*
     game = Mockito.spy(Game.class);
     batch = Mockito.mock(SpriteBatch.class);
@@ -47,14 +47,14 @@ public class GameTest {
 
   /** WTF? . */
   @AfterEach
-  public void cleanup() throws Exception {
+  void cleanup() throws Exception {
     // Game.getDelayedEntitySet().removeAll(Game.getEntities());
     // Game.getDelayedEntitySet().update();
   }
 
   /** WTF? . */
   @Test
-  public void test_render() {
+  void test_render() {
     /*
     game.setSpriteBatch(batch);
      Mockito.verify(game).setSpriteBatch(batch);
@@ -71,7 +71,7 @@ public class GameTest {
 
   /** WTF? . */
   @Test
-  public void test_render_paused() {
+  void test_render_paused() {
     /*
     game.setSpriteBatch(batch);
     when(game.runLoop()).thenReturn(false);
@@ -90,7 +90,7 @@ public class GameTest {
 
   /** WTF? . */
   @Test
-  public void addEntity() {
+  void addEntity() {
     /*    Entity e1 = new Entity();
     Game.addEntity(e1);
     assertFalse(Game.getEntities().contains(e1));
@@ -101,7 +101,7 @@ public class GameTest {
 
   /** WTF? . */
   @Test
-  public void removeEntity() {
+  void removeEntity() {
     /*        Entity e1 = new Entity();
     Game.getDelayedEntitySet().update();
     Game.removeEntity(e1);
@@ -114,12 +114,12 @@ public class GameTest {
   Cannot be tested at the moment, render test must be fixed first
 
   @Test
-  public void test_getEntity(){}
+  void test_getEntity(){}
    */
 
   /** WTF? . */
   @Test
-  public void setHero() {
+  void setHero() {
     /* Entity player = new Entity();
     Game.setHero(player);
     assertEquals(player, Game.getHero().get());

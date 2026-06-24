@@ -12,7 +12,7 @@ public class HealthComponentTestBase {
   protected HealthComponent hc;
 
   @BeforeEach
-  public void setUp() {
+  void setUp() {
     Game.removeAllEntities();
     entity = new Entity();
     hc = new HealthComponent(10);
@@ -20,7 +20,7 @@ public class HealthComponentTestBase {
   }
 
   @AfterEach
-  public void tearDown() {
+  void tearDown() {
     Game.removeAllEntities();
   }
 }

@@ -34,19 +34,19 @@ public class NetworkTelemetryTest {
 
   /** Clears global telemetry state before every test. */
   @BeforeEach
-  public void setup() {
+  void setup() {
     NetworkTelemetry.reset();
   }
 
   /** Verifies the legacy text API delegates to the structured report. */
   @Test
-  public void debugTextDelegatesToDebugReportPlainText() {
+  void debugTextDelegatesToDebugReportPlainText() {
     assertEquals(NetworkTelemetry.debugReport().plainText(), NetworkTelemetry.debugText());
   }
 
   /** Verifies debug control statuses do not add persistent noise to the report. */
   @Test
-  public void debugReportOmitsDebugControlStatuses() {
+  void debugReportOmitsDebugControlStatuses() {
     String plainText = NetworkTelemetry.debugReport().plainText();
 
     assertTrue(plainText.contains("RTT: n/a"));
@@ -58,7 +58,7 @@ public class NetworkTelemetryTest {
 
   /** Verifies transport counters distinguish successful UDP from oversized fallback. */
   @Test
-  public void transportCountersTrackOversizedUdpFallback() {
+  void transportCountersTrackOversizedUdpFallback() {
     SnapshotAck snapshotAck = new SnapshotAck(1);
 
     NetworkTelemetry.recordOutboundTcp(snapshotAck, 10);
@@ -85,7 +85,7 @@ public class NetworkTelemetryTest {
 
   /** Verifies debug protocol traffic is separated from gameplay transport counters. */
   @Test
-  public void debugTrafficUsesSeparateCounters() {
+  void debugTrafficUsesSeparateCounters() {
     DebugPing ping = new DebugPing(1L, 2L);
 
     NetworkTelemetry.recordOutboundTcp(ping, 10);
@@ -109,7 +109,7 @@ public class NetworkTelemetryTest {
 
   /** Verifies snapshot counters distinguish full snapshots from delta snapshots. */
   @Test
-  public void snapshotCountersTrackFullAndDeltaSeparately() {
+  void snapshotCountersTrackFullAndDeltaSeparately() {
     SnapshotMessage full =
         new SnapshotMessage(
             10, List.of(EntityState.builder().entityId(1).build()), new LevelState(Set.of()));
@@ -146,7 +146,7 @@ public class NetworkTelemetryTest {
 
   /** Verifies client apply/stale snapshot telemetry is visible in the debug text. */
   @Test
-  public void clientSnapshotApplyAndStaleCountersReachDebugText() {
+  void clientSnapshotApplyAndStaleCountersReachDebugText() {
     NetworkTelemetry.recordSnapshotApplied(false, 10, 2, 0, 1_000L);
     NetworkTelemetry.recordSnapshotApplied(true, 11, 3, 1, 2_000L);
     NetworkTelemetry.recordStaleSnapshot(false);
@@ -161,7 +161,7 @@ public class NetworkTelemetryTest {
 
   /** Verifies expected-zero counters are represented as bad spans in the report. */
   @Test
-  public void debugReportMarksExpectedZeroCountersBad() {
+  void debugReportMarksExpectedZeroCountersBad() {
     SnapshotAck snapshotAck = new SnapshotAck(1);
     NetworkTelemetry.recordStaleSnapshot(false, 10);
     NetworkTelemetry.recordStaleSnapshot(true, 11);
@@ -186,7 +186,7 @@ public class NetworkTelemetryTest {
 
   /** Verifies oversized snapshots and slow timings are represented as bad spans. */
   @Test
-  public void debugReportMarksSnapshotSizeAndTimingBreachesBad() {
+  void debugReportMarksSnapshotSizeAndTimingBreachesBad() {
     SnapshotMessage full =
         new SnapshotMessage(
             10, List.of(EntityState.builder().entityId(1).build()), new LevelState(Set.of()));
@@ -219,7 +219,7 @@ public class NetworkTelemetryTest {
 
   /** Verifies full snapshot apply timings use a frame budget instead of a substep budget. */
   @Test
-  public void debugReportUsesFrameBudgetForFullSnapshotApply() {
+  void debugReportUsesFrameBudgetForFullSnapshotApply() {
     NetworkTelemetry.recordSnapshotApplied(false, 10, 111, 0, 21_000_000L);
     NetworkTelemetry.recordSnapshotHandlerTiming(
         false, 10, 2_000L, 19_730_000L, 0L, 243_000L, 1_020_000L, false);
@@ -236,7 +236,7 @@ public class NetworkTelemetryTest {
 
   /** Verifies normal scheduling latency does not create noisy bad spans. */
   @Test
-  public void debugReportKeepsSchedulingLatencyAndInactiveAckAgeNormal() {
+  void debugReportKeepsSchedulingLatencyAndInactiveAckAgeNormal() {
     DeltaSnapshotMessage delta =
         new DeltaSnapshotMessage(10, 11, List.of(), List.of(), new LevelState(Set.of()));
     Session session = testSession((short) 1, 0);
@@ -257,7 +257,7 @@ public class NetworkTelemetryTest {
 
   /** Verifies ACK age is informational while baseline retention carries the health signal. */
   @Test
-  public void debugReportMarksMissingAckBaselineBadWithoutDuplicatingAckAge() {
+  void debugReportMarksMissingAckBaselineBadWithoutDuplicatingAckAge() {
     Session session = testSession((short) 1, 0);
     NetworkTelemetry.recordBaselineHealth((short) 1, 590, 0, false, 600, 60);
     NetworkTelemetry.recordServerSnapshot(
@@ -272,7 +272,7 @@ public class NetworkTelemetryTest {
 
   /** Verifies server client lines show the client-reported debug RTT. */
   @Test
-  public void debugReportShowsServerClientDebugRttEstimate() {
+  void debugReportShowsServerClientDebugRttEstimate() {
     Session session = testSession((short) 1, 0);
     session.clientState().orElseThrow().recordDebugRttEstimate(13.9f, 1f);
     NetworkTelemetry.recordBaselineHealth((short) 1, 1, 0, true, 600, 60);
@@ -287,7 +287,7 @@ public class NetworkTelemetryTest {
 
   /** Verifies unknown sentinel values stay informational after reset. */
   @Test
-  public void debugReportKeepsUnknownAndDisconnectedValuesNormal() {
+  void debugReportKeepsUnknownAndDisconnectedValuesNormal() {
     NetworkTelemetryReport report = NetworkTelemetry.debugReport();
 
     assertTrue(report.plainText().contains("disconnected"));

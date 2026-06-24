@@ -45,47 +45,47 @@ public class ClientNetworkTests {
 
   /** Initializes a fresh {@link ClientNetwork} instance before each test. */
   @BeforeEach
-  public void setup() {
+  void setup() {
     client = new ClientNetwork();
   }
 
   /** Shuts down the client network after each test to ensure clean state. */
   @AfterEach
-  public void cleanup() {
+  void cleanup() {
     client.shutdown("test");
   }
 
   /** Validates that client network initializes without throwing exceptions. */
   @Test
-  public void test_clientInitializes() {
+  void test_clientInitializes() {
     assertDoesNotThrow(
         () -> client.initialize(TEST_HOST, TEST_PORT, "TestPlayer", Optional.empty()));
   }
 
   /** Validates that client is not connected after initialization with valid parameters. */
   @Test
-  public void test_initializeWithValidParams() {
+  void test_initializeWithValidParams() {
     client.initialize("localhost", TEST_PORT, "Player1", Optional.empty());
     assertFalse(client.isConnected());
   }
 
   /** Validates that the message dispatcher is available after initialization. */
   @Test
-  public void test_dispatcherAvailable() {
+  void test_dispatcherAvailable() {
     client.initialize(TEST_HOST, TEST_PORT, "TestPlayer", Optional.empty());
     assertNotNull(client.dispatcher());
   }
 
   /** Validates that client is not connected before calling start. */
   @Test
-  public void test_notConnectedBeforeStart() {
+  void test_notConnectedBeforeStart() {
     client.initialize(TEST_HOST, TEST_PORT, "TestPlayer", Optional.empty());
     assertFalse(client.isConnected());
   }
 
   /** Validates that shutdown can be called multiple times without error. */
   @Test
-  public void test_shutdownIdempotent() {
+  void test_shutdownIdempotent() {
     client.initialize(TEST_HOST, TEST_PORT, "TestPlayer", Optional.empty());
     client.shutdown("test");
     client.shutdown("test");
@@ -93,14 +93,14 @@ public class ClientNetworkTests {
 
   /** Validates that client ID returns 0 before connection is established. */
   @Test
-  public void test_clientIdBeforeConnection() {
+  void test_clientIdBeforeConnection() {
     client.initialize(TEST_HOST, TEST_PORT, "TestPlayer", Optional.empty());
     assertEquals(0, (short) client.clientId());
   }
 
   /** Validates that sending a reliable message returns a CompletableFuture. */
   @Test
-  public void test_sendReliableReturnsFuture() {
+  void test_sendReliableReturnsFuture() {
     client.initialize(TEST_HOST, TEST_PORT, "TestPlayer", Optional.empty());
     CompletableFuture<Boolean> result = client.sendReliable(null);
     assertNotNull(result);
@@ -108,7 +108,7 @@ public class ClientNetworkTests {
 
   /** Validates that sending an unreliable input message does not throw exceptions. */
   @Test
-  public void test_sendUnreliableInputSafe() {
+  void test_sendUnreliableInputSafe() {
     client.initialize(TEST_HOST, TEST_PORT, "TestPlayer", Optional.empty());
     assertDoesNotThrow(
         () ->
@@ -123,21 +123,21 @@ public class ClientNetworkTests {
 
   /** Validates that adding a null connection listener does not throw exceptions. */
   @Test
-  public void test_addNullListenerSafe() {
+  void test_addNullListenerSafe() {
     client.initialize(TEST_HOST, TEST_PORT, "TestPlayer", Optional.empty());
     assertDoesNotThrow(() -> client.addConnectionListener(null));
   }
 
   /** Validates that removing a null connection listener does not throw exceptions. */
   @Test
-  public void test_removeNullListenerSafe() {
+  void test_removeNullListenerSafe() {
     client.initialize(TEST_HOST, TEST_PORT, "TestPlayer", Optional.empty());
     assertDoesNotThrow(() -> client.removeConnectionListener(null));
   }
 
   /** Validates that connection listeners can be added and removed without error. */
   @Test
-  public void test_addRemoveListener() {
+  void test_addRemoveListener() {
     client.initialize(TEST_HOST, TEST_PORT, "TestPlayer", Optional.empty());
     ConnectionListener listener = new TestConnectionListener();
     assertDoesNotThrow(() -> client.addConnectionListener(listener));
@@ -146,7 +146,7 @@ public class ClientNetworkTests {
 
   /** Validates that small inputs fall back to TCP before UDP registration succeeds. */
   @Test
-  public void test_sendUnreliableInputFallsBackToTcpBeforeAck() throws Exception {
+  void test_sendUnreliableInputFallsBackToTcpBeforeAck() throws Exception {
     AtomicInteger udpCalls = new AtomicInteger();
     AtomicInteger tcpCalls = new AtomicInteger();
     Session session = testSession(udpCalls, tcpCalls);
@@ -164,7 +164,7 @@ public class ClientNetworkTests {
 
   /** Validates that UDP resumes once the server acknowledges the registration. */
   @Test
-  public void test_sendUnreliableInputUsesUdpAfterAck() throws Exception {
+  void test_sendUnreliableInputUsesUdpAfterAck() throws Exception {
     AtomicInteger udpCalls = new AtomicInteger();
     AtomicInteger tcpCalls = new AtomicInteger();
     Session session = testSession(udpCalls, tcpCalls);
@@ -184,7 +184,7 @@ public class ClientNetworkTests {
 
   /** Validates that oversized inputs always use TCP regardless of UDP state. */
   @Test
-  public void test_sendUnreliableInputUsesTcpForOversizedPayload() throws Exception {
+  void test_sendUnreliableInputUsesTcpForOversizedPayload() throws Exception {
     AtomicInteger udpCalls = new AtomicInteger();
     AtomicInteger tcpCalls = new AtomicInteger();
     Session session = testSession(udpCalls, tcpCalls);
@@ -206,7 +206,7 @@ public class ClientNetworkTests {
 
   /** Validates that explicit snapshot acknowledgements are coalesced to the newest tick. */
   @Test
-  public void acknowledgeSnapshotCoalescesExplicitAckToLatestTick() throws Exception {
+  void acknowledgeSnapshotCoalescesExplicitAckToLatestTick() throws Exception {
     List<NetworkMessage> tcpMessages = new ArrayList<>();
     Session session = recordingSession(new ArrayList<>(), tcpMessages);
     session.udpAddress(new InetSocketAddress(TEST_HOST, TEST_PORT));
@@ -226,7 +226,7 @@ public class ClientNetworkTests {
 
   /** Validates that baseline acknowledgements can bypass the coalescing delay. */
   @Test
-  public void immediateSnapshotAckSendsReliableAckWithoutDelay() throws Exception {
+  void immediateSnapshotAckSendsReliableAckWithoutDelay() throws Exception {
     List<NetworkMessage> tcpMessages = new ArrayList<>();
     Session session = recordingSession(new ArrayList<>(), tcpMessages);
     session.udpAddress(new InetSocketAddress(TEST_HOST, TEST_PORT));
@@ -242,7 +242,7 @@ public class ClientNetworkTests {
 
   /** Validates that UDP input piggybacking does not suppress reliable acknowledgements. */
   @Test
-  public void udpInputPiggybackDoesNotSuppressExplicitAckWhenDue() throws Exception {
+  void udpInputPiggybackDoesNotSuppressExplicitAckWhenDue() throws Exception {
     List<NetworkMessage> udpMessages = new ArrayList<>();
     List<NetworkMessage> tcpMessages = new ArrayList<>();
     Session session = recordingSession(udpMessages, tcpMessages);
@@ -274,7 +274,7 @@ public class ClientNetworkTests {
 
   /** Validates that reliable input piggybacking does not trigger a duplicate explicit ack. */
   @Test
-  public void reliableInputPiggybackSuppressesDuplicateExplicitAck() throws Exception {
+  void reliableInputPiggybackSuppressesDuplicateExplicitAck() throws Exception {
     List<NetworkMessage> tcpMessages = new ArrayList<>();
     Session session = recordingSession(new ArrayList<>(), tcpMessages);
     session.udpAddress(new InetSocketAddress(TEST_HOST, TEST_PORT));
@@ -304,7 +304,7 @@ public class ClientNetworkTests {
 
   /** Validates that TCP fallback input piggybacking suppresses duplicate explicit acks. */
   @Test
-  public void fallbackInputPiggybackSuppressesDuplicateExplicitAck() throws Exception {
+  void fallbackInputPiggybackSuppressesDuplicateExplicitAck() throws Exception {
     List<NetworkMessage> udpMessages = new ArrayList<>();
     List<NetworkMessage> tcpMessages = new ArrayList<>();
     Session session = recordingSession(udpMessages, tcpMessages, false);
@@ -333,7 +333,7 @@ public class ClientNetworkTests {
 
   /** Validates that immediate TCP failures are retryable without leaving the client running. */
   @Test
-  public void test_startFailureDoesNotLeaveRunningState() throws Exception {
+  void test_startFailureDoesNotLeaveRunningState() throws Exception {
     int unusedPort = unusedLocalPort();
     client.initialize(TEST_HOST, unusedPort, "TestPlayer", Optional.empty());
 

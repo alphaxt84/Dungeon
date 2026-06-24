@@ -16,13 +16,13 @@ public class IsDeathAnimationFinishedTest extends HealthSystemTestBase {
   private StateMachine mockStateMachine;
 
   @BeforeEach
-  public void localSetUp() {
+  void localSetUp() {
     mockStateMachine = mock(StateMachine.class);
     when(dc.stateMachine()).thenReturn(mockStateMachine);
   }
 
   @Test
-  public void testNoDeathAnimation() {
+  void testNoDeathAnimation() {
     when(dc.hasState(HealthSystem.DEATH_STATE)).thenReturn(false);
 
     HealthSystem.HSData hsd = new HealthSystem.HSData(entity, hc, dc);
@@ -30,7 +30,7 @@ public class IsDeathAnimationFinishedTest extends HealthSystemTestBase {
   }
 
   @Test
-  public void testDeathAnimationNotActive() {
+  void testDeathAnimationNotActive() {
     when(dc.hasState(HealthSystem.DEATH_STATE)).thenReturn(true);
     when(mockStateMachine.getCurrentStateName()).thenReturn("idle");
 
@@ -39,7 +39,7 @@ public class IsDeathAnimationFinishedTest extends HealthSystemTestBase {
   }
 
   @Test
-  public void testDeathAnimationActiveAndLooping() {
+  void testDeathAnimationActiveAndLooping() {
     when(dc.hasState(HealthSystem.DEATH_STATE)).thenReturn(true);
     when(mockStateMachine.getCurrentStateName()).thenReturn(HealthSystem.DEATH_STATE);
     when(dc.isCurrentAnimationLooping()).thenReturn(true);
@@ -49,7 +49,7 @@ public class IsDeathAnimationFinishedTest extends HealthSystemTestBase {
   }
 
   @Test
-  public void testDeathAnimationActiveNotLoopingFinished() {
+  void testDeathAnimationActiveNotLoopingFinished() {
     when(dc.hasState(HealthSystem.DEATH_STATE)).thenReturn(true);
     when(mockStateMachine.getCurrentStateName()).thenReturn(HealthSystem.DEATH_STATE);
     when(dc.isCurrentAnimationLooping()).thenReturn(false);
@@ -60,7 +60,7 @@ public class IsDeathAnimationFinishedTest extends HealthSystemTestBase {
   }
 
   @Test
-  public void testDeathAnimationActiveNotLoopingNotFinished() {
+  void testDeathAnimationActiveNotLoopingNotFinished() {
     when(dc.hasState(HealthSystem.DEATH_STATE)).thenReturn(true);
     when(mockStateMachine.getCurrentStateName()).thenReturn(HealthSystem.DEATH_STATE);
     when(dc.isCurrentAnimationLooping()).thenReturn(false);

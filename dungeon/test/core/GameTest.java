@@ -12,7 +12,7 @@ import org.mockito.Mockito;
 public class GameTest {
   /** WTF? . */
   @AfterEach
-  public void cleanup() {
+  void cleanup() {
     Game.removeAllEntities();
     Game.removeAllSystems();
     Game.currentLevel(null);
@@ -20,7 +20,7 @@ public class GameTest {
 
   /** WTF? . */
   @Test
-  public void allEntites() {
+  void allEntites() {
     Game.add(new Entity());
     Game.add(new Entity());
     Game.add(new Entity());
@@ -36,7 +36,7 @@ public class GameTest {
 
   /** WTF? . */
   @Test
-  public void removeAllEntites() {
+  void removeAllEntites() {
     Game.add(new Entity());
     Game.add(new Entity());
     Game.add(new Entity());
@@ -54,7 +54,7 @@ public class GameTest {
 
   /** WTF? . */
   @Test
-  public void find_exisiting() {
+  void find_exisiting() {
     Entity e = new Entity();
     DummyComponent dc = new DummyComponent();
     e.add(dc);
@@ -67,7 +67,7 @@ public class GameTest {
 
   /** WTF? . */
   @Test
-  public void find_nonExisting() {
+  void find_nonExisting() {
     DummyComponent dc = new DummyComponent();
     assertTrue(Game.findInAll(dc).isEmpty());
   }

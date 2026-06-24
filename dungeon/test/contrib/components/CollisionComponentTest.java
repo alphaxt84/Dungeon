@@ -23,7 +23,7 @@ public class CollisionComponentTest {
 
   /** Setup before each test. */
   @BeforeEach
-  public void setUp() {
+  void setUp() {
     collisionSystem = new CollisionSystem();
     Game.add(collisionSystem);
 
@@ -40,20 +40,20 @@ public class CollisionComponentTest {
 
   /** Teardown after each test. */
   @AfterEach
-  public void tearDown() {
+  void tearDown() {
     Game.removeAllEntities();
     Game.removeAllSystems();
   }
 
   /** On enter no method given. */
   @Test
-  public void onEnterNoMethod() {
+  void onEnterNoMethod() {
     hb1.onEnter(e1, e2, Direction.UP);
   }
 
   /** On enter method given. */
   @Test
-  public void onEnterCheckCall() {
+  void onEnterCheckCall() {
     SimpleCounter counterE1Enter = new SimpleCounter();
     SimpleCounter counterE1Leave = new SimpleCounter();
     SimpleCounter counterE2Enter = new SimpleCounter();
@@ -73,13 +73,13 @@ public class CollisionComponentTest {
 
   /** On leave no method given. */
   @Test
-  public void onLeaveNoMethod() {
+  void onLeaveNoMethod() {
     hb1.onLeave(e1, e2, Direction.UP);
   }
 
   /** On leave method given. */
   @Test
-  public void onLeaveCheckCall() {
+  void onLeaveCheckCall() {
     SimpleCounter counterE1Enter = new SimpleCounter();
     SimpleCounter counterE1Leave = new SimpleCounter();
     SimpleCounter counterE2Enter = new SimpleCounter();
@@ -99,7 +99,7 @@ public class CollisionComponentTest {
 
   /** WTF? . */
   @Test
-  public void setiCollideEnterNull() {
+  void setiCollideEnterNull() {
     SimpleCounter counterE1Enter = new SimpleCounter();
     hb1.collideEnter((a, b, c) -> counterE1Enter.inc());
     hb1.collideEnter(null);
@@ -109,7 +109,7 @@ public class CollisionComponentTest {
 
   /** WTF? . */
   @Test
-  public void setiCollideEnterValidCollider() {
+  void setiCollideEnterValidCollider() {
     SimpleCounter counterE1Enter = new SimpleCounter();
     SimpleCounter newCounterE1Enter = new SimpleCounter();
     hb1.collideEnter((a, b, c) -> counterE1Enter.inc());
@@ -121,7 +121,7 @@ public class CollisionComponentTest {
 
   /** WTF? . */
   @Test
-  public void setiCollideLeaveNull() {
+  void setiCollideLeaveNull() {
     Entity e1 = new Entity();
     SimpleCounter counterE1Enter = new SimpleCounter();
     CollideComponent hb1 = new CollideComponent(null, (a, b, c) -> counterE1Enter.inc());
@@ -136,7 +136,7 @@ public class CollisionComponentTest {
 
   /** WTF? . */
   @Test
-  public void setiCollideLeaveValidCollider() {
+  void setiCollideLeaveValidCollider() {
     SimpleCounter counterE1Leave = new SimpleCounter();
     SimpleCounter newCounterE1Leave = new SimpleCounter();
     hb1.collideLeave((a, b, c) -> counterE1Leave.inc());

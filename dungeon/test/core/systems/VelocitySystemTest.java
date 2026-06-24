@@ -42,7 +42,7 @@ public class VelocitySystemTest {
    * world.
    */
   @BeforeEach
-  public void setup() {
+  void setup() {
     // Create file system handle. WARNING: This will assume all future paths to be relative to the
     // working directory (probably the root of the project)
     TextureMap.instance().clear(); // reset any existing mappings

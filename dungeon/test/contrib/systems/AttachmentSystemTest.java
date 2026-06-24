@@ -1,6 +1,6 @@
 package contrib.systems;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import contrib.components.AttachmentComponent;
 import core.Entity;

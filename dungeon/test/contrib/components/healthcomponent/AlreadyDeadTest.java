@@ -9,18 +9,18 @@ import org.junit.jupiter.api.Test;
 public class AlreadyDeadTest extends HealthComponentTestBase {
 
   @Test
-  public void testInitialAlreadyDeadState() {
+  void testInitialAlreadyDeadState() {
     assertFalse(hc.alreadyDead());
   }
 
   @Test
-  public void testSetAlreadyDeadTrue() {
+  void testSetAlreadyDeadTrue() {
     hc.alreadyDead(true);
     assertTrue(hc.alreadyDead());
   }
 
   @Test
-  public void testSetAlreadyDeadFalse() {
+  void testSetAlreadyDeadFalse() {
     hc.alreadyDead(true);
     hc.alreadyDead(false);
     assertFalse(hc.alreadyDead());

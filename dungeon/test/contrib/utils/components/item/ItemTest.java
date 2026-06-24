@@ -34,7 +34,7 @@ public class ItemTest {
 
   /** WTF? . */
   @BeforeEach
-  public void before() {
+  void before() {
     Game.add(new LevelSystem());
 
     DungeonLevel level =
@@ -86,7 +86,7 @@ public class ItemTest {
 
   /** WTF? . */
   @AfterEach
-  public void cleanup() {
+  void cleanup() {
     Game.removeAllEntities();
     Game.removeAllSystems();
     Game.currentLevel(null);
@@ -94,7 +94,7 @@ public class ItemTest {
 
   /** WTF? . */
   @Test
-  public void testConstructorThreeParameter() {
+  void testConstructorThreeParameter() {
     Item item = new Item("Test item", "Test description", defaultAnimation);
     assertEquals(item.displayName(), "Test item");
     assertEquals(item.description(), "Test description");
@@ -106,7 +106,7 @@ public class ItemTest {
 
   /** WTF? . */
   @Test
-  public void testConstructorFourParameter() {
+  void testConstructorFourParameter() {
     Item item =
         new Item("Test item 2", "Another test description", inventoryAnimation, worldAnimation);
     assertEquals(item.displayName(), "Test item 2");
@@ -119,7 +119,7 @@ public class ItemTest {
 
   /** WTF? . */
   @Test
-  public void testConstructorSixParameter() {
+  void testConstructorSixParameter() {
     Item item =
         new Item("Test item 3", "More description", inventoryAnimation, worldAnimation, 2, 6);
     assertEquals(item.displayName(), "2 x Test item 3");
@@ -132,7 +132,7 @@ public class ItemTest {
 
   /** WTF? . */
   @Test
-  public void testDisplayName() {
+  void testDisplayName() {
     Item item = new Item("Test item", "Test description", defaultAnimation);
     item.displayName("New Display Name");
 
@@ -141,7 +141,7 @@ public class ItemTest {
 
   /** WTF? . */
   @Test
-  public void testDescription() {
+  void testDescription() {
     Item item = new Item("Test item", "Test description", defaultAnimation);
     item.description("New Description");
 
@@ -150,7 +150,7 @@ public class ItemTest {
 
   /** WTF? . */
   @Test
-  public void testInventoryAnimation() {
+  void testInventoryAnimation() {
     Item item = new Item("Test item", "Test description", defaultAnimation);
     item.inventoryAnimation(inventoryAnimation);
 
@@ -159,7 +159,7 @@ public class ItemTest {
 
   /** WTF? . */
   @Test
-  public void testWorldAnimation() {
+  void testWorldAnimation() {
     Item item = new Item("Test item", "Test description", defaultAnimation);
     item.worldAnimation(worldAnimation);
 
@@ -168,7 +168,7 @@ public class ItemTest {
 
   /** WTF? . */
   @Test
-  public void testStackSize() {
+  void testStackSize() {
     Item item = new Item("Test item", "Test description", defaultAnimation);
     item.stackSize(2);
 
@@ -177,7 +177,7 @@ public class ItemTest {
 
   /** WTF? . */
   @Test
-  public void testMaxStackSize() {
+  void testMaxStackSize() {
     Item item = new Item("Test item", "Test description", defaultAnimation);
     item.maxStackSize(8);
 
@@ -186,7 +186,7 @@ public class ItemTest {
 
   /** Tests if item is removed from inventory and present in Game world after drop. */
   @Test
-  public void testDrop() {
+  void testDrop() {
     Item item = new Item("Test item", "Test description", defaultAnimation);
 
     Point point = new Point(3, 3);
@@ -201,7 +201,7 @@ public class ItemTest {
 
   /** Tests if item is present in inventory and removed from Game world after collect. */
   @Test
-  public void testCollect() {
+  void testCollect() {
     assertEquals(0, Game.levelEntities().count());
 
     Item item = new Item("Test item", "Test description", defaultAnimation);
@@ -224,7 +224,7 @@ public class ItemTest {
 
   /** Tests if item can be collected from entity with no InventoryComponent. */
   @Test
-  public void testCollectNoInventory() {
+  void testCollectNoInventory() {
     assertEquals(0, Game.levelEntities().count());
 
     Item item = new Item("Test item", "Test description", defaultAnimation);
@@ -239,7 +239,7 @@ public class ItemTest {
 
   /** Tests if item can be collected from entity with full inventory. */
   @Test
-  public void testCollectFullInventory() {
+  void testCollectFullInventory() {
     assertEquals(0, Game.levelEntities().count());
 
     Item item = new Item("Test item", "Test description", defaultAnimation);
@@ -255,7 +255,7 @@ public class ItemTest {
 
   /** Tests if item is removed from inventory after use. */
   @Test
-  public void testUse() {
+  void testUse() {
     Item item = new Item("Test item", "Test description", defaultAnimation);
     Entity entity = new Entity();
     InventoryComponent inventoryComponent = new InventoryComponent(2);

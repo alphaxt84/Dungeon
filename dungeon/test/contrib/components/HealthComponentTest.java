@@ -16,7 +16,7 @@ public class HealthComponentTest {
 
   /** WTF? . */
   @Test
-  public void receiveHit() {
+  void receiveHit() {
     Game.removeAllEntities();
     Entity entity = new Entity();
     HealthComponent hc = new HealthComponent();
@@ -36,7 +36,7 @@ public class HealthComponentTest {
 
   /** WTF? . */
   @Test
-  public void testDamageCause() {
+  void testDamageCause() {
     Game.removeAllEntities();
     Entity entity = new Entity();
     Entity damager = new Entity();
@@ -54,7 +54,7 @@ public class HealthComponentTest {
 
   /** WTF? . */
   @Test
-  public void setMaximalHealthPointsLowerThanCurrent() {
+  void setMaximalHealthPointsLowerThanCurrent() {
     Game.removeAllEntities();
     Entity entity = new Entity();
     HealthComponent hc = new HealthComponent(10, null);
@@ -68,7 +68,7 @@ public class HealthComponentTest {
 
   /** WTF? . */
   @Test
-  public void setMaximalHealthPointsHigherThanCurrent() {
+  void setMaximalHealthPointsHigherThanCurrent() {
     Game.removeAllEntities();
     Entity entity = new Entity();
     HealthComponent hc = new HealthComponent(10, null);
@@ -82,7 +82,7 @@ public class HealthComponentTest {
 
   /** WTF? . */
   @Test
-  public void setCurrentHealthPointsHigherThanMaximum() {
+  void setCurrentHealthPointsHigherThanMaximum() {
     Game.removeAllEntities();
     Entity entity = new Entity();
     HealthComponent hc = new HealthComponent(10, null);
@@ -93,7 +93,7 @@ public class HealthComponentTest {
 
   /** WTF? . */
   @Test
-  public void setCurrentHealthPointsLowerThanMaximum() {
+  void setCurrentHealthPointsLowerThanMaximum() {
     Game.removeAllEntities();
     Entity entity = new Entity();
     HealthComponent hc = new HealthComponent(10, null);
@@ -104,7 +104,7 @@ public class HealthComponentTest {
 
   /** WTF? . */
   @Test
-  public void triggerOnDeath() {
+  void triggerOnDeath() {
     Game.removeAllEntities();
     Entity entity = new Entity();
     Consumer<Entity> onDeathFunction = Mockito.mock(Consumer.class);

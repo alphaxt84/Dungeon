@@ -17,7 +17,7 @@ import org.junit.jupiter.api.Test;
 public class DropTest extends ItemTestBase {
 
   @Test
-  public void testDropOnFloorTile() {
+  void testDropOnFloorTile() {
     Point point = new Point(2, 2);
     Optional<Entity> droppedEntityOpt = item.drop(point);
 
@@ -34,7 +34,7 @@ public class DropTest extends ItemTestBase {
   }
 
   @Test
-  public void testDropOnIllegalPosition() {
+  void testDropOnIllegalPosition() {
     Point illegalPoint = new Point(-1, -1);
     Optional<Entity> droppedEntityOpt = item.drop(illegalPoint);
     assertFalse(droppedEntityOpt.isPresent());

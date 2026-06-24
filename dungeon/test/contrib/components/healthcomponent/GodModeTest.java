@@ -9,18 +9,18 @@ import org.junit.jupiter.api.Test;
 public class GodModeTest extends HealthComponentTestBase {
 
   @Test
-  public void testInitialGodModeState() {
+  void testInitialGodModeState() {
     assertFalse(hc.godMode());
   }
 
   @Test
-  public void testSetGodModeTrue() {
+  void testSetGodModeTrue() {
     hc.godMode(true);
     assertTrue(hc.godMode());
   }
 
   @Test
-  public void testSetGodModeFalse() {
+  void testSetGodModeFalse() {
     hc.godMode(true);
     hc.godMode(false);
     assertFalse(hc.godMode());

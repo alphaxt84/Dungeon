@@ -13,14 +13,14 @@ import org.junit.jupiter.api.Test;
 public class ActivateDeathAnimationTest extends HealthSystemTestBase {
 
   @Test
-  public void testActivateDeathAnimationWithoutPositionComponent() {
+  void testActivateDeathAnimationWithoutPositionComponent() {
     HealthSystem.HSData hsd = new HealthSystem.HSData(entity, hc, dc);
     system.activateDeathAnimation(hsd);
     verify(dc, times(1)).sendSignal(HealthSystem.DEATH_SIGNAL);
   }
 
   @Test
-  public void testActivateDeathAnimationWithPositionComponent() {
+  void testActivateDeathAnimationWithPositionComponent() {
     PositionComponent pc = new PositionComponent(new Point(0, 0), Direction.RIGHT);
     entity.add(pc);
 

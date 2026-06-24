@@ -15,19 +15,19 @@ import org.junit.jupiter.api.Test;
 public class SetItemTest extends InventoryComponentTestBase {
 
   @Test
-  public void testSetItemSuccess() {
+  void testSetItemSuccess() {
     assertTrue(inventory.set(2, item1));
     assertEquals(item1, inventory.get(2).get());
   }
 
   @Test
-  public void testSetItemOutOfBoundsReturnsFalse() {
+  void testSetItemOutOfBoundsReturnsFalse() {
     assertFalse(inventory.set(10, item1)); // inventory size is 5
     assertFalse(inventory.set(-1, item1));
   }
 
   @Test
-  public void testSetItemCallback() {
+  void testSetItemCallback() {
     Consumer<Item> mockCallback = mock(Consumer.class);
     inventory.onItemAdded(mockCallback);
 

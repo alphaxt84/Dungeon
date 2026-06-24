@@ -14,21 +14,21 @@ import org.junit.jupiter.api.Test;
 public class KonstruktorTest {
 
   @Test
-  public void testDefaultConstructor() {
+  void testDefaultConstructor() {
     HealthComponent hc = new HealthComponent();
     assertEquals(1, hc.maximalHealthpoints());
     assertEquals(1, hc.currentHealthpoints());
   }
 
   @Test
-  public void testSingleParameterConstructor() {
+  void testSingleParameterConstructor() {
     HealthComponent hc = new HealthComponent(15);
     assertEquals(15, hc.maximalHealthpoints());
     assertEquals(15, hc.currentHealthpoints());
   }
 
   @Test
-  public void testTwoParameterConstructor() {
+  void testTwoParameterConstructor() {
     Consumer<Entity> mockOnDeath = mock(Consumer.class);
     HealthComponent hc = new HealthComponent(20, mockOnDeath);
     assertEquals(20, hc.maximalHealthpoints());
@@ -40,7 +40,7 @@ public class KonstruktorTest {
   }
 
   @Test
-  public void testNegativeHealthPoints() {
+  void testNegativeHealthPoints() {
     HealthComponent hc = new HealthComponent(-5);
     assertEquals(-5, hc.maximalHealthpoints());
     assertEquals(-5, hc.currentHealthpoints());
